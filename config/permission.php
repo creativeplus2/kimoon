@@ -186,5 +186,5 @@ return [
         ['group' => 'account banks', 'access' => ['account bank view', 'account bank create', 'account bank edit', 'account bank delete']],
         ['group' => 'product categories', 'access' => ['product category view', 'product category create', 'product category edit', 'product category delete']],
         ['group' => 'product units', 'access' => ['product unit view', 'product unit create', 'product unit edit', 'product unit delete']],
-    ],
-];
+  ['group' => 'sub categories', 'access' => ['sub category view', 'sub category create', 'sub category edit', 'sub category delete']], 
+		],];

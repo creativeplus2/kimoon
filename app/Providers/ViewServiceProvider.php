@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Bank;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Role;
+
 
 
 
@@ -42,6 +44,16 @@ class ViewServiceProvider extends ServiceProvider
                 $data
             );
         });
+
+        View::composer(['sub-categories.create', 'sub-categories.edit'], function ($view) {
+            $data = ProductCategory::select('id', 'nama_kategori')->get();
+            return $view->with(
+                'productCategories',
+                $data
+            );
+        });
+
+
 
     }
 }

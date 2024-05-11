@@ -123,8 +123,8 @@ return [
             'bank view',
             'account bank view',
             'product category view',
-            'product category view',
-            'product unit view'
+            'product unit view',
+            'sub category view'
         ],
         'menus' => [
             [
@@ -133,13 +133,17 @@ return [
                 'route' => null,
                 'uri' => [
                     'bank*',
-                    'account-banks*'
+                    'account-banks*',
+                    'product-categories*',
+                    'sub-categories*',
+                    'product-unit*',
                 ],
                 'permissions' => [
                     'bank view',
                     'account bank view',
                     'product category view',
-                    'product unit view'
+                    'product unit view',
+                    'sub category view'
                 ],
                 'submenus' => [
                     [
@@ -153,12 +157,17 @@ return [
                         'permission' => 'account bank view'
                     ],
                     [
-                        'title' => 'Product Categories',
+                        'title' => 'Categories',
                         'route' => '/product-categories',
                         'permission' => 'product category view'
                     ],
                     [
-                        'title' => 'Product Units',
+                        'title' => 'Sub Categories',
+                        'route' => '/sub-categories',
+                        'permission' => 'sub category view'
+                    ],
+                    [
+                        'title' => 'Units',
                         'route' => '/product-units',
                         'permission' => 'product unit view'
                     ]

@@ -27,3 +27,4 @@ Route::resource('account-banks', App\Http\Controllers\AccountBankController::cla
 Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
 Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
 Route::resource('product-units', App\Http\Controllers\ProductUnitController::class)->middleware('auth');
+Route::resource('sub-categories', App\Http\Controllers\SubCategoryController::class)->middleware('auth');

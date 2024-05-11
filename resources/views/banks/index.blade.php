@@ -41,7 +41,7 @@
                                     </thead>
                                 </table>
                             </div>
-                        </div>q
+                        </div>
                     </div>
                 </div>
             </div>
