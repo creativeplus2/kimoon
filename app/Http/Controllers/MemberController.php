@@ -130,6 +130,7 @@ class MemberController extends Controller
             ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
             ->where('members.id', $id)
             ->first();
+        $kabkots = DB::table('kabkots')->where('provinsi_id', $member->provinsi_id)->get();
         return view('members.show', compact('member'));
     }
 

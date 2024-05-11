@@ -100,14 +100,101 @@
                                     </tr>
                                 </table>
                             </div>
-                            <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __('Back') }}</a>
-
                         </div>
                     </div>
                 </div>
+
+
+
+
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="alert alert-primary" role="alert">
+                                Silahkan tambahakan Kabupaten/Kota yang tercover oleh distributor terkait
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="provinsi-id">{{ __('Province') }}</label>
+                                <select
+                                    class="form-control js-example-basic-multiple @error('provinsi_id') is-invalid @enderror"
+                                    name="provinsi_id" id="provinsi-id" required>
+                                    <option value="" selected disabled>-- {{ __('Select province') }} --</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">
+                                            {{ $province->provinsi }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('provinsi_id')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-12 mb-2">
+                                <label for="kabkot-id">{{ __('Kabkot') }}</label>
+                                <select
+                                    class="form-control js-example-basic-multiple @error('kabkot_id') is-invalid @enderror"
+                                    name="kabkot_id" id="kabkot-id" required>
+                                    <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
+                                </select>
+                                @error('kabkot_id')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <a href="{{ route('members.index') }}" class="btn btn-secondary">{{ __('Back') }}</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <br>
             <br>
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        const options_temp = '<option value="" selected disabled>-- Select --</option>';
+
+        $('#provinsi-id').change(function() {
+            $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
+            if ($(this).val() != "") {
+                getKabupatenKota($(this).val());
+            }
+            // onValidation('provinsi')
+        })
+
+        function getKabupatenKota(provinsiId) {
+            let url = '{{ route('api.kota', ':id') }}';
+            url = url.replace(':id', provinsiId)
+            $.ajax({
+                url,
+                method: 'GET',
+                beforeSend: function() {
+                    $('#kabkot-id').prop('disabled', true);
+                },
+                success: function(res) {
+                    const options = res.data.map(value => {
+                        return `<option value="${value.id}">${value.kabupaten_kota}</option>`
+                    });
+                    $('#kabkot-id').html(options_temp + options)
+                    $('#kabkot-id').prop('disabled', false);
+                },
+                error: function(err) {
+                    $('#kabkot-id').prop('disabled', false);
+                    alert(JSON.stringify(err))
+                }
+
+            })
+        }
+
+    </script>
+@endpush
+
+
