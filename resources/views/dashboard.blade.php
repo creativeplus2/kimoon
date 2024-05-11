@@ -57,7 +57,7 @@
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
                                                     <a href="" style="color: #A8AAB5" role="button"
-                                                        id="btn_work_order_modal">Total</a>
+                                                        id="btn_work_order_modal">Total member</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-warning rounded fs-3">
-                                                    <i class="mdi mdi-book-multiple"></i>
+                                                    <i class="fa fa-users"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
                                                     <a href="" style="color: #A8AAB5" role="button"
-                                                        id="btn_equipment_modal">Total</a>
+                                                        id="btn_equipment_modal">Total produk</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
                                                     <a href="" style="color: #A8AAB5" role="button"
-                                                        id="btn_employee_modal">Total</a>
+                                                        id="btn_employee_modal">Total Kategori Produk</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info rounded fs-3">
-                                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                                    <i class="fa fa-list" aria-hidden="true"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
                                                     <a href="" style="color: #A8AAB5" role="button"
-                                                        id="btn_vendor_modal">Total</a>
+                                                        id="btn_vendor_modal">Total Sub Kategori Produk</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-danger rounded fs-3">
-                                                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                                                    <i class="fa fa-tags" aria-hidden="true"></i>
                                                 </span>
                                             </div>
                                         </div>
