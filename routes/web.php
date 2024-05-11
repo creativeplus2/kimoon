@@ -28,3 +28,8 @@ Route::resource('product-categories', App\Http\Controllers\ProductCategoryContro
 Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
 Route::resource('product-units', App\Http\Controllers\ProductUnitController::class)->middleware('auth');
 Route::resource('sub-categories', App\Http\Controllers\SubCategoryController::class)->middleware('auth');
+Route::resource('products', App\Http\Controllers\ProductController::class)->middleware('auth');
+Route::resource('provinces', App\Http\Controllers\ProvinceController::class)->middleware('auth');
+Route::resource('kabkots', App\Http\Controllers\KabkotController::class)->middleware('auth');
+Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
+Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');

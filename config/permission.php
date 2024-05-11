@@ -186,5 +186,12 @@ return [
         ['group' => 'account banks', 'access' => ['account bank view', 'account bank create', 'account bank edit', 'account bank delete']],
         ['group' => 'product categories', 'access' => ['product category view', 'product category create', 'product category edit', 'product category delete']],
         ['group' => 'product units', 'access' => ['product unit view', 'product unit create', 'product unit edit', 'product unit delete']],
-  ['group' => 'sub categories', 'access' => ['sub category view', 'sub category create', 'sub category edit', 'sub category delete']], 
-		],];
+        ['group' => 'sub categories', 'access' => ['sub category view', 'sub category create', 'sub category edit', 'sub category delete']],
+        ['group' => 'products', 'access' => ['product view', 'product create', 'product edit', 'product delete']],
+        ['group' => 'provinces', 'access' => ['province view', 'province create', 'province edit', 'province delete']],
+        ['group' => 'kabkots', 'access' => ['kabkot view', 'kabkot create', 'kabkot edit', 'kabkot delete']],
+        ['group' => 'kecamatans', 'access' => ['kecamatan view', 'kecamatan create', 'kecamatan edit', 'kecamatan delete']],
+        ['group' => 'kelurahans', 'access' => ['kelurahan view', 'kelurahan create', 'kelurahan edit', 'kelurahan delete']],
+
+    ],
+];

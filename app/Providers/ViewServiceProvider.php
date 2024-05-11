@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Models\Bank;
 use App\Models\ProductCategory;
+use App\Models\ProductUnit;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Role;
-
-
 
 
 class ViewServiceProvider extends ServiceProvider
@@ -53,7 +53,41 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
+        View::composer(['products.create', 'products.edit'], function ($view) {
+            $data = SubCategory::select('id', 'nama_sub_kategori')->get();
+            return $view->with(
+                'subCategories',
+                $data
+            );
+        });
 
+        View::composer(['products.create', 'products.edit'], function ($view) {
+            $data = ProductUnit::select('id', 'nama_unit')->get();
+            return $view->with(
+                'productUnits',
+                $data
+            );
+        });
 
+        View::composer(['kabkots.create', 'kabkots.edit', 'employees.create', 'employees.edit'], function ($view) {
+            return $view->with(
+                'provinces',
+                \App\Models\Province::select('id', 'provinsi')->get()
+            );
+        });
+
+        View::composer(['kecamatans.create', 'kecamatans.edit'], function ($view) {
+            return $view->with(
+                'kabkots',
+                \App\Models\Kabkot::select('id', 'kabupaten_kota')->get()
+            );
+        });
+
+        View::composer(['kelurahans.create', 'kelurahans.edit'], function ($view) {
+            return $view->with(
+                'kecamatans',
+                \App\Models\Kecamatan::select('id', 'kecamatan')->get()
+            );
+        });
     }
 }
