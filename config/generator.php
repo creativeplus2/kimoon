@@ -110,6 +110,22 @@ return [
      */
     'sidebars' => [
         [
+            'header' => 'Members',
+            'permissions' => [
+                'member view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Members',
+                    'icon' => '<i data-feather="users"></i>',
+                    'route' => '/members',
+                    'permission' => 'member view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ],
+        [
             'header' => 'Products',
             'permissions' => [
                 'product view'

@@ -192,6 +192,6 @@ return [
         ['group' => 'kabkots', 'access' => ['kabkot view', 'kabkot create', 'kabkot edit', 'kabkot delete']],
         ['group' => 'kecamatans', 'access' => ['kecamatan view', 'kecamatan create', 'kecamatan edit', 'kecamatan delete']],
         ['group' => 'kelurahans', 'access' => ['kelurahan view', 'kelurahan create', 'kelurahan edit', 'kelurahan delete']],
-
+        ['group' => 'members', 'access' => ['member view', 'member create', 'member edit', 'member delete']],
     ],
 ];
