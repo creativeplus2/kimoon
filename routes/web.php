@@ -21,7 +21,6 @@ Route::middleware(['auth', 'web'])->group(function () {
 Route::get('/dashboard', function () {
     return redirect()->route('dashboard');
 });
-
 Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
 Route::resource('account-banks', App\Http\Controllers\AccountBankController::class)->middleware('auth');
 Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
@@ -34,3 +33,4 @@ Route::resource('kabkots', App\Http\Controllers\KabkotController::class)->middle
 Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
 Route::resource('members', App\Http\Controllers\MemberController::class)->middleware('auth');
+Route::get('/GetGambarProduk/{id}', [App\Http\Controllers\ProductController::class, 'GetGambarProduk']);

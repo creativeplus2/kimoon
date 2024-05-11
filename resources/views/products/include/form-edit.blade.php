@@ -213,8 +213,7 @@
                 </tr>
             @endforeach
             <tr>
-                <td><input type="file" name="photo[]" class="form-control  @error('photo') is-invalid @enderror"
-                        required />
+                <td><input type="file" name="photo[]" class="form-control  @error('photo') is-invalid @enderror" />
                 </td>
                 <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i
                             class="fa fa-plus" aria-hidden="true"></i></button>

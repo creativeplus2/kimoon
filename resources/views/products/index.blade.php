@@ -3,6 +3,37 @@
 @section('title', __('Products'))
 
 @section('content')
+
+    <div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><span id="modal_nama_produk"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <span id="return-gambar"></span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
@@ -39,12 +70,12 @@
                                             <th>{{ __('Nama Produk') }}</th>
                                             <th>{{ __('Sku') }}</th>
                                             <th>{{ __('Sub Category') }}</th>
-                                            <th>{{ __('Product Unit') }}</th>
+                                            {{-- <th>{{ __('Product Unit') }}</th>
                                             <th>{{ __('Harga Umum') }}</th>
                                             <th>{{ __('Harga Reseller') }}</th>
                                             <th>{{ __('Harga Subdis') }}</th>
-                                            <th>{{ __('Harga Distributor') }}</th>
-                                            <th>{{ __('Deksripsi Produk') }}</th>
+                                            <th>{{ __('Harga Distributor') }}</th> --}}
+                                            {{-- <th>{{ __('Deksripsi Produk') }}</th> --}}
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -87,30 +118,30 @@
                     data: 'sub_category',
                     name: 'sub_category'
                 },
-                {
-                    data: 'product_unit',
-                    name: 'product_unit'
-                },
-                {
-                    data: 'harga_umum',
-                    name: 'harga_umum',
-                },
-                {
-                    data: 'harga_reseller',
-                    name: 'harga_reseller',
-                },
-                {
-                    data: 'harga_subdis',
-                    name: 'harga_subdis',
-                },
-                {
-                    data: 'harga_distributor',
-                    name: 'harga_distributor',
-                },
-                {
-                    data: 'deksripsi_produk',
-                    name: 'deksripsi_produk',
-                },
+                // {
+                //     data: 'product_unit',
+                //     name: 'product_unit'
+                // },
+                // {
+                //     data: 'harga_umum',
+                //     name: 'harga_umum',
+                // },
+                // {
+                //     data: 'harga_reseller',
+                //     name: 'harga_reseller',
+                // },
+                // {
+                //     data: 'harga_subdis',
+                //     name: 'harga_subdis',
+                // },
+                // {
+                //     data: 'harga_distributor',
+                //     name: 'harga_distributor',
+                // },
+                // {
+                //     data: 'deksripsi_produk',
+                //     name: 'deksripsi_produk',
+                // },
                 {
                     data: 'action',
                     name: 'action',
@@ -119,5 +150,29 @@
                 }
             ],
         });
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('click', '#view_gambar', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            $('#largeModal #modal_nama_produk').text(nama);
+            console.log(id)
+
+            $.ajax({
+                url: '/GetGambarProduk/' + id,
+                type: 'GET',
+
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: {
+
+                },
+                success: function(html) {
+                    $("#return-gambar").html(html);
+                }
+            });
+        })
     </script>
 @endpush

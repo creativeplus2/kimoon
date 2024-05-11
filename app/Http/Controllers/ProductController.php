@@ -7,6 +7,7 @@ use App\Http\Requests\{StoreProductRequest, UpdateProductRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -84,7 +85,7 @@ class ProductController extends Controller
             Alert::toast('The product was created successfully.', 'success');
             return redirect()->route('products.index');
         } catch (\Exception $e) {
-            Log::error('Error occurred while storing product: '.$e->getMessage());
+            Log::error('Error occurred while storing product: ' . $e->getMessage());
             Alert::toast('An error occurred while creating the product.', 'error');
             return redirect()->back()->withInput();
         }
@@ -116,7 +117,7 @@ class ProductController extends Controller
             ->where('produk_id', '=', $product->id)
             ->get();
 
-        return view('products.edit', compact('product','photo'));
+        return view('products.edit', compact('product', 'photo'));
     }
 
     /**
@@ -128,11 +129,49 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-
-        $product->update($request->validated());
-        Alert::toast('The product was updated successfully.', 'success');
-        return redirect()
-            ->route('products.index');
+        DB::beginTransaction();
+        try {
+            if ($request->id_asal == null) {
+                $tidak_terhapus = [];
+            } else {
+                $tidak_terhapus = $request->id_asal;
+            }
+            $unlink_db_gambar = DB::table('products_photo')
+                ->where('produk_id', '=', $product->id)
+                ->whereNotIn('id', $tidak_terhapus)
+                ->get();
+            foreach ($unlink_db_gambar as $row) {
+                DB::table('products_photo')->where('id', $row->id)->delete();
+                Storage::disk('local')->delete('public/produk/' . $row->photo);
+            }
+            $produk = Product::findOrFail($product->id);
+            if ($produk) {
+                $product->update($request->validated());
+                $insertedId = $produk->id;
+                $files = $request->file('photo');
+                if ($request->hasFile('photo')) {
+                    foreach ($files as $file) {
+                        $name = $file->hashName();
+                        $file->storeAs('public/produk', $name);
+                        DB::table('products_photo')->insert([
+                            'produk_id' => $insertedId,
+                            'photo' => $name,
+                        ]);
+                    }
+                }
+                Alert::toast('Data berhasil diupdate', 'success');
+                return redirect()->route('products.index');
+            } else {
+                Alert::toast('Data tidak ditemukan', 'error');
+                return redirect()->route('products.index');
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::toast('Data gagal diupdate: ' . $th->getMessage(), 'error');
+            return redirect()->route('products.index');
+        } finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -150,6 +189,32 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             Alert::toast('The product cant be deleted because its related to another table.', 'error');
             return redirect()->route('products.index');
+        }
+    }
+
+    public function GetGambarProduk($id)
+    {
+        $data = DB::table('products_photo')
+            ->where('produk_id', '=', $id)
+            ->get();
+        $output = '';
+        $output .= '<div class="carousel-inner">';
+        $no = 1;
+        foreach ($data as $row) {
+            $output .= ' <div class="carousel-item ' . $this->active($no) . '"><img class="d-block w-100"
+            src="' . Storage::url('public/produk/' . $row->photo) . '" />
+            </div>
+          ';
+            $no++;
+        }
+        $output .= '</div>';
+        echo $output;
+    }
+
+    public function active($no)
+    {
+        if ($no == 1) {
+            return "active";
         }
     }
 }
