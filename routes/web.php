@@ -11,7 +11,6 @@ use App\Http\Controllers\LocalizationController;
 
 //route switch bahasa
 Route::get('/localization/{language}', [LocalizationController::class, 'switch'])->name('localization.switch');
-
 Route::prefix('panel')->group(function () {
     Route::middleware(['auth', 'web'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -43,3 +42,5 @@ Route::prefix('panel')->group(function () {
     Route::get('kelurahan/{kecamatanId}', [App\Http\Controllers\WilayahController::class, 'kelurahan'])->name('api.kelurahan');
     Route::get('zipcode/{kelurahanId}', [App\Http\Controllers\WilayahController::class, 'zipcode'])->name('api.zipcode');
 });
+
+// Route FrontEnd
