@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     ProfileController,
     RoleAndPermissionController,
 };
+use App\Http\Controllers\FrontEnd\HomeController;
 use App\Http\Controllers\LocalizationController;
 
 //route switch bahasa
@@ -44,3 +45,4 @@ Route::prefix('panel')->group(function () {
 });
 
 // Route FrontEnd
+Route::get('/', [HomeController::class, 'index'])->name('web.home');
