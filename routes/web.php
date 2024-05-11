@@ -33,6 +33,8 @@ Route::resource('kabkots', App\Http\Controllers\KabkotController::class)->middle
 Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
 Route::resource('members', App\Http\Controllers\MemberController::class)->middleware('auth');
+Route::post('/coverDistributor', [App\Http\Controllers\MemberController::class, 'coverDistributor'])->name('coverDistributor');
+Route::delete('/deleteCoverArea/{id}', [App\Http\Controllers\MemberController::class, 'deleteCoverArea'])->name('deleteCoverArea');
 Route::get('/GetGambarProduk/{id}', [App\Http\Controllers\ProductController::class, 'GetGambarProduk']);
 Route::get('kota/{provinsiId}', [App\Http\Controllers\WilayahController::class, 'kota'])->name('api.kota');
 Route::get('kecamatan/{kotaId}', [App\Http\Controllers\WilayahController::class, 'kecamatan'])->name('api.kecamatan');

@@ -8,6 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
@@ -219,5 +220,35 @@ class MemberController extends Controller
             Alert::toast('The member cant be deleted because its related to another table.', 'error');
             return redirect()->route('members.index');
         }
+    }
+
+    public function coverDistributor(Request $request)
+    {
+        $request->validate([
+            'member_id' => 'required|exists:members,id',
+            'kabkot_id' => 'required|exists:kabkots,id'
+        ]);
+
+        DB::table('distributor_cover_area')->insert([
+            'member_id' => $request->member_id,
+            'kabkot_id' => $request->kabkot_id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        Alert::toast('Data distributor cover area berhasil disimpan.', 'success');
+        return back();
+    }
+
+    public function deleteCoverArea($id)
+    {
+        $coverArea = DB::table('distributor_cover_area')->where('id', $id)->first();
+        if (!$coverArea) {
+            Alert::toast('Data tidak di temukan', 'error');
+            return back();
+        }
+        DB::table('distributor_cover_area')->where('id', $id)->delete();
+        Alert::toast('Data berhasil di hapus', 'success');
+        return back();
     }
 }

@@ -104,52 +104,95 @@
                     </div>
                 </div>
 
+                @if ($member->type_user == 'Distributor')
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="alert alert-primary" role="alert">
+                                    Silahkan tambahakan Kabupaten/Kota yang tercover oleh distributor terkait
+                                </div>
+                                <form action="{{ route('coverDistributor') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" readonly name="member_id" value="{{ $member->id }}">
+                                    <div class="col-md-12 mb-2">
+                                        <label for="provinsi-id">{{ __('Province') }}</label>
+                                        <select class="form-control js-example-basic-multiple" name="provinsi_id"
+                                            id="provinsi-id" required>
+                                            <option value="" selected disabled>-- {{ __('Select province') }} --
+                                            </option>
+                                            @foreach ($provinces as $province)
+                                                <option value="{{ $province->id }}">
+                                                    {{ $province->provinsi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
+                                    <div class="col-md-12 mb-2">
+                                        <label for="kabkot-id">{{ __('Kabkot') }}</label>
+                                        <select class="form-control js-example-basic-multiple" name="kabkot_id"
+                                            id="kabkot-id" required>
+                                            <option value="" selected disabled>-- {{ __('Select kabkot') }} --
+                                            </option>
+                                        </select>
+                                        @error('kabkot_id')
+                                            <span class="text-danger">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
 
+                                    <!-- Tombol Submit -->
+                                    <div class="col-md-12 mb-2">
+                                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                        <a href="{{ route('members.index') }}"
+                                            class="btn btn-secondary">{{ __('Back') }}</a>
+                                    </div>
+                                </form>
+                                <br>
+                                <hr>
 
-                <div class="col-md-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="alert alert-primary" role="alert">
-                                Silahkan tambahakan Kabupaten/Kota yang tercover oleh distributor terkait
+                                <div class="alert alert-primary" role="alert">
+                                    Daftar kabupaten/kota yang sudah tercover distributor terkait
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Kabupaten/Kota</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $data = DB::table('distributor_cover_area')
+                                            ->join('kabkots', 'distributor_cover_area.kabkot_id', '=', 'kabkots.id')
+                                            ->select('distributor_cover_area.*', 'kabkots.kabupaten_kota')
+                                            ->where('distributor_cover_area.member_id', $member->id)
+                                            ->get();
+                                    @endphp
+                                    <tbody>
+                                        @foreach ($data as $row)
+                                            <tr>
+                                                <td>{{ $row->kabupaten_kota }}</td>
+                                                <td>
+                                                    <form action="{{ route('deleteCoverArea', $row->id) }}" method="POST"
+                                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="mdi mdi-trash-can-outline"></i></button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="provinsi-id">{{ __('Province') }}</label>
-                                <select
-                                    class="form-control js-example-basic-multiple @error('provinsi_id') is-invalid @enderror"
-                                    name="provinsi_id" id="provinsi-id" required>
-                                    <option value="" selected disabled>-- {{ __('Select province') }} --</option>
-                                    @foreach ($provinces as $province)
-                                        <option value="{{ $province->id }}">
-                                            {{ $province->provinsi }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('provinsi_id')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-12 mb-2">
-                                <label for="kabkot-id">{{ __('Kabkot') }}</label>
-                                <select
-                                    class="form-control js-example-basic-multiple @error('kabkot_id') is-invalid @enderror"
-                                    name="kabkot_id" id="kabkot-id" required>
-                                    <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
-                                </select>
-                                @error('kabkot_id')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <a href="{{ route('members.index') }}" class="btn btn-secondary">{{ __('Back') }}</a>
                         </div>
                     </div>
-                </div>
+
+                @endif
+
 
             </div>
             <br>
@@ -193,8 +236,5 @@
 
             })
         }
-
     </script>
 @endpush
-
-
