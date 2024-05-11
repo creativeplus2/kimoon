@@ -65,10 +65,29 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
-        Product::create($request->validated());
-        Alert::toast('The product was created successfully.', 'success');
-        return redirect()->route('products.index');
+        try {
+            $produk = Product::create($request->validated());
+            if ($produk) {
+                $insertedId = $produk->id;
+                $files = $request->file('photo');
+                if ($request->hasFile('photo')) {
+                    foreach ($files as $file) {
+                        $name = $file->hashName();
+                        $file->storeAs('public/produk', $name);
+                        DB::table('products_photo')->insert([
+                            'produk_id' => $insertedId,
+                            'photo' => $name,
+                        ]);
+                    }
+                }
+            }
+            Alert::toast('The product was created successfully.', 'success');
+            return redirect()->route('products.index');
+        } catch (\Exception $e) {
+            Log::error('Error occurred while storing product: '.$e->getMessage());
+            Alert::toast('An error occurred while creating the product.', 'error');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -92,9 +111,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product->load('sub_category:id,created_at', 'product_unit:id,id',);
+        $product->load('sub_category:id,created_at', 'product_unit:id,id');
+        $photo = DB::table('products_photo')
+            ->where('produk_id', '=', $product->id)
+            ->get();
 
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product','photo'));
     }
 
     /**

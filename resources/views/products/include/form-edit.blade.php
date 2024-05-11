@@ -1,3 +1,52 @@
+@push('css')
+    <style>
+        .img-size {
+            height: 450px;
+            width: 500px;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            width: 500px;
+            border: none;
+        }
+
+        .modal-body {
+            padding: 2;
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+            width: 30px;
+            height: 48px;
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+            width: 30px;
+            height: 48px;
+        }
+    </style>
+@endpush
+
+<div class="modal fade" id="largeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center><img src="" id="photo_pro" width="100%" /></center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="row mb-2">
     <div class="col-md-6 mb-2">
         <label for="kode-produk">{{ __('Kode Produk') }}</label>
@@ -136,21 +185,44 @@
     <div class="form-group col-md-6">
         <div class="alert alert-primary" role="alert">
             Silahkan masukan photo photo produk
-          </div>
+        </div>
         <table class="table table-bordered table-sm" id="dynamic_field">
             <thead>
                 <tr>
-                    <th>Photo Produk </th>
+                    <th>Photo Produk</th>
                     <th>Action</th>
                 </tr>
             </thead>
-
+            @foreach ($photo as $row)
+                <tr id="detail_file{{ $row->id }}">
+                    <td>
+                        <center>
+                            <button type="button" class="btn btn-primary btn-xs mb-1" data-id="{{ $row->id }}"
+                                id="view_gambar" data-photo="{{ $row->photo }}" data-bs-toggle="modal" title="View Gambar"
+                                data-bs-target="#largeModal"><i class="fas fa-eye"></i> Lihat Photo Produk
+                            </button>
+                        </center>
+                        <input type="hidden" name="id_asal[]" value="{{ $row->id }}"
+                            class="form-control  @error('id_asal') is-invalid @enderror" />
+                    </td>
+                    </td>
+                    <td>
+                        <button type="button" id="{{ $row->id }}"
+                            class="btn btn-danger btn_remove_data">X</button>
+                    </td>
+                </tr>
+            @endforeach
             <tr>
-                <td><input type="file" name="photo[]" class="form-control  @error('photo') is-invalid @enderror" />
+                <td><input type="file" name="photo[]" class="form-control  @error('photo') is-invalid @enderror"
+                        required />
                 </td>
-                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button></td>
+                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
+                </td>
             </tr>
+
+
+
         </table>
         @error('photo')
             <p style="color: red;">{{ $message }}</p>
@@ -158,6 +230,21 @@
     </div>
 </div>
 @push('js')
+    <script type="text/javascript">
+        $(document).on('click', '#view_gambar', function() {
+            var photo = $(this).data('photo');
+            $('#largeModal #photo_pro').attr("src", "../../../storage/produk/" + photo);
+            console.log(photo);
+        })
+
+        $(document).on('click', '.btn_remove_data', function() {
+            var bid = this.id;
+            console.log(bid)
+            var trid = $(this).closest('tr').attr('id');
+            $('#' + trid + '').remove();
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             var i = 1;
