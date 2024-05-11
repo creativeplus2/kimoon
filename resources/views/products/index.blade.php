@@ -85,11 +85,11 @@
                 },
                 {
                     data: 'sub_category',
-                    name: 'sub_category.created_at'
+                    name: 'sub_category'
                 },
                 {
                     data: 'product_unit',
-                    name: 'product_unit.id'
+                    name: 'product_unit'
                 },
                 {
                     data: 'harga_umum',

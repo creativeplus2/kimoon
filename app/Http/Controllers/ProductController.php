@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\{StoreProductRequest, UpdateProductRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -25,23 +26,20 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $products = Product::with('sub_category:id,created_at', 'product_unit:id,id', );
-
+            $products = DB::table('products')
+                ->select('products.*', 'sub_categories.nama_sub_kategori', 'product_units.nama_unit')
+                ->leftJoin('sub_categories', 'products.sub_kategori_id', '=', 'sub_categories.id')
+                ->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id')
+                ->get();
             return DataTables::of($products)
                 ->addIndexColumn()
-                ->addColumn('created_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
-                })->addColumn('updated_at', function ($row) {
-                    return $row->updated_at->format('d M Y H:i:s');
-                })
-
-                ->addColumn('deksripsi_produk', function($row){
+                ->addColumn('deksripsi_produk', function ($row) {
                     return str($row->deksripsi_produk)->limit(100);
                 })
-				->addColumn('sub_category', function ($row) {
-                    return $row->sub_category ? $row->sub_category->created_at : '';
+                ->addColumn('sub_category', function ($row) {
+                    return $row->nama_sub_kategori;
                 })->addColumn('product_unit', function ($row) {
-                    return $row->product_unit ? $row->product_unit->id : '';
+                    return $row->nama_unit;
                 })->addColumn('action', 'products.include.action')
                 ->toJson();
         }
@@ -67,11 +65,10 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        
+
         Product::create($request->validated());
         Alert::toast('The product was created successfully.', 'success');
         return redirect()->route('products.index');
-
     }
 
     /**
@@ -82,9 +79,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('sub_category:id,created_at', 'product_unit:id,id', );
+        $product->load('sub_category:id,created_at', 'product_unit:id,id',);
 
-		return view('products.show', compact('product'));
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -95,9 +92,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product->load('sub_category:id,created_at', 'product_unit:id,id', );
+        $product->load('sub_category:id,created_at', 'product_unit:id,id',);
 
-		return view('products.edit', compact('product'));
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -109,7 +106,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        
+
         $product->update($request->validated());
         Alert::toast('The product was updated successfully.', 'success');
         return redirect()
