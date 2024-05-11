@@ -69,7 +69,7 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
-        View::composer(['kabkots.create', 'kabkots.edit', 'employees.create', 'employees.edit'], function ($view) {
+        View::composer(['kabkots.create', 'kabkots.edit', 'members.create', 'members.edit'], function ($view) {
             return $view->with(
                 'provinces',
                 \App\Models\Province::select('id', 'provinsi')->get()

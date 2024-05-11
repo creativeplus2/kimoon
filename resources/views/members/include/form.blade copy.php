@@ -90,6 +90,13 @@
         <label for="kabkot-id">{{ __('Kabkot') }}</label>
         <select class="form-control @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id" required>
             <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
+
+            @foreach ($kabkots as $kabkot)
+                <option value="{{ $kabkot->id }}"
+                    {{ isset($member) && $member->kabkot_id == $kabkot->id ? 'selected' : (old('kabkot_id') == $kabkot->id ? 'selected' : '') }}>
+                    {{ $kabkot->ibukota }}
+                </option>
+            @endforeach
         </select>
         @error('kabkot_id')
             <span class="text-danger">
@@ -103,6 +110,13 @@
         <select class="form-control @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id" id="kecamatan-id"
             required>
             <option value="" selected disabled>-- {{ __('Select kecamatan') }} --</option>
+
+            @foreach ($kecamatans as $kecamatan)
+                <option value="{{ $kecamatan->id }}"
+                    {{ isset($member) && $member->kecamatan_id == $kecamatan->id ? 'selected' : (old('kecamatan_id') == $kecamatan->id ? 'selected' : '') }}>
+                    {{ $kecamatan->id }}
+                </option>
+            @endforeach
         </select>
         @error('kecamatan_id')
             <span class="text-danger">
@@ -116,6 +130,13 @@
         <select class="form-control @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id" id="kelurahan-id"
             required>
             <option value="" selected disabled>-- {{ __('Select kelurahan') }} --</option>
+
+            @foreach ($kelurahans as $kelurahan)
+                <option value="{{ $kelurahan->id }}"
+                    {{ isset($member) && $member->kelurahan_id == $kelurahan->id ? 'selected' : (old('kelurahan_id') == $kelurahan->id ? 'selected' : '') }}>
+                    {{ $kelurahan->id }}
+                </option>
+            @endforeach
         </select>
         @error('kelurahan_id')
             <span class="text-danger">

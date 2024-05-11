@@ -34,3 +34,6 @@ Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
 Route::resource('members', App\Http\Controllers\MemberController::class)->middleware('auth');
 Route::get('/GetGambarProduk/{id}', [App\Http\Controllers\ProductController::class, 'GetGambarProduk']);
+Route::get('kota/{provinsiId}', [App\Http\Controllers\WilayahController::class, 'kota'])->name('api.kota');
+Route::get('kecamatan/{kotaId}', [App\Http\Controllers\WilayahController::class, 'kecamatan'])->name('api.kecamatan');
+Route::get('kelurahan/{kecamatanId}', [App\Http\Controllers\WilayahController::class, 'kelurahan'])->name('api.kelurahan');

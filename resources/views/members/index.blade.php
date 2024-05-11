@@ -40,14 +40,6 @@
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('No Telpon') }}</th>
                                             <th>{{ __('Type User') }}</th>
-                                            <th>{{ __('Province') }}</th>
-                                            <th>{{ __('Kabkot') }}</th>
-                                            <th>{{ __('Kecamatan') }}</th>
-                                            <th>{{ __('Kelurahan') }}</th>
-                                            <th>{{ __('Zip Code') }}</th>
-                                            <th>{{ __('Alamat Member') }}</th>
-                                            <th>{{ __('No Ktp') }}</th>
-                                            <th>{{ __('Photo Ktp') }}</th>
                                             <th>{{ __('Status Member') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
@@ -94,45 +86,6 @@
                 {
                     data: 'type_user',
                     name: 'type_user',
-                },
-                {
-                    data: 'province',
-                    name: 'province.ibukota'
-                },
-                {
-                    data: 'kabkot',
-                    name: 'kabkot.ibukota'
-                },
-                {
-                    data: 'kecamatan',
-                    name: 'kecamatan.id'
-                },
-                {
-                    data: 'kelurahan',
-                    name: 'kelurahan.id'
-                },
-                {
-                    data: 'zip_code',
-                    name: 'zip_code',
-                },
-                {
-                    data: 'alamat_member',
-                    name: 'alamat_member',
-                },
-                {
-                    data: 'no_ktp',
-                    name: 'no_ktp',
-                },
-                {
-                    data: 'photo_ktp',
-                    name: 'photo_ktp',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
-                        return `<div class="avatar">
-                            <img src="${data}" alt="Photo Ktp">
-                        </div>`;
-                    }
                 },
                 {
                     data: 'status_member',
