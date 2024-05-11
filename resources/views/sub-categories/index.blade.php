@@ -11,7 +11,7 @@
                                 <h4 class="mb-sm-0">{{ __('Sub Categories') }}</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
                                     <li class="breadcrumb-item active">{{ __('Sub Categories') }}</li>
                                     </ol>
                                 </div>

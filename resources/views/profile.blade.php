@@ -11,7 +11,7 @@
                         <h4 class="mb-sm-0">{{ trans('profile.profile') }}</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/panel">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ trans('profile.profile') }}</li>
                             </ol>
                         </div>
@@ -59,22 +59,6 @@
                                         </span>
                                     @enderror
                                 </div>
-
-
-                                <div class="form-group  mb-3">
-                                    <label for="no_hp">{{ trans('profile.phone') }}</label>
-                                    <input type="text" name="no_hp"
-                                        class="form-control  @error('no_hp', 'updateProfileInformation') is-invalid @enderror"
-                                        id="no_hp" placeholder="{{ trans('profile.phone') }}"
-                                        value="{{ old('no_hp') ?? auth()->user()->no_hp }}" required>
-                                    @error('no_hp', 'updateProfileInformation')
-                                        <span class="text-danger">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-
-
 
                                 <div class="row">
                                     <div class="col-md-3">

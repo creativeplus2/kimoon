@@ -6,7 +6,7 @@
             <li class="menu-title"><span data-key="t-menu">{{ trans('sidebar.main-menu') }}</span></li>
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Route::currentRouteName() == 'dashboard' ? ' active' : '' }}"
-                    href="/">
+                    href="/panel">
                     <i class="mdi mdi-home"></i> <span data-key="t-widgets">Dashboard</span>
                 </a>
             </li>

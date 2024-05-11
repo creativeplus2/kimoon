@@ -14,7 +14,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item">
-                                    <a href="/">Dashboard</a>
+                                    <a href="/panel">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                     <a href="{{ route('setting-apps.index') }}">{{ trans('utilities/setting/setting.head') }}</a>

@@ -22,34 +22,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- <div class="col-md-6">
-                                <form method="get" action="/panel" id="form-date" class="row">
-                                    @if (!Auth::user()->roles->first()->hospital_id)
-                                        <div class="col-md-6">
-                                            <div class="input-group mb-2 mr-sm-2">
-                                                <select name="hospital_id" id="hospital_id"
-                                                    class="form-control js-example-basic-multiple">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    <div class="col-md-6">
-                                        <div class="input-group mb-4">
-                                            <span class="input-group-text" id="addon-wrapping"><i
-                                                    class="fa fa-calendar"></i></span>
-                                            <input type="text" class="form-control" aria-describedby="addon-wrapping"
-                                                id="daterange-btn" value="">
-                                            <input type="hidden" name="start_date" id="start_date"
-                                                value="{{ $microFrom }}">
-                                            <input type="hidden" name="end_date" id="end_date"
-                                                value="{{ $microTo }}">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div> --}}
-                        </div>
-
-                        <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card card-animate">
                                     <div class="card-body">
@@ -64,7 +36,7 @@
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
                                                 <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
-                                                        data-target="100"></span></h4>
+                                                        data-target="{{ $countMember }}"></span></h4>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-warning rounded fs-3">
@@ -89,7 +61,7 @@
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
                                                 <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
-                                                        data-target="100"></span></h4>
+                                                        data-target="{{ $countProduk }}"></span></h4>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-success rounded fs-3">
@@ -113,8 +85,8 @@
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
-                                                        class="counter-value" data-target="100"></span>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
+                                                        data-target="{{ $countKategori }}"></span>
                                                 </h4>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
@@ -139,8 +111,8 @@
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span
-                                                        class="counter-value" data-target="100"></span>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
+                                                        data-target="{{ $countSubKategori }}"></span>
                                                 </h4>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
@@ -153,9 +125,133 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- grafik Total --}}
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card" style="height: 500px">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">
+                                            <a href="" role="button" class="text-dark"
+                                                id="btn_wo_by_status_modal">Grafik member berdasarkan type</a>
+                                        </h4>
+                                    </div>
+
+                                    <div class="card-body"
+                                        style="display: flex; justify-content: center; align-items: center;">
+                                        <div style="height: 300px;">
+                                            <canvas id="myChart1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card" style="height: 500px">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">
+                                            <a href="" role="button" class="text-dark"
+                                                id="btn_wo_by_category_modal">Grafik member berdasarkan status</a>
+                                        </h4>
+                                    </div>
+                                    <div class="card-body"
+                                        style="display: flex; justify-content: center; align-items: center;">
+                                        <div style="height: 300px; ">
+                                            <canvas id="myChart2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- 1 --}}
+    <script>
+        var ctx1 = document.getElementById("myChart1").getContext('2d');
+        var myChart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ["Seller", "Subdis", "Distributor"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [
+                        {{ totalMemberByType('Seller') }},
+                        {{ totalMemberByType('Subdis') }},
+                        {{ totalMemberByType('Distributor') }}
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    {{-- 2 --}}
+    <script>
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ["Pending", "Approved", "Rejected"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [
+                        {{ totalMemberByStatus('Pending') }},
+                        {{ totalMemberByStatus('Approved') }},
+                        {{ totalMemberByStatus('Rejected') }}
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255,99,132,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                },
+                responsive: true, // Mengizinkan grafik menyesuaikan ukuran
+                maintainAspectRatio: false, // Tidak mempertahankan aspek rasio
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+@endpush

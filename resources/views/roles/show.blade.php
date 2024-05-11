@@ -15,7 +15,7 @@
 
                 <x-breadcrumb>
                     <li class="breadcrumb-item">
-                        <a href="/">Dashboard</a>
+                        <a href="/panel">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="{{ route('roles.index') }}">{{ trans('utilities/rolepermission/index.head') }}</a>

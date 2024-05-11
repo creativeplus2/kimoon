@@ -20,7 +20,16 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return view('dashboard');
-    }
+        $countMember = DB::table('members')->count();
+        $countProduk = DB::table('products')->count();
+        $countKategori = DB::table('members')->count();
+        $countSubKategori = DB::table('sub_categories')->count();
 
+        return view('dashboard', [
+            'countMember' => $countMember,
+            'countProduk' => $countProduk,
+            'countKategori' => $countKategori,
+            'countSubKategori' => $countSubKategori
+        ]);
+    }
 }

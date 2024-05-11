@@ -12,7 +12,7 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item">
-                                        <a href="/">Dashboard</a>
+                                        <a href="/panel">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item">
                                         <a href="{{ route('product-units.index') }}">{{ __('Product Units') }}</a>

@@ -11,7 +11,7 @@
                         <h3>{{ __('Members') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/">Dashboard</a>
+                                <a href="/panel">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="{{ route('members.index') }}">{{ __('Members') }}</a>
