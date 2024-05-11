@@ -21,3 +21,6 @@ Route::middleware(['auth', 'web'])->group(function () {
 Route::get('/dashboard', function () {
     return redirect()->route('dashboard');
 });
+
+Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
+Route::resource('account-banks', App\Http\Controllers\AccountBankController::class)->middleware('auth');

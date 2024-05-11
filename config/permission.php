@@ -182,5 +182,5 @@ return [
             ]
         ],
         ['group' => 'setting apps', 'access' => ['setting app view', 'setting app edit']],
-    ],
-];
+  ['group' => 'banks', 'access' => ['bank view', 'bank create', 'bank edit', 'bank delete']],['group' => 'account banks', 'access' => ['account bank view', 'account bank create', 'account bank edit', 'account bank delete']], 
+		],];

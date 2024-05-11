@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Campus;
+use App\Models\Bank;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Role;
+
 
 
 class ViewServiceProvider extends ServiceProvider
@@ -34,18 +35,10 @@ class ViewServiceProvider extends ServiceProvider
                 $data
             );
         });
-        View::composer(['ruang-kelas.create', 'ruang-kelas.edit'], function ($view) {
-            $data = Campus::select('id', 'nama_kampus')->get();
+        View::composer(['account-banks.create', 'account-banks.edit'], function ($view) {
+            $data = Bank::select('id', 'nama_bank')->get();
             return $view->with(
-                'campuses',
-                $data
-            );
-        });
-
-        View::composer(['asrama.create', 'asrama.edit'], function ($view) {
-            $data = Campus::select('id', 'nama_kampus')->get();
-            return $view->with(
-                'campuses',
+                'banks',
                 $data
             );
         });

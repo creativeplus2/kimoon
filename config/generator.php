@@ -109,94 +109,97 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'Master',
-            'permissions' => [
-                'setting view',
-                'role & permission view',
-                'user view',
-                'setting app view',
-                'campus view',
-                'ruang kelas view',
-                'asrama view',
-                'kompetensi view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Master Data',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => null,
-                    'uri' => [
-                        'campuses*',
-                        'ruang-kelas*',
-                        'asrama*',
-                        'kompetensi*'
+    [
+        'header' => 'Master',
+        'permissions' => [
+            'setting view',
+            'role & permission view',
+            'user view',
+            'setting app view',
+            'campus view',
+            'ruang kelas view',
+            'asrama view',
+            'kompetensi view',
+            'bank view',
+            'account bank view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Master Data',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => null,
+                'uri' => [
+                    'bank*',
+                    'account-banks*'
+                ],
+                'permissions' => [
+                    'bank view',
+                    'account bank view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Bank',
+                        'route' => '/banks',
+                        'permission' => 'bank view'
                     ],
-                    'permissions' => [
-                        'campus view',
-                        'ruang kelas view',
-                        'asrama view',
-                        'kompetensi view'
-                    ],
-                    'submenus' => [
-                        [
-                            'title' => 'Asrama',
-                            'route' => '/asrama',
-                            'permission' => 'asrama view'
-                        ]
+                    [
+                        'title' => 'Account Bank',
+                        'route' => '/account-banks',
+                        'permission' => 'account bank view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'Utilities',
+        'permissions' => [
+            'setting view',
+            'role & permission view',
+            'user view',
+            'setting app view'
         ],
-        [
-            'header' => 'Utilities',
-            'permissions' => [
-                'setting view',
-                'role & permission view',
-                'user view',
-                'setting app view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Utilities',
-                    'icon' => '<i data-feather="settings"></i>',
-                    'route' => null,
-                    'uri' => [
-                        'settings*',
-                        'users*',
-                        'roles*',
-                        'setting-apps*'
+        'menus' => [
+            [
+                'title' => 'Utilities',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => null,
+                'uri' => [
+                    'settings*',
+                    'users*',
+                    'roles*',
+                    'setting-apps*'
+                ],
+                'permissions' => [
+                    'setting view',
+                    'role & permission view',
+                    'user view',
+                    'setting app view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Settings App',
+                        'route' => '/settings',
+                        'permission' => 'setting view'
                     ],
-                    'permissions' => [
-                        'setting view',
-                        'role & permission view',
-                        'user view',
-                        'setting app view'
+                    [
+                        'title' => 'Users',
+                        'route' => '/users',
+                        'permission' => 'user view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Settings App',
-                            'route' => '/settings',
-                            'permission' => 'setting view'
-                        ],
-                        [
-                            'title' => 'Users',
-                            'route' => '/users',
-                            'permission' => 'user view'
-                        ],
-                        [
-                            'title' => 'Roles & permissions',
-                            'route' => '/roles',
-                            'permission' => 'role & permission view'
-                        ],
-                        [
-                            'title' => 'Setting Apps',
-                            'route' => '/setting-apps',
-                            'permission' => 'setting app view'
-                        ]
+                    [
+                        'title' => 'Roles & permissions',
+                        'route' => '/roles',
+                        'permission' => 'role & permission view'
+                    ],
+                    [
+                        'title' => 'Setting Apps',
+                        'route' => '/setting-apps',
+                        'permission' => 'setting app view'
                     ]
                 ]
             ]
         ]
     ]
+]
 ];
