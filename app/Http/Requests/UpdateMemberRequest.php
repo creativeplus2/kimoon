@@ -36,7 +36,7 @@ class UpdateMemberRequest extends FormRequest
 			'zip_code' => 'required|string|max:6',
 			'alamat_member' => 'required|string',
 			'no_ktp' => 'required|string|max:100',
-			'photo_ktp' => 'required|image|max:2048',
+			// 'photo_ktp' => 'required|image|max:2048',
 			'password' => 'nullable|confirmed',
 			'status_member' => 'required|in:Pending,Approved,Rejected',
         ];

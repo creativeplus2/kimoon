@@ -7,6 +7,7 @@ use App\Http\Requests\{StoreMemberRequest, UpdateMemberRequest};
 use Yajra\DataTables\Facades\DataTables;
 use Image;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -26,28 +27,42 @@ class MemberController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $members = Member::with('province:id,ibukota', 'kabkot:id,ibukota', 'kecamatan:id,id', 'kelurahan:id,id', );
-
+            $members = DB::table('members')
+                ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota', 'kecamatans.kecamatan', 'kelurahans.kelurahan')
+                ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+                ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+                ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+                ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                ->get();
             return Datatables::of($members)
-                ->addColumn('alamat_member', function($row){
+                ->addIndexColumn()
+                ->addColumn('alamat_member', function ($row) {
                     return str($row->alamat_member)->limit(100);
                 })
-				->addColumn('province', function ($row) {
-                    return $row->province ? $row->province->ibukota : '';
+                ->addColumn('province', function ($row) {
+                    return $row->provinsi;
                 })->addColumn('kabkot', function ($row) {
-                    return $row->kabkot ? $row->kabkot->ibukota : '';
+                    return $row->kabupaten_kota;
                 })->addColumn('kecamatan', function ($row) {
-                    return $row->kecamatan ? $row->kecamatan->id : '';
+                    return $row->kecamatan;
                 })->addColumn('kelurahan', function ($row) {
-                    return $row->kelurahan ? $row->kelurahan->id : '';
+                    return $row->kelurahan;
+                })->addColumn('status_member', function ($row) {
+                    if ($row->status_member == 'Pending') {
+                        return '<span class="badge bg-secondary">Pending</span>';
+                    } else if ($row->status_member == 'Approved') {
+                        return '<span class="badge bg-success">Approved</span>';
+                    } else if ($row->status_member == 'Rejected') {
+                        return '<span class="badge bg-danger">Rejected</span>';
+                    }
                 })
                 ->addColumn('photo_ktp', function ($row) {
                     if ($row->photo_ktp == null) {
-                    return 'https://via.placeholder.com/350?text=No+Image+Avaiable';
-                }
+                        return 'https://via.placeholder.com/350?text=No+Image+Avaiable';
+                    }
                     return asset('storage/uploads/photo-ktps/' . $row->photo_ktp);
                 })
-
+                ->rawColumns(['status_member', 'action'])
                 ->addColumn('action', 'members.include.action')
                 ->toJson();
         }
@@ -74,8 +89,8 @@ class MemberController extends Controller
     public function store(StoreMemberRequest $request)
     {
         $attr = $request->validated();
-        
-		$attr['password'] = bcrypt($request->password);
+
+        $attr['password'] = bcrypt($request->password);
 
         if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
 
@@ -88,17 +103,15 @@ class MemberController extends Controller
 
             Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
                 $constraint->upsize();
-				$constraint->aspectRatio();
+                $constraint->aspectRatio();
             })->save($path . $filename);
 
             $attr['photo_ktp'] = $filename;
         }
 
         Member::create($attr);
-
-        return redirect()
-            ->route('members.index')
-            ->with('success', __('The member was created successfully.'));
+        Alert::toast('The member was created successfully.', 'success');
+        return redirect()->route('members.index');
     }
 
     /**
@@ -107,11 +120,17 @@ class MemberController extends Controller
      * @param  \App\Models\Member $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show($id)
     {
-        $member->load('province:id,ibukota', 'kabkot:id,ibukota', 'kecamatan:id,id', 'kelurahan:id,id', );
-
-		return view('members.show', compact('member'));
+        $member = DB::table('members')
+            ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota', 'kecamatans.kecamatan', 'kelurahans.kelurahan')
+            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+            ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+            ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+            ->where('members.id', $id)
+            ->first();
+        return view('members.show', compact('member'));
     }
 
     /**
@@ -122,9 +141,11 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        $member->load('province:id,ibukota', 'kabkot:id,ibukota', 'kecamatan:id,id', 'kelurahan:id,id', );
-
-		return view('members.edit', compact('member'));
+        $member->load('province:id,ibukota', 'kabkot:id,ibukota', 'kecamatan:id,id', 'kelurahan:id,id',);
+        $kabkots = DB::table('kabkots')->where('provinsi_id', $member->provinsi_id)->get();
+        $kecamatans = DB::table('kecamatans')->where('kabkot_id', $member->kabkot_id)->get();
+        $kelurahans = DB::table('kelurahans')->where('kecamatan_id', $member->kecamatan_id)->get();
+        return view('members.edit', compact('member', 'kabkots', 'kecamatans', 'kelurahans'));
     }
 
     /**
@@ -137,7 +158,6 @@ class MemberController extends Controller
     public function update(UpdateMemberRequest $request, Member $member)
     {
         $attr = $request->validated();
-        
 
         switch (is_null($request->password)) {
             case true:
@@ -159,7 +179,7 @@ class MemberController extends Controller
 
             Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
                 $constraint->upsize();
-				$constraint->aspectRatio();
+                $constraint->aspectRatio();
             })->save($path . $filename);
 
             // delete old photo_ktp from storage
@@ -172,9 +192,8 @@ class MemberController extends Controller
 
         $member->update($attr);
 
-        return redirect()
-            ->route('members.index')
-            ->with('success', __('The member was updated successfully.'));
+        Alert::toast('The member was updated successfully.', 'success');
+        return redirect()->route('members.index');
     }
 
     /**
@@ -193,14 +212,11 @@ class MemberController extends Controller
             }
 
             $member->delete();
-
-            return redirect()
-                ->route('members.index')
-                ->with('success', __('The member was deleted successfully.'));
+            Alert::toast('The member was deleted successfully..', 'success');
+            return redirect()->route('members.index');
         } catch (\Throwable $th) {
-            return redirect()
-                ->route('members.index')
-                ->with('error', __("The member can't be deleted because it's related to another table."));
+            Alert::toast('The member cant be deleted because its related to another table.', 'error');
+            return redirect()->route('members.index');
         }
     }
 }

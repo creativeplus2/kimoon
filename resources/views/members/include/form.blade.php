@@ -47,7 +47,7 @@
     </div>
     <div class="col-md-6 mb-2">
         <label for="type-user">{{ __('Type User') }}</label>
-        <select class="form-control @error('type_user') is-invalid @enderror" name="type_user" id="type-user" required>
+        <select class="form-control js-example-basic-multiple @error('type_user') is-invalid @enderror" name="type_user" id="type-user" required>
             <option value="" selected disabled>-- {{ __('Select type user') }} --</option>
             <option value="Seller"
                 {{ isset($member) && $member->type_user == 'Seller' ? 'selected' : (old('type_user') == 'Seller' ? 'selected' : '') }}>
@@ -68,14 +68,14 @@
 
     <div class="col-md-6 mb-2">
         <label for="provinsi-id">{{ __('Province') }}</label>
-        <select class="form-control @error('provinsi_id') is-invalid @enderror" name="provinsi_id" id="provinsi-id"
+        <select class="form-control js-example-basic-multiple @error('provinsi_id') is-invalid @enderror" name="provinsi_id" id="provinsi-id"
             required>
             <option value="" selected disabled>-- {{ __('Select province') }} --</option>
 
             @foreach ($provinces as $province)
                 <option value="{{ $province->id }}"
                     {{ isset($member) && $member->provinsi_id == $province->id ? 'selected' : (old('provinsi_id') == $province->id ? 'selected' : '') }}>
-                    {{ $province->ibukota }}
+                    {{ $province->provinsi }}
                 </option>
             @endforeach
         </select>
@@ -88,7 +88,7 @@
 
     <div class="col-md-6 mb-2">
         <label for="kabkot-id">{{ __('Kabkot') }}</label>
-        <select class="form-control @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id" required>
+        <select class="form-control js-example-basic-multiple @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id" required>
             <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
         </select>
         @error('kabkot_id')
@@ -100,7 +100,7 @@
 
     <div class="col-md-6 mb-2">
         <label for="kecamatan-id">{{ __('Kecamatan') }}</label>
-        <select class="form-control @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id" id="kecamatan-id"
+        <select class="form-control js-example-basic-multiple @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id" id="kecamatan-id"
             required>
             <option value="" selected disabled>-- {{ __('Select kecamatan') }} --</option>
         </select>
@@ -113,7 +113,7 @@
 
     <div class="col-md-6 mb-2">
         <label for="kelurahan-id">{{ __('Kelurahan') }}</label>
-        <select class="form-control @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id" id="kelurahan-id"
+        <select class="form-control js-example-basic-multiple @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id" id="kelurahan-id"
             required>
             <option value="" selected disabled>-- {{ __('Select kelurahan') }} --</option>
         </select>
@@ -129,7 +129,7 @@
         <input type="text" name="zip_code" id="zip-code"
             class="form-control @error('zip_code') is-invalid @enderror"
             value="{{ isset($member) ? $member->zip_code : old('zip_code') }}" placeholder="{{ __('Zip Code') }}"
-            required />
+            required readonly/>
         @error('zip_code')
             <span class="text-danger">
                 {{ $message }}
@@ -235,7 +235,7 @@
     </div>
     <div class="col-md-6 mb-2">
         <label for="status-member">{{ __('Status Member') }}</label>
-        <select class="form-control @error('status_member') is-invalid @enderror" name="status_member"
+        <select class="form-control js-example-basic-multiple @error('status_member') is-invalid @enderror" name="status_member"
             id="status-member" required>
             <option value="" selected disabled>-- {{ __('Select status member') }} --</option>
             <option value="Pending"

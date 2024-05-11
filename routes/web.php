@@ -37,3 +37,4 @@ Route::get('/GetGambarProduk/{id}', [App\Http\Controllers\ProductController::cla
 Route::get('kota/{provinsiId}', [App\Http\Controllers\WilayahController::class, 'kota'])->name('api.kota');
 Route::get('kecamatan/{kotaId}', [App\Http\Controllers\WilayahController::class, 'kecamatan'])->name('api.kecamatan');
 Route::get('kelurahan/{kecamatanId}', [App\Http\Controllers\WilayahController::class, 'kelurahan'])->name('api.kelurahan');
+Route::get('zipcode/{kelurahanId}', [App\Http\Controllers\WilayahController::class, 'zipcode'])->name('api.zipcode');

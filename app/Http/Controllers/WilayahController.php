@@ -31,4 +31,16 @@ class WilayahController extends Controller
 
         return response()->json(compact('message', 'data'));
     }
+
+    public function zipcode($kelurahanId)
+    {
+        $zipcode = DB::table('kelurahans')
+            ->where('id', $kelurahanId)
+            ->value('kd_pos');
+        if ($zipcode) {
+            return response()->json(['zipcode' => $zipcode]);
+        } else {
+            return response()->json(['error' => 'Kelurahan tidak ditemukan'], 404);
+        }
+    }
 }
