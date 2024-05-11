@@ -97,10 +97,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        $product->load('sub_category:id,created_at', 'product_unit:id,id',);
-
+        $product  = DB::table('products')
+            ->select('products.*', 'sub_categories.nama_sub_kategori', 'product_units.nama_unit')
+            ->leftJoin('sub_categories', 'products.sub_kategori_id', '=', 'sub_categories.id')
+            ->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id')
+            ->where('products.id', $id)
+            ->first();
         return view('products.show', compact('product'));
     }
 

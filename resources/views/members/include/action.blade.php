@@ -1,5 +1,10 @@
 <td>
     @can('member edit')
+        <a href="{{ route('members.show', $model->id) }}" class="btn btn-primary btn-sm">
+            <i class="mdi mdi-eye"></i>
+        </a>
+    @endcan
+    @can('member edit')
         <a href="{{ route('members.edit', $model->id) }}" class="btn btn-success btn-sm">
             <i class="mdi mdi-pencil"></i>
         </a>
