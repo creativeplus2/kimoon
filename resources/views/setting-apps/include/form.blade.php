@@ -1,22 +1,138 @@
 <div class="row mb-2">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col-6 mb-3">
                 <label for="aplication-name">{{ trans('utilities/setting/setting.appname') }}</label>
-                <input type="text" name="aplication_name" id="aplication-name"
-                    class="form-control @error('aplication_name') is-invalid @enderror"
-                    value="{{ isset($settingApp) ? $settingApp->aplication_name : old('aplication_name') }}"
+                <input type="text" name="nama_aplikasi" id="aplication-name"
+                    class="form-control @error('nama_aplikasi') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->nama_aplikasi : old('nama_aplikasi') }}"
                     placeholder="{{ trans('utilities/setting/setting.appname') }}" required />
-                @error('aplication_name')
+                @error('nama_aplikasi')
                     <span class="text-danger">
                         {{ $message }}
                     </span>
                 @enderror
             </div>
-            <div class="col-12 mb-3">
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Nama Perusahaan</label>
+                <input type="text" name="nama_perusahaan" id="aplication-name"
+                    class="form-control @error('nama_perusahaan') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->nama_perusahaan : old('nama_perusahaan') }}"
+                    placeholder="Nama Perusahaan" required />
+                @error('nama_perusahaan')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Deskripsi Perusahaan</label>
+                <textarea name="deskripsi_perusahaan" id="deskripsi_perusahaan"
+                    class="form-control @error('deskripsi_perusahaan') is-invalid @enderror"
+                    placeholder="{{ __('Deskripsi Perusahaan') }}" required>{{ isset($settingApp) ? $settingApp->deskripsi_perusahaan : old('deskripsi_perusahaan') }}</textarea>
+                @error('deskripsi_perusahaan')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Alamat</label>
+                <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror"
+                    placeholder="{{ __('Alamat') }}" required>{{ isset($settingApp) ? $settingApp->alamat : old('alamat') }}</textarea>
+
+                @error('alamat')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">No Telpon</label>
+                <input type="text" name="no_telpon" id="aplication-name"
+                    class="form-control @error('no_telpon') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->no_telpon : old('no_telpon') }}" placeholder="No Telpon"
+                    required />
+                @error('no_telpon')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Email</label>
+                <input type="email" name="email" id="aplication-name"
+                    class="form-control @error('email') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->email : old('email') }}" placeholder="Email"
+                    required />
+                @error('email')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Facebook</label>
+                <input type="text" name="facebook" id="aplication-name"
+                    class="form-control @error('facebook') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->facebook : old('facebook') }}" placeholder="Facebook"
+                    required />
+                @error('facebook')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Instagram</label>
+                <input type="text" name="instagram" id="aplication-name"
+                    class="form-control @error('instagram') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->instagram : old('instagram') }}" placeholder="Instagram"
+                    required />
+                @error('instagram')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">Tiktok</label>
+                <input type="text" name="tiktok" id="aplication-name"
+                    class="form-control @error('tiktok') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->tiktok : old('tiktok') }}" placeholder="Tiktok"
+                    required />
+                @error('tiktok')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
+                <label for="aplication-name">X</label>
+                <input type="text" name="x" id="aplication-name"
+                    class="form-control @error('x') is-invalid @enderror"
+                    value="{{ isset($settingApp) ? $settingApp->x : old('x') }}" placeholder="x"
+                    required />
+                @error('x')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="col-6 mb-3">
                 @if ($settingApp->logo != '' || $settingApp->logo != null)
-                    <img style="width: 180px;"
-                        src="{{ Storage::url('public/img/setting_app/') . $settingApp->logo }}" class="">
+                    <img style="width: 180px;" src="{{ Storage::url('public/img/setting_app/') . $settingApp->logo }}"
+                        class="">
                     <p style="color: red">* {{ trans('utilities/setting/setting.change_logo') }}</p>
                 @endif
                 <label class="form-label" for="logo"> {{ trans('utilities/setting/setting.logo') }}</label>
@@ -29,7 +145,7 @@
                 @enderror
             </div>
 
-            <div class="col-12 mb-3">
+            <div class="col-6 mb-3">
                 @if ($settingApp->favicon != '' || $settingApp->favicon != null)
                     <img style="width:100px;height:90px"
                         src="{{ Storage::url('public/img/setting_app/') . $settingApp->favicon }}" class="">

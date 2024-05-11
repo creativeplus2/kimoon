@@ -54,7 +54,16 @@ class SettingAppController extends Controller
         }
 
         $setting_app->update([
-            'aplication_name' => $request->aplication_name,
+            'nama_aplikasi' => $request->nama_aplikasi,
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'deskripsi_perusahaan' => $request->deskripsi_perusahaan,
+            'no_telpon' => $request->no_telpon,
+            'email' => $request->email,
+            'alamat' => $request->alamat,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'tiktok' => $request->tiktok,
+            'x' => $request->x,
         ]);
 
         Alert::toast('The settingApp was updated successfully.', 'success');
