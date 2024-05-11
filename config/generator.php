@@ -121,7 +121,10 @@ return [
             'asrama view',
             'kompetensi view',
             'bank view',
-            'account bank view'
+            'account bank view',
+            'product category view',
+            'product category view',
+            'product unit view'
         ],
         'menus' => [
             [
@@ -134,7 +137,9 @@ return [
                 ],
                 'permissions' => [
                     'bank view',
-                    'account bank view'
+                    'account bank view',
+                    'product category view',
+                    'product unit view'
                 ],
                 'submenus' => [
                     [
@@ -146,6 +151,16 @@ return [
                         'title' => 'Account Bank',
                         'route' => '/account-banks',
                         'permission' => 'account bank view'
+                    ],
+                    [
+                        'title' => 'Product Categories',
+                        'route' => '/product-categories',
+                        'permission' => 'product category view'
+                    ],
+                    [
+                        'title' => 'Product Units',
+                        'route' => '/product-units',
+                        'permission' => 'product unit view'
                     ]
                 ]
             ]

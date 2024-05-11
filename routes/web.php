@@ -24,3 +24,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
 Route::resource('account-banks', App\Http\Controllers\AccountBankController::class)->middleware('auth');
+Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
+Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');
+Route::resource('product-units', App\Http\Controllers\ProductUnitController::class)->middleware('auth');

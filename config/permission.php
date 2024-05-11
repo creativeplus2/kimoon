@@ -182,5 +182,9 @@ return [
             ]
         ],
         ['group' => 'setting apps', 'access' => ['setting app view', 'setting app edit']],
-  ['group' => 'banks', 'access' => ['bank view', 'bank create', 'bank edit', 'bank delete']],['group' => 'account banks', 'access' => ['account bank view', 'account bank create', 'account bank edit', 'account bank delete']], 
-		],];
+        ['group' => 'banks', 'access' => ['bank view', 'bank create', 'bank edit', 'bank delete']],
+        ['group' => 'account banks', 'access' => ['account bank view', 'account bank create', 'account bank edit', 'account bank delete']],
+        ['group' => 'product categories', 'access' => ['product category view', 'product category create', 'product category edit', 'product category delete']],
+        ['group' => 'product units', 'access' => ['product unit view', 'product unit create', 'product unit edit', 'product unit delete']],
+    ],
+];
