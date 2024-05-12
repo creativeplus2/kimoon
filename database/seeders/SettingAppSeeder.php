@@ -12,11 +12,13 @@ class SettingAppSeeder extends Seeder
     {
         SettingApp::create([
             'nama_aplikasi' => 'Aplikasi Management Client',
-            'nama_perusahaan' => 'Kimoon',
+            'nama_perusahaan' => 'Kimoon.id',
             'deskripsi_perusahaan' => '',
-            'no_telpon' => '083874731480',
-            'email' => 'admin@gmail.com',
-            'alamat' => 'Perum SAI Residance',
+            'no_telpon' => '+62 811 9151575',
+            'email' => 'hello@kimoon.id',
+            'alamat' => 'Virginia Arcade blok B2 no 1, BSD,
+            Tangerang Selatan
+            Indonesia',
             'logo' => '',
             'favicon' => '',
             'facebook' => '',
