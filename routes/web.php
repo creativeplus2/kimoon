@@ -49,5 +49,5 @@ Route::prefix('panel')->group(function () {
 // Route FrontEnd
 Route::get('/', [HomeController::class, 'index'])->name('web.home');
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
-Route::get('/register', [AuthController::class, 'register'])->name('web.register');
-Route::get('/login', [AuthController::class, 'login'])->name('web.login');
+Route::get('/register-member', [AuthController::class, 'register'])->name('web.register');
+Route::get('/login-member', [AuthController::class, 'login'])->name('web.login');

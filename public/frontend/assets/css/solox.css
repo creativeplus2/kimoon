@@ -6150,7 +6150,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .product__item__content {
   position: relative;
   text-align: center;
-  padding: 30px 20px;
+  padding: 20px 10px;
 }
 .product__item__ratings {
   display: flex;

@@ -15,7 +15,6 @@ class ProdukController extends Controller
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
         $products = DB::table('products')->paginate(9);
-
         return view('FrontEnd.produk',[
             'setting' => $setting,
             'produkCategory' => $produkCategory,
