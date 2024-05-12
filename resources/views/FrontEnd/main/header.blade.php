@@ -30,10 +30,6 @@
                     <span></span>
                     <span></span>
                 </div>
-                <a href="#" class="search-toggler main-header__search">
-                    <i class="icon-magnifying-glass" aria-hidden="true"></i>
-                    <span class="sr-only">Search</span>
-                </a>
             </div>
         </div>
     </div>
