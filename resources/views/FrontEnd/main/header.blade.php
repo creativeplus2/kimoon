@@ -2,24 +2,26 @@
     <div class="container-fluid">
         <div class="main-header__inner">
             <div class="main-header__logo">
-                <a href="index.html">
-                    <img src="{{ asset('frontend') }}/assets/images/logo-dark.png" alt="Solox HTML" width="156">
-                </a>
-            </div><!-- /.main-header__logo -->
+                <a href="/">
+                    @if ($setting)
+                        <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt="" style="width: 180px">
+                    @endif
 
+                </a>
+            </div>
             <nav class="main-header__nav main-menu">
                 <ul class="main-menu__list">
                     <li>
-                        <a href="about.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="contact.html">Produk</a>
+                        <a href="">Produk</a>
                     </li>
                     <li>
-                        <a href="contact.html">Register Member</a>
+                        <a href="">Register Member</a>
                     </li>
                     <li>
-                        <a href="contact.html">Login</a>
+                        <a href="">Login</a>
                     </li>
                 </ul>
             </nav><!-- /.main-header__nav -->

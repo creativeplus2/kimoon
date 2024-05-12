@@ -216,8 +216,8 @@
                     </div>
                     <div class="about-one__image__info wow fadeInUp" data-wow-delay="400ms">
                         <div class="about-one__image__info__icon"><span class="fas fa-phone"></span></div>
-                        <h3 class="about-one__image__info__title">Book now</h3>
-                        <p class="about-one__image__info__text"><a href="tel:+9200368090">+92 (003) 68-090</a>
+                        <h3 class="about-one__image__info__title">Kontak kami</h3>
+                        <p class="about-one__image__info__text"><a href="#">{{$setting->no_telpon}}</a>
                         </p>
                     </div>
                     <div class="about-one__image__arrow"><img
@@ -236,28 +236,12 @@
 
                         <h6 class="sec-title__tagline">Get to know us</h6><!-- /.sec-title__tagline -->
 
-                        <h3 class="sec-title__title">welcome to spa & beauty salon</h3>
+                        <h3 class="sec-title__title">welcome to {{$setting->nama_perusahaan}}</h3>
                         <!-- /.sec-title__title -->
                     </div><!-- /.sec-title -->
-                    <p class="about-one__content__text-one">We offer a variety of facial services to suit your
-                        individual skin care needs.</p>
-                    <p class="about-one__content__text-two">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered
-                        alteration simply free
-                        text in some form, by injected humour.
+                    <p class="about-one__content__text-two" style="text-align: justify">
+                        {{$setting->deskripsi_perusahaan}}
                     </p>
-                    <div class="about-one__content__author-wrapper">
-                        <div class="about-one__content__author">
-                            <div class="about-one__content__author__thumb"><img
-                                    src="{{ asset('frontend') }}/assets/images/resources/about-author-1.png"
-                                    alt="solox"></div>
-                            <div class="about-one__content__author__meta"><img
-                                    src="{{ asset('frontend') }}/assets/images/resources/about-sign.png"
-                                    alt="solox">Michales - Co
-                                Founder</div>
-                        </div>
-                    </div>
                 </div><!-- /.why-choose-two__content -->
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
