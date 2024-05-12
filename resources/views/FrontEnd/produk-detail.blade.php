@@ -34,10 +34,12 @@
                     <div class="product-details__content">
                         <div class="product-details__top">
                             <h3 class="product-details__title">{{ $product->nama_produk }}</h3>
-                            <span style="font-size: 28px;color:#c2a74e"><b>{{ format_rupiah($product->harga_umum) }} /
-                                    {{ $product->nama_unit }}</b></span>
                         </div>
-                        <div class="product-details__review">
+                        <p style="font-size: 28px;color:#c2a74e;margin-top:-10px">
+                            <b>{{ format_rupiah($product->harga_umum) }} /
+                                {{ $product->nama_unit }}</b>
+                        </p>
+                        <div class="product-details__review" style="margin-top:-10px">
                             <span class="fa fa-star"></span><span class="fa fa-star"></span><span
                                 class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
                         </div>
