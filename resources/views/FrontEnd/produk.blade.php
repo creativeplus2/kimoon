@@ -46,8 +46,10 @@
     <section class="page-header">
         <div class="page-header__bg"></div>
         <div class="container">
-            <img src="{{ asset('frontend') }}/assets/images/shapes/page-header-s-1.png" alt="products left sidebar"
-                class="page-header__shape">
+            @if ($setting)
+                <img src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}" alt="products left sidebar"
+                    class="page-header__shape" style="width: 60px">
+            @endif
             <ul class="solox-breadcrumb list-unstyled">
                 <li><a href="{{ route('web.home') }}">Home</a></li>
                 <li><span>produk</span></li>
@@ -84,23 +86,18 @@
                                 {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }} Results
                             </p>
                         </div>
-                        {{-- <div class="product__showing-sort">
-                            <select class="selectpicker" aria-label="Sort by popular">
-                                <option selected>Sort by name A-Z</option>
-                                <option selected>Sort by name Z-A</option>
-                                <option value="1">Sort by price</option>
-                            </select>
-                        </div> --}}
                     </div>
-
                     <div class="row gutter-y-30">
                         {{-- looping --}}
                         @foreach ($products as $row)
                             <div class="col-md-6 col-lg-4">
                                 <div class="product__item wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                     <div class="product__item__img">
-                                        <img src="{{ asset('frontend') }}/assets/images/products/product-1-1.jpg"
-                                            alt="{{ $row->nama_produk }}">
+                                        <a href="{{ route('web.produk_detail', $row->id) }}">
+                                            <img src="{{ asset('frontend') }}/assets/images/products/product-1-1.jpg"
+                                                alt="{{ $row->nama_produk }}">
+                                        </a>
+
                                     </div>
                                     <div class="product__item__content">
                                         <div class="product__item__ratings">
@@ -109,7 +106,8 @@
                                                 class="fa fa-star"></span>
                                         </div>
                                         <h4 class="product__item__title" style="font-size: 14px; height:60px">
-                                            <a href="product-details.html">{{ $row->nama_produk }}</a>
+                                            <a
+                                                href="{{ route('web.produk_detail', $row->id) }}">{{ $row->nama_produk }}</a>
                                         </h4>
                                         <div class="product__item__price">{{ format_rupiah($row->harga_umum) }}</div>
                                     </div>
