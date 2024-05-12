@@ -42,6 +42,36 @@
             background-color: #c2a74e;
             border-color: #c2a74e;
         }
+
+        .accordion {
+            background-color: transparent;
+            border: none;
+        }
+
+        .accordion-item {
+            background-color: transparent;
+            border: none;
+        }
+
+        .accordion-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            /* color: #fff; */
+        }
+
+        .accordion-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .accordion-body {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+    </style>
+
     </style>
     <section class="page-header">
         <div class="page-header__bg"></div>
@@ -69,21 +99,52 @@
                             </form>
                         </div>
                         <div class="product__categories">
-                            <h3 class="product__sidebar--title">Categories</h3>
-                            <ul class="list-unstyled">
+                            <h3 class="product__sidebar--title" style="font-family: Calibri, sans-serif;color:#838184">
+                                Kategori produk
+                            </h3>
+                            <div class="accordion accordion-flush" id="categoryAccordion">
+
                                 @foreach ($produkCategory as $row)
-                                    <li><a href="{{ $row->id }}"><span
-                                                class="fa fa-arrow-right"></span>{{ $row->nama_kategori }}</a></li>
+                                    @php
+                                        $subCategories = DB::table('sub_categories')
+                                            ->where('categori_id', $row->id)
+                                            ->get();
+                                    @endphp
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ $row->id }}">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $row->id }}"
+                                                aria-expanded="false" aria-controls="collapse{{ $row->id }}"
+                                                style="font-size: 18px;font-family: Calibri, sans-serif;color:#838184">
+                                                <b>{{ $row->nama_kategori }}</b>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $row->id }}" class="accordion-collapse collapse"
+                                            aria-labelledby="heading{{ $row->id }}"
+                                            data-bs-parent="#categoryAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-unstyled"
+                                                    style="font-family: Calibri, sans-serif;color:#838184">
+                                                    @foreach ($subCategories as $data)
+                                                        <li><a href="#">{{ $data->nama_sub_kategori }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
-                            </ul>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="product__info-top">
                         <div class="product__showing-text-box">
                             <p class="product__showing-text">Showing
-                                {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }} Results
+                                {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}
+                                Results
                             </p>
                         </div>
                     </div>
@@ -106,8 +167,8 @@
                                                 class="fa fa-star"></span>
                                         </div>
                                         <h4 class="product__item__title" style="font-size: 14px; height:60px">
-                                            <a
-                                                href="{{ route('web.produk_detail', $row->id) }}">{{ $row->nama_produk }}</a>
+                                            <a href="{{ route('web.produk_detail', $row->id) }}"
+                                                style="font-family: Calibri, sans-serif;color:#838184">{{ $row->nama_produk }}</a>
                                         </h4>
                                         <div class="product__item__price">{{ format_rupiah($row->harga_umum) }}</div>
                                     </div>
