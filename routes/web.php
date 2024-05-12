@@ -7,7 +7,9 @@ use App\Http\Controllers\{
     ProfileController,
     RoleAndPermissionController,
 };
+use App\Http\Controllers\FrontEnd\AuthController;
 use App\Http\Controllers\FrontEnd\HomeController;
+use App\Http\Controllers\FrontEnd\ProdukController;
 use App\Http\Controllers\LocalizationController;
 
 //route switch bahasa
@@ -46,3 +48,6 @@ Route::prefix('panel')->group(function () {
 
 // Route FrontEnd
 Route::get('/', [HomeController::class, 'index'])->name('web.home');
+Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
+Route::get('/register', [AuthController::class, 'register'])->name('web.register');
+Route::get('/login', [AuthController::class, 'login'])->name('web.login');

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="main-header__inner">
             <div class="main-header__logo">
-                <a href="/">
+                <a href="{{route('web.home')}}">
                     @if ($setting)
                         <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt="" style="width: 180px">
                     @endif
@@ -11,16 +11,16 @@
             <nav class="main-header__nav main-menu">
                 <ul class="main-menu__list">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="{{route('web.home')}}">Home</a>
                     </li>
                     <li>
-                        <a href="">Produk</a>
+                        <a href="{{route('web.produk')}}">Produk</a>
                     </li>
                     <li>
-                        <a href="">Register Member</a>
+                        <a href="{{route('web.register')}}">Register Member</a>
                     </li>
                     <li>
-                        <a href="">Login</a>
+                        <a href="{{route('web.login')}}">Login</a>
                     </li>
                 </ul>
             </nav>

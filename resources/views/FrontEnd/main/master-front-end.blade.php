@@ -56,9 +56,10 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img
-                        src="{{ asset('frontend') }}/assets/images/logo-light.png" width="155"
-                        alt="" /></a>
+                <a href="{{route('web.home')}}" aria-label="logo image">
+                    @if ($setting)
+                        <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt="" style="width: 180px">
+                    @endif
             </div>
             <div class="mobile-nav__container"></div>
             </div>

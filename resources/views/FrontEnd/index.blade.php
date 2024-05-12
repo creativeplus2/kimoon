@@ -1,6 +1,6 @@
 @extends('FrontEnd.main.master-front-end')
 
-@section('title', __('Kabkots'))
+@section('title', __('Home'))
 
 @section('content')
     <section class="main-slider-one">
