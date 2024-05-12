@@ -12,28 +12,28 @@
                     <ul class="list-unstyled topbar-one__info">
                         <li class="topbar-one__info__item">
                             <i class="fas fa-envelope topbar-one__info__icon"></i>
-                            <a href="mailto:needhelp@company.com">{{$setting->email}}</a>
+                            <a href="#">{{$setting->email}}</a>
                         </li>
                         <li class="topbar-one__info__item">
                             <i class="fas fa-phone topbar-one__info__icon"></i>
-                            <a href="tel:+92(8800)-6930">{{$setting->no_telpon}}</a>
+                            <a href="#">{{$setting->no_telpon}}</a>
                         </li>
                     </ul>
                     <div class="topbar-one__right">
                         <div class="topbar-one__social">
-                            <a href="https://twitter.com/">
+                            <a href="#">
                                 <i class="fab fa-facebook" aria-hidden="true"></i>
                                 <span class="sr-only">Facebook</span>
                             </a>
-                            <a href="https://facebook.com/">
+                            <a href="#">
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
                                 <span class="sr-only">Instagram</span>
                             </a>
-                            <a href="https://pinterest.com/">
+                            <a href="#">
                                 <i class="fab fa-tiktok" aria-hidden="true"></i>
                                 <span class="sr-only">Tiktok</span>
                             </a>
-                            <a href="https://instagram.com/">
+                            <a href="#">
                                 <i class="fab fa-twitter" aria-hidden="true"></i>
                                 <span class="sr-only">Instagram</span>
                             </a>

@@ -6,7 +6,6 @@
                     @if ($setting)
                         <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt="" style="width: 180px">
                     @endif
-
                 </a>
             </div>
             <nav class="main-header__nav main-menu">
@@ -24,22 +23,18 @@
                         <a href="">Login</a>
                     </li>
                 </ul>
-            </nav><!-- /.main-header__nav -->
+            </nav>
             <div class="main-header__right">
                 <div class="mobile-nav__btn mobile-nav__toggler">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div><!-- /.mobile-nav__toggler -->
+                </div>
                 <a href="#" class="search-toggler main-header__search">
                     <i class="icon-magnifying-glass" aria-hidden="true"></i>
                     <span class="sr-only">Search</span>
-                </a><!-- /.search-toggler -->
-                <a href="cart.html" class="main-header__cart">
-                    <i class="icon-shopping-cart" aria-hidden="true"></i>
-                    <span class="sr-only">Search</span>
-                </a><!-- /.search-toggler -->
-            </div><!-- /.main-header__right -->
-        </div><!-- /.main-header__inner -->
-    </div><!-- /.container-fluid -->
+                </a>
+            </div>
+        </div>
+    </div>
 </header>

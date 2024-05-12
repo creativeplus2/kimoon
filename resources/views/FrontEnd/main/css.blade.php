@@ -2,14 +2,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ setting_web()->nama_perusahaan }}</title>
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="{{ asset('frontend/assets/images/favicons/apple-touch-icon.png') }} " />
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('frontend/assets/images/favicons/favicon-32x32.png') }}" />
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('frontend/assets/images/favicons/favicon-16x16.png') }}" />
-    <meta name="description"
-        content="Sollox is a modern HTML Template for Beauty, Spa Centers, Hair, Nail, Spa Salons & Cosmetic shops. The template perfectly fits Beauty Spa, Salon, and Wellness Treatments websites and businesses." />
+    @if ($setting)
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}" />
+    @endif
+    <meta name="description" content="" />
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
