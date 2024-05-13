@@ -25,25 +25,33 @@
             <div class="row">
                 <div class="col-lg-6 ">
                     <div class="login-page__wrap">
-
+                        <center>
+                            <img src="{{ asset('login.webp') }}" alt="" style="width: 75%">
+                        </center>
                     </div>
                 </div>
                 <div class="col-lg-6 ">
                     <div class="login-page__wrap">
                         <h3 class="login-page__wrap__title">Login</h3>
-                        <form class="login-page__form">
+                        <form class="login-page__form" method="post" action="{{ route('web.submit_login') }}">
+                            {{ csrf_field() }}
                             <div class="login-page__form-input-box">
-                                <input type="email" placeholder="Username of email *">
+                                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" required>
+                                @error('password')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="login-page__form-input-box">
-                                <input type="password" placeholder="Password *">
+                                <input type="password" placeholder="Password" name="password" required>
+                                @error('password')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="login-page__form-btn-box">
                                 <button type="submit" class="solox-btn solox-btn--base"><span>Login</span>
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

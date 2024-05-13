@@ -19,3 +19,4 @@
 <script src="{{ asset('frontend/assets/vendors/jquery-circleType/jquery.circleType.js') }}"></script>
 <script src="{{ asset('frontend/assets/vendors/jquery-lettering/jquery.lettering.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/solox.js') }}"></script>
+@include('sweetalert::alert')
