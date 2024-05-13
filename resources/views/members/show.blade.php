@@ -197,7 +197,7 @@
             </div>
             <br>
             <br>
-
+            @if ($member->type_user == 'Distributor')
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -255,6 +255,9 @@
                     </div>
                 </div>
             </div>
+            @endif
+
+
         </div>
     @endsection
 
