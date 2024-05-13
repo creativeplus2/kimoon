@@ -16,7 +16,7 @@ class SettingApp extends Model
      */
     protected $fillable = [
         'nama_aplikasi', 'nama_perusahaan', 'deskripsi_perusahaan', 'no_telpon', 'email',
-        'alamat', 'logo', 'favicon', 'facebook', 'instagram', 'tiktok', 'x'
+        'alamat', 'logo', 'favicon', 'facebook', 'instagram', 'tiktok', 'x', 'xendit_secret_key'
     ];
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductPhoto;
 use App\Models\SettingApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,14 @@ class ProdukController extends Controller
         $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
             return $query->where('sub_kategori_id', $request->input('sub_categori'));
         })->paginate(9);
+
+        $products = tap($products, function ($paginatedInstance) {
+            return $paginatedInstance->getCollection()->transform(function ($product) {
+                $product->images = ProductPhoto::where('produk_id', $product->id)->orderBy('id', 'ASC')->get();
+
+                return $product;
+            });
+        });
 
         return view('FrontEnd.produk', [
             'setting' => $setting,
@@ -35,6 +44,9 @@ class ProdukController extends Controller
             ->leftJoin('product_categories', 'sub_categories.categori_id', '=', 'product_categories.id')
             ->where('products.id', $id)
             ->first();
+
+        $product->images = ProductPhoto::where('produk_id', $product->id)->orderBy('id', 'ASC')->get();
+
         return view('FrontEnd.produk-detail', [
             'setting' => $setting,
             'product' => $product

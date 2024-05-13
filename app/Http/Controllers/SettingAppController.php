@@ -64,6 +64,7 @@ class SettingAppController extends Controller
             'instagram' => $request->instagram,
             'tiktok' => $request->tiktok,
             'x' => $request->x,
+            'xendit_secret_key' => $request->xendit_secret_key,
         ]);
 
         Alert::toast('The settingApp was updated successfully.', 'success');

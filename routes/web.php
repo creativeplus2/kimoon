@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\XenditController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     DashboardController,
@@ -57,3 +58,4 @@ Route::post('/submit-login-member', [AuthController::class, 'submitLogin'])->nam
 Route::get('/submit-logout-member', [AuthController::class, 'submitLogout'])->name('web.submit_logout');
 Route::get('/profile', [AuthController::class, 'profile'])->name('web.profile');
 Route::get('/list-member', [AuthController::class, 'listMember'])->name('web.list_member');
+Route::get('/pay', [XenditController::class, 'getPaymentLink']);

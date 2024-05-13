@@ -77,8 +77,7 @@
         <div class="page-header__bg"></div>
         <div class="container">
             @if ($setting)
-                <img src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}" alt="products left sidebar"
-                    class="page-header__shape" style="width: 60px">
+                <img src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}" alt="products left sidebar" class="page-header__shape" style="width: 60px">
             @endif
             <ul class="solox-breadcrumb list-unstyled">
                 <li><a href="{{ route('web.home') }}">Home</a></li>
@@ -95,8 +94,12 @@
                     <div class="product__sidebar product__sidebar-right">
                         <div class="product__search">
                             <form action="#">
-                                <input type="text" placeholder="Keywrord...">
+                                <input type="text" placeholder="Keyword..." onkeyup="doSearchProducts(this)">
                             </form>
+
+                            <div id="search-result-element">
+
+                            </div>
                         </div>
                         <div class="product__categories">
                             <h3 class="product__sidebar--title" style="font-family: Calibri, sans-serif;color:#838184">
@@ -112,22 +115,15 @@
                                     @endphp
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading{{ $row->id }}">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $row->id }}"
-                                                aria-expanded="false" aria-controls="collapse{{ $row->id }}"
-                                                style="font-size: 18px;font-family: Calibri, sans-serif;color:#838184">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $row->id }}" aria-expanded="false" aria-controls="collapse{{ $row->id }}" style="font-size: 18px;font-family: Calibri, sans-serif;color:#838184">
                                                 <b>{{ $row->nama_kategori }}</b>
                                             </button>
                                         </h2>
-                                        <div id="collapse{{ $row->id }}" class="accordion-collapse collapse"
-                                            aria-labelledby="heading{{ $row->id }}"
-                                            data-bs-parent="#categoryAccordion">
+                                        <div id="collapse{{ $row->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $row->id }}" data-bs-parent="#categoryAccordion">
                                             <div class="accordion-body">
-                                                <ul class="list-unstyled"
-                                                    style="font-family: Calibri, sans-serif;color:#838184">
+                                                <ul class="list-unstyled" style="font-family: Calibri, sans-serif;color:#838184">
                                                     @foreach ($subCategories as $data)
-                                                        <li><a
-                                                                href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">{{ $data->nama_sub_kategori }}</a>
+                                                        <li><a href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">{{ $data->nama_sub_kategori }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -151,9 +147,7 @@
                                 @if (request()->has('sub_categori'))
                                     @php
                                         $categoryId = request()->input('sub_categori');
-                                        $categoryName = DB::table('sub_categories')
-                                            ->where('id', $categoryId)
-                                            ->value('nama_sub_kategori');
+                                        $categoryName = DB::table('sub_categories')->where('id', $categoryId)->value('nama_sub_kategori');
                                     @endphp
                                     @if ($categoryName)
                                         - Kategori {{ $categoryName }}
@@ -173,20 +167,16 @@
                                 <div class="product__item wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                     <div class="product__item__img">
                                         <a href="{{ route('web.produk_detail', $row->id) }}">
-                                            <img src="{{ asset('frontend') }}/assets/images/products/product-1-1.jpg"
-                                                alt="{{ $row->nama_produk }}">
+                                            <img src="{{ count($row->images) >= 1 ? '/storage/produk/' . $row->images[0]->photo : '/images/no-photo.jpg' }}" alt="{{ $row->nama_produk }}">
                                         </a>
 
                                     </div>
                                     <div class="product__item__content">
                                         <div class="product__item__ratings">
-                                            <span class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                                class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                                class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
                                         </div>
                                         <h4 class="product__item__title" style="font-size: 14px; height:60px">
-                                            <a href="{{ route('web.produk_detail', $row->id) }}"
-                                                style="font-family: Calibri, sans-serif;color:#838184">{{ $row->nama_produk }}</a>
+                                            <a href="{{ route('web.produk_detail', $row->id) }}" style="font-family: Calibri, sans-serif;color:#838184">{{ $row->nama_produk }}</a>
                                         </h4>
                                         <div class="product__item__price">{{ format_rupiah($row->harga_umum) }}</div>
                                     </div>
@@ -204,3 +194,74 @@
     </section>
 
 @endsection
+
+@push('css')
+    <style>
+        #search-result-element {
+            position: absolute;
+            z-index: 99;
+            background: white;
+            width: 100%
+        }
+
+        #search-result-element a {
+            display: flex;
+            align-items: center;
+            border: 1px solid #E9C459;
+            width: 100%;
+            padding: .35rem;
+            gap: .5rem
+        }
+
+        #search-result-element a:hover {
+            background: #E9C459;
+            color: white;
+        }
+
+        #search-result-element a img {
+            width: 50px
+        }
+    </style>
+@endpush
+
+@push('js')
+    <script>
+        function doSearchProducts(inputElement) {
+            const value = inputElement.value
+            const searchResultElement = document.getElementById('search-result-element')
+
+            searchResultElement.innerHTML = ''
+
+            if (value) {
+                fetch('/api/products?q=' + value)
+                    .then((res) => res.json())
+                    .then((response) => {
+
+                        if (response.products.length > 0) {
+                            response.products.forEach((productObj) => {
+                                const productImage = productObj.images.length >= 1 ? productObj.images[0].photo : null
+
+                                searchResultElement.insertAdjacentHTML('beforeend',
+                                    `
+                                    <a href="/produk/${productObj.id}">
+                                        <div>
+                                            <img src="${productImage ? '/storage/produk/' + productImage : '/images/no-photo.jpg'}" alt="${productObj.nama_produk}">
+                                        </div>
+                                        <p style="font-size: 14px; margin-bottom: 0">${productObj.nama_produk}</p>
+                                    </a>
+                                `)
+                            })
+                        } else {
+                            searchResultElement.innerHTML =
+                                `
+                                    <a href="#">
+                                        <p style="font-size: 14px; margin-bottom: 0">Produk ${value} tidak ditemukan</p>
+                                    </a>
+                                `
+                        }
+
+                    })
+            }
+        }
+    </script>
+@endpush

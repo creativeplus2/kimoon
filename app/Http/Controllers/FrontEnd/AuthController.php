@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotifyRegisterMemberMail;
 use App\Models\Member;
 use App\Models\Province;
 use App\Models\SettingApp;
@@ -12,8 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -57,8 +57,6 @@ class AuthController extends Controller
         } else {
             $photoKtpPath = null;
         }
-
-        // Create a new Member instance
         $member = new Member();
         $member->kode_member = $this->generateKodeMember();
         $member->nama_member = $request->input('nama_member');
@@ -76,6 +74,10 @@ class AuthController extends Controller
         $member->photo_ktp = $photoKtpPath;
         $member->status_member = "Pending";
         $member->save();
+
+        // send Email
+        Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
+
         Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
         return redirect()->back();
     }
@@ -105,7 +107,6 @@ class AuthController extends Controller
         $data = Member::where('email', $email)->first();
 
         if ($data) {
-            // Check if member status is 'Approved'
             if ($data->status_member == 'Approved') {
                 if (Hash::check($password, $data->password)) {
                     Session::put('id-member', $data->id);
@@ -177,14 +178,10 @@ class AuthController extends Controller
     {
         $lastMember = Member::latest()->first();
         if ($lastMember) {
-            // Extract the numeric part of kode_member and increment by one
             $numericPart = (int)substr($lastMember->kode_member, strrpos($lastMember->kode_member, '-') + 1);
             $newNumericPart = $numericPart + 1;
-
-            // Format the new kode_member
             $newKodeMember = sprintf("KIMOON-%05d", $newNumericPart);
         } else {
-            // If no member exists, start with KIMOON-00001
             $newKodeMember = "KIMOON-00001";
         }
 
