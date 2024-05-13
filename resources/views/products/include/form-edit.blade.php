@@ -196,6 +196,8 @@
             </thead>
             @foreach ($photo as $row)
                 <tr id="detail_file{{ $row->id }}">
+                    <td><img src="{{ asset('storage/produk/' . $row->photo) }}" alt="Photo Ktp" style="width: 60px">
+                    </td>
                     <td>
                         <center>
                             <button type="button" class="btn btn-primary btn-xs mb-1" data-id="{{ $row->id }}"

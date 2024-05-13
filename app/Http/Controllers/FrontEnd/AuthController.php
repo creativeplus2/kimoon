@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Province;
 use App\Models\SettingApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,9 +20,16 @@ class AuthController extends Controller
     public function register()
     {
         $setting = SettingApp::find(1);
+        $provinces = Province::get();
         return view('FrontEnd.register', [
-            'setting' => $setting
+            'setting' => $setting,
+            'provinces' => $provinces
         ]);
+    }
+
+    public function submitRegister()
+    {
+
     }
 
     public function login()
@@ -110,7 +118,4 @@ class AuthController extends Controller
             'member' => $member
         ]);
     }
-
-
-
 }
