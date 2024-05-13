@@ -50,7 +50,7 @@
                         </ul>
                         <div class="product-details__excerpt">
                             <p class="product-details__excerpt-text1" style="text-align: justify">
-                                {{ $product->deksripsi_produk }}
+                                {!! $product->deksripsi_produk !!}
                             </p>
                             <p class="product-details__excerpt-text2">SKU. {{ $product->sku }} <br>
                                 <button class="btn btn-success"

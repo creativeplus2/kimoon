@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Deksripsi Produk') }}</td>
-                                        <td>{{ $product->deksripsi_produk }}</td>
+                                        <td>{!! $product->deksripsi_produk !!}</td>
                                     </tr>
                                     {{-- <tr>
                                         <td class="fw-bold">{{ __('Created at') }}</td>

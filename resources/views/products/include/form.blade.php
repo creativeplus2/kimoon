@@ -1,3 +1,6 @@
+@push('css')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+@endpush
 <div class="row mb-2">
     <div class="col-md-6 mb-2">
         <label for="kode-produk">{{ __('Kode Produk') }}</label>
@@ -136,7 +139,7 @@
     <div class="form-group col-md-6">
         <div class="alert alert-primary" role="alert">
             Silahkan masukan photo photo produk
-          </div>
+        </div>
         <table class="table table-bordered table-sm" id="dynamic_field">
             <thead>
                 <tr>
@@ -146,10 +149,11 @@
             </thead>
 
             <tr>
-                <td><input type="file" required name="photo[]" class="form-control  @error('photo') is-invalid @enderror" />
+                <td><input type="file" required name="photo[]"
+                        class="form-control  @error('photo') is-invalid @enderror" />
                 </td>
-                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button></td>
+                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button></td>
             </tr>
         </table>
         @error('photo')
@@ -158,6 +162,13 @@
     </div>
 </div>
 @push('js')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#deksripsi-produk'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script>
         $(document).ready(function() {
             var i = 1;

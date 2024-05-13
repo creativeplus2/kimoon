@@ -1,4 +1,5 @@
 @push('css')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <style>
         .img-size {
             height: 450px;
@@ -198,8 +199,9 @@
                     <td>
                         <center>
                             <button type="button" class="btn btn-primary btn-xs mb-1" data-id="{{ $row->id }}"
-                                id="view_gambar" data-photo="{{ $row->photo }}" data-bs-toggle="modal" title="View Gambar"
-                                data-bs-target="#largeModal"><i class="fas fa-eye"></i> Lihat Photo Produk
+                                id="view_gambar" data-photo="{{ $row->photo }}" data-bs-toggle="modal"
+                                title="View Gambar" data-bs-target="#largeModal"><i class="fas fa-eye"></i> Lihat
+                                Photo Produk
                             </button>
                         </center>
                         <input type="hidden" name="id_asal[]" value="{{ $row->id }}"
@@ -213,7 +215,8 @@
                 </tr>
             @endforeach
             <tr>
-                <td><input type="file" name="photo[]" class="form-control  @error('photo') is-invalid @enderror" />
+                <td><input type="file" name="photo[]"
+                        class="form-control  @error('photo') is-invalid @enderror" />
                 </td>
                 <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i
                             class="fa fa-plus" aria-hidden="true"></i></button>
@@ -229,6 +232,14 @@
     </div>
 </div>
 @push('js')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#deksripsi-produk'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
     <script type="text/javascript">
         $(document).on('click', '#view_gambar', function() {
             var photo = $(this).data('photo');
