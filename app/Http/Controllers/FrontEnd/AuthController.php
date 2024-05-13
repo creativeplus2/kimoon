@@ -90,31 +90,37 @@ class AuthController extends Controller
 
     public function submitLogin(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => "required|email",
+            'password' => 'required|string',
+        ]);
 
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'email' => "required|email",
-                'password' => 'required|string',
-            ],
-        );
         if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
+
         $email = $request->email;
         $password = $request->password;
+
         $data = Member::where('email', $email)->first();
+
         if ($data) {
-            if (Hash::check($password, $data->password)) {
-                Session::put('id-member', $data->id);
-                Session::put('name-member', $data->nama_member);
-                Session::put('email-member', $data->email);
-                Session::put('kabkot-member', $data->kabkot_id);
-                Session::put('login-member', TRUE);
-                Alert::success('Success', 'Login Berhasil');
-                return redirect()->route('web.home');
+            // Check if member status is 'Approved'
+            if ($data->status_member == 'Approved') {
+                if (Hash::check($password, $data->password)) {
+                    Session::put('id-member', $data->id);
+                    Session::put('name-member', $data->nama_member);
+                    Session::put('email-member', $data->email);
+                    Session::put('kabkot-member', $data->kabkot_id);
+                    Session::put('login-member', TRUE);
+                    Alert::success('Success', 'Login Berhasil');
+                    return redirect()->route('web.home');
+                } else {
+                    Alert::error('Failed', 'Email atau Password anda salah!');
+                    return redirect()->back()->withInput($request->all())->withErrors($validator);
+                }
             } else {
-                Alert::error('Failed', 'Email atau Password anda salah!');
+                Alert::error('Failed', 'Akun tidak aktif, silahkan hubungi admin kimoon.id');
                 return redirect()->back()->withInput($request->all())->withErrors($validator);
             }
         } else {
