@@ -90,7 +90,7 @@ class MemberController extends Controller
     public function store(StoreMemberRequest $request)
     {
         $attr = $request->validated();
-
+        $attr['kode_member'] =  $this->generateKodeMember();
         $attr['password'] = bcrypt($request->password);
 
         if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
@@ -250,5 +250,25 @@ class MemberController extends Controller
         DB::table('distributor_cover_area')->where('id', $id)->delete();
         Alert::toast('Data berhasil di hapus', 'success');
         return back();
+    }
+
+    private function generateKodeMember()
+    {
+        // Get the last member record
+        $lastMember = Member::latest()->first();
+
+        if ($lastMember) {
+            // Extract the numeric part of kode_member and increment by one
+            $numericPart = (int)substr($lastMember->kode_member, strrpos($lastMember->kode_member, '-') + 1);
+            $newNumericPart = $numericPart + 1;
+
+            // Format the new kode_member
+            $newKodeMember = sprintf("KIMOON-%05d", $newNumericPart);
+        } else {
+            // If no member exists, start with KIMOON-00001
+            $newKodeMember = "KIMOON-00001";
+        }
+
+        return $newKodeMember;
     }
 }

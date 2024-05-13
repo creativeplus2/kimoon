@@ -45,7 +45,7 @@
                 <div class="col-lg-12">
                     <div class="login-page__wrap">
                         <h3 class="login-page__wrap__title">Register</h3>
-                        <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('web.submit_register') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                             <div class="row mb-2">

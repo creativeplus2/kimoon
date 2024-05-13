@@ -24,7 +24,6 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode_member' => 'required|string|max:255',
 			'nama_member' => 'required|string|max:255',
 			'email' => 'required|email|unique:members,email,' . $this->member->id,
 			'no_telpon' => 'required|string|max:15',

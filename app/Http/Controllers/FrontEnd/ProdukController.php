@@ -14,14 +14,17 @@ class ProdukController extends Controller
     {
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
-        $products = DB::table('products')->paginate(9);
+        $productsQuery = DB::table('products');
+        $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
+            return $query->where('sub_kategori_id', $request->input('sub_categori'));
+        })->paginate(9);
+
         return view('FrontEnd.produk', [
             'setting' => $setting,
             'produkCategory' => $produkCategory,
             'products' => $products
         ]);
     }
-
     public function detail($id)
     {
         $setting = SettingApp::find(1);

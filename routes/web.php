@@ -51,6 +51,7 @@ Route::get('/', [HomeController::class, 'index'])->name('web.home');
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
 Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');
 Route::get('/register-member', [AuthController::class, 'register'])->name('web.register');
+Route::post('/submit-register-member', [AuthController::class, 'submitRegister'])->name('web.submit_register');
 Route::get('/login-member', [AuthController::class, 'login'])->name('web.login');
 Route::post('/submit-login-member', [AuthController::class, 'submitLogin'])->name('web.submit_login');
 Route::get('/submit-logout-member', [AuthController::class, 'submitLogout'])->name('web.submit_logout');

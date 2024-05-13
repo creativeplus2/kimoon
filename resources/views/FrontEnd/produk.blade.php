@@ -126,7 +126,8 @@
                                                 <ul class="list-unstyled"
                                                     style="font-family: Calibri, sans-serif;color:#838184">
                                                     @foreach ($subCategories as $data)
-                                                        <li><a href="#">{{ $data->nama_sub_kategori }}</a>
+                                                        <li><a
+                                                                href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">{{ $data->nama_sub_kategori }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -142,9 +143,26 @@
                 <div class="col-lg-9">
                     <div class="product__info-top">
                         <div class="product__showing-text-box">
-                            <p class="product__showing-text">Showing
+                            <p class="product__showing-text">
+                                Showing
                                 {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}
                                 Results
+
+                                @if (request()->has('sub_categori'))
+                                    @php
+                                        $categoryId = request()->input('sub_categori');
+                                        $categoryName = DB::table('sub_categories')
+                                            ->where('id', $categoryId)
+                                            ->value('nama_sub_kategori');
+                                    @endphp
+                                    @if ($categoryName)
+                                        - Kategori {{ $categoryName }}
+                                    @else
+                                        Unknown Category
+                                    @endif
+                                @else
+                                    - All Products
+                                @endif
                             </p>
                         </div>
                     </div>

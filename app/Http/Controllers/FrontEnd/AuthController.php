@@ -27,9 +27,57 @@ class AuthController extends Controller
         ]);
     }
 
-    public function submitRegister()
+    public function submitRegister(Request $request)
     {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'nama_member' => 'required|string|max:255',
+            'email' => 'required|email|unique:members,email',
+            'no_telpon' => 'required|string|max:15',
+            'type_user' => 'required|string|max:255',
+            'provinsi_id' => 'required|exists:provinces,id',
+            'kabkot_id' => 'required|exists:kabkots,id',
+            'kecamatan_id' => 'required|exists:kecamatans,id',
+            'kelurahan_id' => 'required|exists:kelurahans,id',
+            'zip_code' => 'required|string|max:255',
+            'alamat_member' => 'required|string',
+            'no_ktp' => 'required|string|max:255|unique:members,no_ktp',
+            'password' => 'required|string|min:8|confirmed',
+            'photo_ktp' => 'nullable|image|max:2048', // Max 2MB
+        ]);
 
+        // If validation fails, return back with errors
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        // Handle photo_ktp upload
+        if ($request->hasFile('photo_ktp')) {
+            $photoKtpPath = $request->file('photo_ktp')->store('uploads/photo_ktps');
+        } else {
+            $photoKtpPath = null;
+        }
+
+        // Create a new Member instance
+        $member = new Member();
+        $member->kode_member = $this->generateKodeMember();
+        $member->nama_member = $request->input('nama_member');
+        $member->email = $request->input('email');
+        $member->no_telpon = $request->input('no_telpon');
+        $member->type_user = $request->input('type_user');
+        $member->provinsi_id = $request->input('provinsi_id');
+        $member->kabkot_id = $request->input('kabkot_id');
+        $member->kecamatan_id = $request->input('kecamatan_id');
+        $member->kelurahan_id = $request->input('kelurahan_id');
+        $member->zip_code = $request->input('zip_code');
+        $member->alamat_member = $request->input('alamat_member');
+        $member->no_ktp = $request->input('no_ktp');
+        $member->password = bcrypt($request->input('password'));
+        $member->photo_ktp = $photoKtpPath;
+        $member->status_member = "Pending";
+        $member->save();
+        Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
+        return redirect()->back();
     }
 
     public function login()
@@ -117,5 +165,23 @@ class AuthController extends Controller
             'setting' => $setting,
             'member' => $member
         ]);
+    }
+
+    private function generateKodeMember()
+    {
+        $lastMember = Member::latest()->first();
+        if ($lastMember) {
+            // Extract the numeric part of kode_member and increment by one
+            $numericPart = (int)substr($lastMember->kode_member, strrpos($lastMember->kode_member, '-') + 1);
+            $newNumericPart = $numericPart + 1;
+
+            // Format the new kode_member
+            $newKodeMember = sprintf("KIMOON-%05d", $newNumericPart);
+        } else {
+            // If no member exists, start with KIMOON-00001
+            $newKodeMember = "KIMOON-00001";
+        }
+
+        return $newKodeMember;
     }
 }

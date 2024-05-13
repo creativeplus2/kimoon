@@ -1,17 +1,5 @@
 <div class="row mb-2">
     <div class="col-md-6 mb-2">
-        <label for="kode-member">{{ __('Kode Member') }}</label>
-        <input type="text" name="kode_member" id="kode-member"
-            class="form-control @error('kode_member') is-invalid @enderror"
-            value="{{ isset($member) ? $member->kode_member : old('kode_member') }}" placeholder="{{ __('Kode Member') }}"
-            required />
-        @error('kode_member')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
-        @enderror
-    </div>
-    <div class="col-md-6 mb-2">
         <label for="nama-member">{{ __('Nama Member') }}</label>
         <input type="text" name="nama_member" id="nama-member"
             class="form-control @error('nama_member') is-invalid @enderror"
