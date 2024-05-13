@@ -160,7 +160,7 @@
             console.log(id)
 
             $.ajax({
-                url: '/GetGambarProduk/' + id,
+                url: '/panel/GetGambarProduk/' + id,
                 type: 'GET',
 
                 headers: {

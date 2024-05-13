@@ -190,6 +190,7 @@
         <table class="table table-bordered table-sm" id="dynamic_field">
             <thead>
                 <tr>
+                    <th>Thumbnail</th>
                     <th>Photo Produk</th>
                     <th>Action</th>
                 </tr>
