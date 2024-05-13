@@ -19,11 +19,8 @@
                     </li>
 
                     @if (Session::get('login-member'))
-                        {{-- <li>
-                            <a href="{{ route('web.register') }}">List member</a>
-                        </li> --}}
                         <li>
-                            <a href="{{route('web.profile')}}">{{ Session::get('name-member') }}</a>
+                            <a href="{{ route('web.profile') }}">{{ Session::get('name-member') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('web.submit_logout') }}">Logout&nbsp;<i class="fa fa-sign-out"

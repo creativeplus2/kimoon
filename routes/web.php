@@ -55,3 +55,4 @@ Route::get('/login-member', [AuthController::class, 'login'])->name('web.login')
 Route::post('/submit-login-member', [AuthController::class, 'submitLogin'])->name('web.submit_login');
 Route::get('/submit-logout-member', [AuthController::class, 'submitLogout'])->name('web.submit_logout');
 Route::get('/profile', [AuthController::class, 'profile'])->name('web.profile');
+Route::get('/list-member', [AuthController::class, 'listMember'])->name('web.list_member');

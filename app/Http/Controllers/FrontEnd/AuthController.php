@@ -53,6 +53,7 @@ class AuthController extends Controller
                 Session::put('id-member', $data->id);
                 Session::put('name-member', $data->nama_member);
                 Session::put('email-member', $data->email);
+                Session::put('kabkot-member', $data->kabkot_id);
                 Session::put('login-member', TRUE);
                 Alert::success('Success', 'Login Berhasil');
                 return redirect()->route('web.home');
@@ -92,4 +93,24 @@ class AuthController extends Controller
             'member' => $member
         ]);
     }
+
+    public function listMember()
+    {
+        $setting = SettingApp::find(1);
+        $member = DB::table('members')
+            ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota', 'kecamatans.kecamatan', 'kelurahans.kelurahan')
+            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+            ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+            ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+            ->where('members.id', Session::get('id-member'))
+            ->first();
+        return view('FrontEnd.list_member', [
+            'setting' => $setting,
+            'member' => $member
+        ]);
+    }
+
+
+
 }

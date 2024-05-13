@@ -197,44 +197,101 @@
             </div>
             <br>
             <br>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive p-1">
+                                <table class="table table-striped" id="data-table">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>{{ __('Kode Member') }}</th>
+                                            <th>{{ __('Nama Member') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th>{{ __('No Telpon') }}</th>
+                                            <th>{{ __('Kab/Kota') }}</th>
+                                            <th>{{ __('Type User') }}</th>
+                                            <th>{{ __('Status Member') }}</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $datax = DB::table('members')
+                                            ->select(
+                                                'members.*',
+                                                'provinces.provinsi',
+                                                'kabkots.kabupaten_kota',
+                                                'kecamatans.kecamatan',
+                                                'kelurahans.kelurahan',
+                                            )
+                                            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+                                            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+                                            ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+                                            ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                                            ->where('members.kabkot_id', $member->kabkot_id)
+                                            ->where('members.type_user', '!=', 'Distributor')
+                                            ->get();
+                                    @endphp
+                                    @foreach ($datax as $r)
+                                        <tr>
+                                            <td>{{ $r->kode_member }}</td>
+                                            <td>{{ $r->nama_member }}</td>
+                                            <td>{{ $r->email }}</td>
+                                            <td>{{ $r->no_telpon }}</td>
+                                            <td>{{ $r->kabupaten_kota }}</td>
+                                            <td>{{ $r->type_user }}</td>
+                                            @if ($r->status_member == 'Pending')
+                                                <td><span class="badge bg-secondary">Pending</span></td>
+                                            @elseif($r->status_member == 'Approved')
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                            @elseif($r->status_member == 'Rejected')
+                                                <td><span class="badge bg-danger">Rejected</span></td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@push('js')
-    <script>
-        const options_temp = '<option value="" selected disabled>-- Select --</option>';
+    @push('js')
+        <script>
+            const options_temp = '<option value="" selected disabled>-- Select --</option>';
 
-        $('#provinsi-id').change(function() {
-            $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
-            if ($(this).val() != "") {
-                getKabupatenKota($(this).val());
-            }
-            // onValidation('provinsi')
-        })
-
-        function getKabupatenKota(provinsiId) {
-            let url = '{{ route('api.kota', ':id') }}';
-            url = url.replace(':id', provinsiId)
-            $.ajax({
-                url,
-                method: 'GET',
-                beforeSend: function() {
-                    $('#kabkot-id').prop('disabled', true);
-                },
-                success: function(res) {
-                    const options = res.data.map(value => {
-                        return `<option value="${value.id}">${value.kabupaten_kota}</option>`
-                    });
-                    $('#kabkot-id').html(options_temp + options)
-                    $('#kabkot-id').prop('disabled', false);
-                },
-                error: function(err) {
-                    $('#kabkot-id').prop('disabled', false);
-                    alert(JSON.stringify(err))
+            $('#provinsi-id').change(function() {
+                $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
+                if ($(this).val() != "") {
+                    getKabupatenKota($(this).val());
                 }
-
+                // onValidation('provinsi')
             })
-        }
-    </script>
-@endpush
+
+            function getKabupatenKota(provinsiId) {
+                let url = '{{ route('api.kota', ':id') }}';
+                url = url.replace(':id', provinsiId)
+                $.ajax({
+                    url,
+                    method: 'GET',
+                    beforeSend: function() {
+                        $('#kabkot-id').prop('disabled', true);
+                    },
+                    success: function(res) {
+                        const options = res.data.map(value => {
+                            return `<option value="${value.id}">${value.kabupaten_kota}</option>`
+                        });
+                        $('#kabkot-id').html(options_temp + options)
+                        $('#kabkot-id').prop('disabled', false);
+                    },
+                    error: function(err) {
+                        $('#kabkot-id').prop('disabled', false);
+                        alert(JSON.stringify(err))
+                    }
+
+                })
+            }
+        </script>
+    @endpush
