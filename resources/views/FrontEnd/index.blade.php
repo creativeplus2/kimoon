@@ -117,6 +117,11 @@
         <div class="feature-one__bg"
             style="background-image: url({{ asset('frontend') }}/assets/images/shapes/feature-bg-1.png);"></div>
         <div class="container">
+            <div class="row  justify-content-center mt-5 mb-5">
+                <div>
+            <h5 class="text-center">Bergabung bersama Kami!</h5>
+</div>
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                     <div class="feature-one__item text-center">
@@ -127,8 +132,8 @@
                             <img src="{{ asset('frontend') }}/assets/images/resources/feature-1-1.jpg" alt="solox">
                             <div class="feature-one__item__icon"><span class="icon-booking"></span></div>
                         </div>
-                        <h4 class="feature-one__item__sub-title">Online</h4>
-                        <h3 class="feature-one__item__title">Booking</h3>
+                        <h4 class="feature-one__item__sub-title">Special</h4>
+                        <h3 class="feature-one__item__title">Distributor</h3>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 4">
                             <g data-name="3 Boxes">
                                 <g data-name="01">
@@ -151,8 +156,8 @@
                             <img src="{{ asset('frontend') }}/assets/images/resources/feature-1-2.jpg" alt="solox">
                             <div class="feature-one__item__icon"><span class="icon-group"></span></div>
                         </div>
-                        <h4 class="feature-one__item__sub-title">Expert</h4>
-                        <h3 class="feature-one__item__title">Therapist</h3>
+                        <h4 class="feature-one__item__sub-title">Special</h4>
+                        <h3 class="feature-one__item__title">Sub Dis</h3>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 4">
                             <g data-name="3 Boxes">
                                 <g data-name="01">
@@ -176,7 +181,7 @@
                             <div class="feature-one__item__icon"><span class="icon-tag"></span></div>
                         </div>
                         <h4 class="feature-one__item__sub-title">Special</h4>
-                        <h3 class="feature-one__item__title">Discount</h3>
+                        <h3 class="feature-one__item__title">Reseller</h3>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 4">
                             <g data-name="3 Boxes">
                                 <g data-name="01">

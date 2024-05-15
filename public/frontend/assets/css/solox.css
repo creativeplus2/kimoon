@@ -14,9 +14,11 @@
 # Client Carousel
 # Update Home Css
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat+Subrayada:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-  --solox-font: "Plus Jakarta Sans", sans-serif;
-  --solox-heading-font: "Cormorant", serif;
+  --solox-font: "Montserrat", sans-serif;
+  --solox-heading-font: "Fahkwang", serif;
   --solox-special-font: "Alex Brush", cursive;
   --solox-text: #838184;
   --solox-text-rgb: 131, 129, 132;
@@ -26,8 +28,8 @@
   --solox-text-gray-rgb: 137, 134, 141;
   --solox-base: #c2a74e;
   --solox-base-rgb: 194, 167, 78;
-  --solox-gray: #f9f6f1;
-  --solox-gray-rgb: 249, 246, 241;
+  --yellowlight: #f9f6f1;
+  --yellowlight-rgb: 249, 246, 241;
   --solox-white: #fff;
   --solox-white-rgb: 255, 255, 255;
   --solox-black: #1c1a1d;
@@ -40,6 +42,12 @@
   --solox-border-color-rgb: 232, 227, 218;
   --solox-letter-space: 0.1em;
   --solox-letter-space-xl: 0.2em;
+  --grey: #838383;
+  --dark: #2F1F0F;
+	--gold: #E0B15E;
+	--darkgold: #996A2E;
+	--yellowlight: #FFFAEB;
+  --darkbrown: #a44f30
 }
 
 /*--------------------------------------------------------------
@@ -249,11 +257,11 @@
 # Common
 --------------------------------------------------------------*/
 body {
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-text, #838184);
-  font-size: 16px;
-  line-height: 2.125;
-  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.6rem;
+  font-weight: 400;
 }
 
 body.locked {
@@ -283,7 +291,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   color: var(--solox-black, #1c1a1d);
 }
 @media (max-width: 575px) {
@@ -313,7 +321,7 @@ h6 {
 }
 
 .background-gray {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 
 .background-black {
@@ -381,7 +389,7 @@ h6 {
   color: #fff;
   font-size: 12px;
   font-weight: 600;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   padding: 16.25px 48px;
   transition: 500ms;
   letter-spacing: var(--solox-letter-space-xl, 0.2em);
@@ -726,7 +734,7 @@ h6 {
   outline: none;
   width: 50px;
   height: 50px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   display: flex;
   justify-content: center;
   opacity: 1;
@@ -812,28 +820,28 @@ h6 {
   background-image: none;
   background-color: var(--solox-black, #1c1a1d);
   color: var(--solox-white, #fff);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 
 .ui-datepicker-calendar th span {
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .ui-datepicker-calendar td {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-image: none;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-text, #838184);
 }
 .ui-datepicker-calendar td a {
   border-color: var(--solox-border-color, #e8e3da);
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-image: none;
 }
 .ui-datepicker-calendar .ui-state-default,
 .ui-datepicker-calendar .ui-widget-content .ui-state-default,
 .ui-datepicker-calendar .ui-widget-header .ui-state-default {
   border-color: var(--solox-border-color, #e8e3da);
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-image: none;
   color: var(--solox-text, #838184);
   padding: 10px 5px;
@@ -1103,7 +1111,7 @@ h6 {
   width: 100%;
   max-width: 300px;
   height: 324px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-image: url(../images/shapes/team-card-s-1-1.png);
   background-repeat: no-repeat;
   background-position: top center;
@@ -1228,7 +1236,7 @@ h6 {
   color: var(--solox-text, #838184);
   letter-spacing: var(--solox-letter-space, 0.1em);
   margin-bottom: 5px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 
 .team-details {
@@ -1331,7 +1339,7 @@ h6 {
   font-weight: bold;
   color: var(--solox-base, #c2a74e);
   font-size: 20px;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   line-height: 1.3em;
   margin-top: 35px;
   margin-bottom: 30px;
@@ -1366,7 +1374,7 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   font-size: 14px;
   color: var(--solox-black, #1c1a1d);
   transition: all 500ms ease;
@@ -1565,7 +1573,7 @@ h6 {
   text-align: center;
   align-items: center;
   font-size: 12px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-white, #fff);
   padding: 0 20px;
   line-height: 1.2em;
@@ -1742,7 +1750,7 @@ h6 {
 
 .blog-card-link,
 .blog-card-qoute {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 30px;
 }
 @media (min-width: 768px) {
@@ -1829,7 +1837,7 @@ h6 {
   display: block;
   width: 100%;
   height: 58px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   color: var(--solox-text, #838184);
   font-size: 14px;
   font-weight: 500;
@@ -2130,7 +2138,7 @@ h6 {
 .contact-one__info__icon {
   width: 50px;
   height: 50px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2149,12 +2157,12 @@ h6 {
   font-size: 15px;
   font-weight: 500;
   line-height: 30px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .contact-one__info__title {
   font-size: 18px;
   font-weight: 500;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-black, #1c1a1d);
   line-height: 30px;
 }
@@ -2319,7 +2327,7 @@ h6 {
   border-bottom: 2px solid rgba(var(--solox-white-rgb, 255, 255, 255), 0.15);
   font-size: 14px;
   color: var(--solox-white, #fff);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   display: block;
   font-weight: 500;
 }
@@ -2335,7 +2343,7 @@ h6 {
   position: relative;
   display: block;
   width: 100% !important;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .contact__input-box .bootstrap-select > .dropdown-toggle::after {
   display: none;
@@ -2397,7 +2405,7 @@ h6 {
   height: 112px;
   width: 100%;
   background-color: transparent;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   padding: 0;
   border: none;
   outline: none;
@@ -2415,7 +2423,7 @@ h6 {
 --------------------------------------------------------------*/
 .topbar-one {
   display: none;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 @media (min-width: 768px) {
   .topbar-one {
@@ -2508,7 +2516,7 @@ h6 {
 # Navigations
 --------------------------------------------------------------*/
 .main-header {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 .main-header .container-fluid {
   max-width: 1684px;
@@ -2866,7 +2874,7 @@ h6 {
   font-size: 12px;
   line-height: 26px;
   color: var(--solox-text, #838184);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   letter-spacing: var(--solox-letter-space, 0.1em);
   font-weight: 500;
   display: flex;
@@ -2892,7 +2900,7 @@ h6 {
 }
 .main-menu .main-menu__list li ul li.current > a,
 .main-menu .main-menu__list li ul li:hover > a {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   color: var(--solox-black, #1c1a1d);
 }
 .main-menu .main-menu__list li ul li.current > a::after,
@@ -3052,7 +3060,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-black, #1c1a1d);
   font-weight: 500;
   letter-spacing: var(--solox-letter-space, 0.1em);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .demo-one__title a {
   color: inherit;
@@ -3173,7 +3181,7 @@ body.megamenu-popup-active .mobile-nav__content {
   }
 }
 .why-choose-one__inner {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding-top: 120px;
   padding-bottom: 120px;
   position: relative;
@@ -3182,7 +3190,7 @@ body.megamenu-popup-active .mobile-nav__content {
   content: "";
   width: 10000px;
   height: 100%;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   position: absolute;
   top: 0;
   right: 100%;
@@ -3699,7 +3707,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .funfact-one__count {
   margin: 0;
   color: var(--solox-white, #fff);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-size: 35px;
   font-weight: 500;
   line-height: 1;
@@ -3823,7 +3831,7 @@ body.megamenu-popup-active .mobile-nav__content {
   margin: 0;
   color: var(--solox-black, #1c1a1d);
   font-size: 40px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-weight: 500;
   line-height: 1;
   margin-bottom: 0px;
@@ -3858,7 +3866,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   z-index: 3;
 }
 @media (min-width: 1400px) {
@@ -3988,7 +3996,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .funfact-three__count {
   margin: 0;
   color: var(--solox-black, #1c1a1d);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-size: 35px;
   font-weight: 500;
   line-height: 1;
@@ -4173,7 +4181,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 50px;
   font-weight: 500;
   color: var(--solox-white, #fff);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   font-style: italic;
 }
 .testimonials-two__carousel-thumb {
@@ -4249,7 +4257,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 1;
   margin-bottom: 8px;
   color: var(--solox-white, #fff);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
 }
 .testimonials-two__meta__designation {
   display: flex;
@@ -4267,7 +4275,7 @@ body.megamenu-popup-active .mobile-nav__content {
 
 .testimonials-three {
   position: relative;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -4471,7 +4479,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-size: 24px;
   line-height: 40px;
   color: var(--solox-black, #1c1a1d);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   font-weight: 700;
   font-style: italic;
   margin: 0 40px 36px 50px;
@@ -4758,7 +4766,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .gallery-one__filter__list li span {
   display: block;
   font-size: 10px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   transition: all 500ms ease;
   text-transform: uppercase;
   font-weight: 600;
@@ -5007,7 +5015,7 @@ body.megamenu-popup-active .mobile-nav__content {
 # Sidebar
 --------------------------------------------------------------*/
 .sidebar__single {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 40px;
 }
 @media (min-width: 1200px) {
@@ -5268,7 +5276,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .sidebar__comments__title {
   margin: 0;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-size: 15px;
   line-height: 24px;
   font-weight: 500;
@@ -5334,7 +5342,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .service-sidebar__nav li.current a, .service-sidebar__nav li:hover a {
   padding: 10.5px 35px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   color: var(--solox-black, #1c1a1d);
   text-shadow: 0 0 1px currentColor;
 }
@@ -5576,7 +5584,7 @@ body.megamenu-popup-active .mobile-nav__content {
   }
 }
 .blog-details__tags .sidebar__tags a {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 .blog-details__tags .sidebar__tags a:hover {
   background-color: var(--solox-base, #c2a74e);
@@ -5592,7 +5600,7 @@ body.megamenu-popup-active .mobile-nav__content {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   font-size: 14px;
   color: var(--solox-black, #1c1a1d);
   transition: all 500ms ease;
@@ -5618,7 +5626,7 @@ body.megamenu-popup-active .mobile-nav__content {
   padding-bottom: 0px;
 }
 .blog-details__paginations .sidebar__posts__item {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 20px !important;
 }
 @media (min-width: 1200px) {
@@ -5805,7 +5813,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-color: transparent;
   padding-left: 30px;
   padding-right: 30px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-size: 14px;
   color: var(--solox-text, #838184);
   border: 1px solid var(--solox-border-color, #e8e3da);
@@ -5819,7 +5827,7 @@ body.megamenu-popup-active .mobile-nav__content {
     background-color: transparent;
     padding-left: 30px;
     padding-right: 30px;
-    font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--solox-font, "Montserrat", sans-serif);
     font-size: 14px;
     color: var(--solox-text, #838184);
     border: 1px solid var(--solox-border-color, #e8e3da);
@@ -5828,7 +5836,7 @@ body.megamenu-popup-active .mobile-nav__content {
     border-radius: 0;
   }
 .product__price-ranger {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 30px;
   margin-bottom: 30px;
 }
@@ -5872,7 +5880,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 30px;
   border: none;
   outline: none;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   padding: 0;
   text-align: center;
   background-color: transparent;
@@ -5890,7 +5898,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: relative;
   display: block;
   background-color: var(--solox-white, #fff);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   float: right;
   text-align: center;
   border: none;
@@ -5914,7 +5922,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-white, #fff);
 }
 .product__categories {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 30px;
 }
 .product__categories ul {
@@ -6016,7 +6024,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: relative;
   display: block;
   width: 340px !important;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 @media (max-width: 360px) {
   .product__showing-sort .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
@@ -6035,7 +6043,7 @@ body.megamenu-popup-active .mobile-nav__content {
   outline: none !important;
   border-radius: 0;
   border: 0;
-  background-color: var(--solox-gray, #f9f6f1) !important;
+  background-color: var(--yellowlight, #f9f6f1) !important;
   margin: 0;
   padding: 0;
   padding-left: 30px;
@@ -6068,7 +6076,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-weight: 500;
   padding: 10px 30px;
   color: var(--solox-text, #838184);
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
@@ -6111,7 +6119,7 @@ body.megamenu-popup-active .mobile-nav__content {
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   border-radius: 50%;
   color: var(--solox-black, #1c1a1d);
   font-size: 14px;
@@ -6176,10 +6184,9 @@ body.megamenu-popup-active .mobile-nav__content {
   margin-bottom: 4px;
 }
 .product__item__title {
-  font-size: 20px;
+  font-size: 1rem;
   line-height: 26px;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-weight: normal;
   margin: 0;
   margin-bottom: 3px;
 }
@@ -6217,7 +6224,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-color: var(--solox-base, #c2a74e);
 }
 .product__item__link::before {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 
 .product-one {
@@ -6311,25 +6318,24 @@ body.megamenu-popup-active .mobile-nav__content {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   margin-bottom: 17px;
 }
 .product-details__title {
-  font-size: 34px;
-  text-transform: uppercase;
+  font-size: 2rem;
   margin: 0;
 }
 .product-details__price {
-  font-size: 24px;
+  font-size: 2rem;
   line-height: 26px;
   color: var(--solox-base, #c2a74e);
   font-weight: 600;
   margin: 0 0 0 28px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .product-details__review {
   position: relative;
-  display: flex;
+  display: none;
   align-items: center;
   letter-spacing: 3px;
   font-size: 16px;
@@ -6395,7 +6401,7 @@ body.megamenu-popup-active .mobile-nav__content {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-text, #838184);
   padding-left: 30px;
   outline: none;
@@ -6460,7 +6466,7 @@ body.megamenu-popup-active .mobile-nav__content {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   font-size: 14px;
   color: var(--solox-black, #1c1a1d);
   transition: all 500ms ease;
@@ -6569,7 +6575,7 @@ body.megamenu-popup-active .mobile-nav__content {
   display: inline-block;
   text-transform: inherit;
   color: var(--solox-base, #c2a74e);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-weight: 500;
   letter-spacing: 0;
   margin: 0 0 0 7px;
@@ -6673,7 +6679,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 30px;
   font-weight: 700;
   padding: 0 0 24px;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   text-transform: uppercase;
   border: none;
   background-color: transparent;
@@ -6750,13 +6756,13 @@ body.megamenu-popup-active .mobile-nav__content {
   height: 58px;
   width: 375px;
   border: none;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding-left: 30px;
   padding-right: 30px;
   outline: none;
   font-size: 14px;
   color: var(--solox-text, #838184);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   display: block;
   font-weight: 500;
   margin-right: 10px;
@@ -6789,7 +6795,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-size: 20px;
   color: var(--solox-black, #1c1a1d);
   text-transform: uppercase;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   font-weight: 700;
   margin: 0 0 0px;
 }
@@ -6804,7 +6810,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-text, #838184);
   font-weight: 500;
   text-transform: inherit;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   display: inline-block;
   min-width: 172px;
 }
@@ -6940,13 +6946,13 @@ body.megamenu-popup-active .mobile-nav__content {
   height: 58px;
   width: 100%;
   border: none;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding-left: 30px;
   padding-right: 30px;
   outline: none;
   font-size: 14px;
   color: var(--solox-text, #838184);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   display: block;
   font-weight: 500;
 }
@@ -6954,7 +6960,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: relative;
   display: block;
   width: 100% !important;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .checkout-page__input-box .bootstrap-select > .dropdown-toggle::after {
   display: none;
@@ -6965,7 +6971,7 @@ body.megamenu-popup-active .mobile-nav__content {
   outline: none !important;
   border-radius: 0;
   border: 0;
-  background-color: var(--solox-gray, #f9f6f1) !important;
+  background-color: var(--yellowlight, #f9f6f1) !important;
   margin: 0;
   padding: 0;
   padding-left: 30px;
@@ -7001,7 +7007,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-weight: 500;
   padding: 15px 30px;
   color: var(--solox-text, #838184);
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
@@ -7017,8 +7023,8 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-text, #838184);
   height: 123px;
   width: 100%;
-  background-color: var(--solox-gray, #f9f6f1);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  background-color: var(--yellowlight, #f9f6f1);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   padding: 20px 30px 30px;
   border: none;
   outline: none;
@@ -7104,7 +7110,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-black, #1c1a1d);
   text-transform: uppercase;
   font-weight: 600;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   margin: 0;
   padding: 15.5px 0;
   border: none;
@@ -7133,7 +7139,7 @@ body.megamenu-popup-active .mobile-nav__content {
   padding-bottom: 26px;
 }
 .checkout-page__payment {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 45px 50px 17px;
   min-height: 295px;
   margin-bottom: 30px;
@@ -7214,7 +7220,7 @@ body.megamenu-popup-active .mobile-nav__content {
   }
 }
 .login-page__info {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 13px 30px 15px;
   margin-bottom: 72px;
 }
@@ -7244,8 +7250,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .login-page__wrap__title {
   font-size: 30px;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 34px;
 }
 @media (max-width: 991px) {
@@ -7279,7 +7284,7 @@ body.megamenu-popup-active .mobile-nav__content {
   height: 58px;
   width: 100%;
   border: none;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding-left: 30px;
   padding-right: 30px;
   outline: none;
@@ -7489,7 +7494,7 @@ body.megamenu-popup-active .mobile-nav__content {
   border: none;
   outline: none;
   display: block;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   color: var(--solox-text, #838184);
   font-size: 14px;
   width: 100%;
@@ -7546,7 +7551,7 @@ body.megamenu-popup-active .mobile-nav__content {
   animation: leafMove 4s linear 0s infinite;
 }
 .faq-page-search__inner {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 40px 30px;
   background-size: cover;
   position: relative;
@@ -7767,7 +7772,7 @@ body.megamenu-popup-active .mobile-nav__content {
 
 .faq-one {
   position: relative;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8114,7 +8119,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .membership-one__tab__list li span {
   display: block;
   font-size: 10px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   transition: all 500ms ease;
   text-transform: uppercase;
   font-weight: 600;
@@ -8140,7 +8145,7 @@ body.megamenu-popup-active .mobile-nav__content {
   box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.07);
 }
 .membership-one__card__price {
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-black, #1c1a1d);
   line-height: 1;
   font-size: 40px;
@@ -8150,7 +8155,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .membership-one__card__tagline {
   margin: 0;
   font-size: 16px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   line-height: 2.5em;
   color: var(--solox-text, #838184);
   border-bottom: 1px solid var(--solox-border-color, #e8e3da);
@@ -8645,7 +8650,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 30px;
   color: var(--solox-white, #fff);
   font-size: 12px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   text-transform: uppercase;
   font-weight: 500;
   height: 46px;
@@ -8930,7 +8935,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-size: cover;
   background-image: url(../images/backgrounds/page-header-bg-1-1.jpg);
 }
-.page-header__bg::before {
+/* .page-header__bg::before {
   content: "";
   position: absolute;
   left: 0;
@@ -8941,7 +8946,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-repeat: repeat-x;
   animation: cloudMove 60s linear 0s infinite;
   background-position: bottom center;
-}
+} */
 .page-header .container {
   position: relative;
   z-index: 10;
@@ -8949,9 +8954,8 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .page-header__title {
   margin: 0;
-  font-size: 40px;
+  font-size: 2.5rem;
   color: var(--solox-white, #fff);
-  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .page-header__title {
@@ -9021,7 +9025,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .google-map__contact {
   overflow: hidden;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 
 .contact-map {
@@ -9083,7 +9087,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .client-carousel-one .owl-theme .owl-nav button {
   width: 26px;
   height: 27px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   margin: 0 2.5px;
   padding: 0;
   transition: all 500ms ease;
@@ -9254,7 +9258,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-color: var(--solox-white, #fff);
 }
 .main-slider-one__item {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   position: relative;
   z-index: 3;
   padding-top: 223px;
@@ -9286,7 +9290,7 @@ body.megamenu-popup-active .mobile-nav__content {
   content: "";
   background-color: rgba(var(--solox-black-rgb, 28, 26, 29), 0.5);
 }
-.main-slider-one__bg::after {
+/* .main-slider-one__bg::after {
   position: absolute;
   left: 0;
   bottom: -165px;
@@ -9298,7 +9302,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-position: bottom center;
   background-repeat: repeat-x;
   animation: cloudMove 60s linear 0s infinite;
-}
+} */
 @keyframes cloudMove {
   0% {
     background-position: -1920px 100%;
@@ -9532,7 +9536,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-color: var(--solox-white, #fff);
 }
 .main-slider-two__item {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   position: relative;
   z-index: 3;
   padding-top: 367px;
@@ -9600,7 +9604,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-white, #fff);
   font-size: 18px;
   font-weight: 600;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   letter-spacing: 7.2px;
   text-transform: uppercase;
   line-height: 1;
@@ -9753,7 +9757,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: relative;
   padding-top: 214px;
   padding-bottom: 90px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 @media (max-width: 767px) {
   .main-slider-three__item {
@@ -9771,7 +9775,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-repeat: no-repeat;
   background-position: center center;
   overflow: hidden;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   mix-blend-mode: luminosity;
   opacity: 0.8;
 }
@@ -9828,7 +9832,7 @@ body.megamenu-popup-active .mobile-nav__content {
   color: var(--solox-text, #838184);
   font-size: 16px;
   font-weight: 600;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   letter-spacing: 3.2px;
   text-transform: uppercase;
   line-height: 1;
@@ -10142,7 +10146,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .feature-one {
   position: relative;
   z-index: 2;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 30px 0 65px;
 }
 .feature-one__bg {
@@ -10399,7 +10403,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 1;
   color: var(--solox-text, #838184);
   margin: 0 0 8px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .about-one__image__info__text {
   font-size: 16px;
@@ -10407,7 +10411,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 1;
   color: var(--solox-black, #1c1a1d);
   margin: 0;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
 }
 .about-one__image__info__text a {
   color: inherit;
@@ -10459,7 +10463,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: absolute;
   left: -80px;
   bottom: -80px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   overflow: hidden;
   width: 87.8%;
   height: 88.3%;
@@ -10515,7 +10519,7 @@ body.megamenu-popup-active .mobile-nav__content {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--solox-black, #1c1a1d);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   padding: 11px 54px 11px 31px;
 }
 @media (max-width: 767px) {
@@ -10713,7 +10717,7 @@ body.megamenu-popup-active .mobile-nav__content {
   min-height: 58px;
   margin: 103px 0 0;
   padding: 30px 0 0;
-  border-top: 6px solid var(--solox-gray, #f9f6f1);
+  border-top: 6px solid var(--yellowlight, #f9f6f1);
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .about-two__content__author {
@@ -11048,7 +11052,7 @@ body.megamenu-popup-active .mobile-nav__content {
   min-height: 58px;
   margin: 29px 0 0;
   padding: 29px 0 0;
-  border-top: 6px solid var(--solox-gray, #f9f6f1);
+  border-top: 6px solid var(--yellowlight, #f9f6f1);
 }
 .about-three__author__thumb {
   width: 58px;
@@ -11095,7 +11099,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 @media (min-width: 1400px) {
   .service-one__bg {
@@ -11422,7 +11426,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: relative;
   text-shadow: 0 0 0.5px currentColor;
   justify-content: center;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 11.5px 0;
 }
 .service-card-two__link:hover {
@@ -11727,7 +11731,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   letter-spacing: 2.8px;
   margin: 0 auto 39px;
 }
@@ -12167,7 +12171,7 @@ body.boxed-wrapper .page-wrapper {
   align-items: center;
   border-radius: 50%;
   color: var(--solox-white, #fff);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
@@ -12336,7 +12340,7 @@ body.boxed-wrapper .page-wrapper {
   line-height: 16px;
   color: var(--solox-base, #c2a74e);
   font-weight: 600;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   letter-spacing: 1.6px;
   text-transform: uppercase;
   margin-top: -10px;
@@ -12817,7 +12821,7 @@ body.boxed-wrapper .page-wrapper {
   font-size: 16px;
   color: var(--solox-base, #c2a74e);
   text-transform: uppercase;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-weight: 600;
   letter-spacing: 8px;
   margin: 0 0 21px;
@@ -13082,7 +13086,7 @@ body.boxed-wrapper .page-wrapper {
   background-color: var(--solox-white, #fff);
 }
 .main-slider-five__item {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   position: relative;
   z-index: 3;
   padding-top: 268px;
@@ -13119,7 +13123,7 @@ body.boxed-wrapper .page-wrapper {
   font-size: 16px;
   color: var(--solox-base, #c2a74e);
   text-transform: uppercase;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   font-weight: 600;
   letter-spacing: 8px;
   margin: 0 0 21px;
@@ -13656,7 +13660,7 @@ body.boxed-wrapper .page-wrapper {
 .about-four__opening__icon {
   width: 54px;
   height: 54px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   color: var(--solox-base, #c2a74e);
   font-size: 31px;
   display: flex;
@@ -13730,7 +13734,7 @@ body.boxed-wrapper .page-wrapper {
   color: var(--solox-black, #1c1a1d);
   line-height: 1;
   font-weight: 700;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
 }
 
 /*--------------------------------------------------------------
@@ -13819,7 +13823,7 @@ body.boxed-wrapper .page-wrapper {
 .service-four__content__customer__count {
   display: flex;
   align-items: center;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   color: var(--solox-white, #fff);
   font-size: 24px;
   font-weight: 700;
@@ -14075,7 +14079,7 @@ body.boxed-wrapper .page-wrapper {
   mask-repeat: no-repeat;
   mask-position: center center;
   mask-size: cover;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   width: 100%;
   height: 100%;
   display: flex;
@@ -14261,7 +14265,7 @@ body.boxed-wrapper .page-wrapper {
   font-size: 20px;
   font-weight: 700;
   color: var(--solox-base, #c2a74e);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
 }
 .membership-three__item__text {
   margin: 0;
@@ -14336,7 +14340,7 @@ body.boxed-wrapper .page-wrapper {
 .contact-three .sec-title-two__tagline {
   font-size: 20px;
   font-weight: 700;
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   text-transform: capitalize;
   letter-spacing: 0;
   margin-bottom: 12px;
@@ -14432,7 +14436,7 @@ body.boxed-wrapper .page-wrapper {
   border-radius: 50%;
   font-size: 60px;
   color: var(--solox-base, #c2a74e);
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   margin: auto;
   position: relative;
   overflow: hidden;
@@ -14526,7 +14530,7 @@ body.boxed-wrapper .page-wrapper {
 --------------------------------------------------------------*/
 .why-choose-four {
   position: relative;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 120px 0 0;
 }
 @media (max-width: 1199px) {
@@ -14605,7 +14609,7 @@ body.boxed-wrapper .page-wrapper {
   font-size: 20px;
   font-weight: 600;
   color: var(--solox-base, #c2a74e);
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   margin: 0 0 18px;
 }
 .why-choose-four__content__text {
@@ -14901,7 +14905,7 @@ body.boxed-wrapper .page-wrapper {
   position: absolute;
   top: 50px;
   left: 0;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   display: block;
   margin: 0;
   min-height: 50px;
@@ -14970,7 +14974,7 @@ body.boxed-wrapper .page-wrapper {
 
 .team-three {
   position: relative;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 120px 0;
 }
 @media (max-width: 767px) {
@@ -15309,7 +15313,7 @@ body.boxed-wrapper .page-wrapper {
   }
 }
 .testimonials-four--home-five .testimonials-four__item {
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
 }
 .testimonials-four--home-five .testimonials-four__carousel.owl-carousel .owl-nav {
   margin: 0;
@@ -15453,7 +15457,7 @@ body.boxed-wrapper .page-wrapper {
   text-align: center;
   align-items: center;
   font-size: 14px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-black, #1c1a1d);
   padding: 0 0 6px;
   line-height: 1;
@@ -15474,7 +15478,7 @@ body.boxed-wrapper .page-wrapper {
 }
 .blog-card-three__content {
   margin-left: 25px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 0;
   margin-top: -93px;
   position: relative;
@@ -15593,7 +15597,7 @@ body.boxed-wrapper .page-wrapper {
   text-align: center;
   align-items: center;
   font-size: 14px;
-  font-family: var(--solox-font, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-black, #1c1a1d);
   padding: 0 0 6px;
   line-height: 1;
@@ -15887,7 +15891,7 @@ body.boxed-wrapper .page-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--solox-gray, #f9f6f1);
+  border: 1px solid var(--yellowlight, #f9f6f1);
   color: var(--solox-white, #fff);
   font-size: 14px;
   border-radius: 50%;
@@ -15959,7 +15963,7 @@ body.boxed-wrapper .page-wrapper {
   font-size: 20px;
   font-weight: 700;
   color: var(--solox-text, #838184);
-  font-family: var(--solox-heading-font, "Cormorant", serif);
+  font-family: var(--solox-heading-font, "Fahkwang", serif);
   text-transform: capitalize;
   cursor: pointer;
   transition: all 400ms ease;
@@ -16199,7 +16203,7 @@ body.boxed-wrapper .page-wrapper {
 .product-two {
   position: relative;
   overflow: hidden;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   padding: 120px 0;
 }
 @media (max-width: 767px) {
@@ -16311,7 +16315,7 @@ body.boxed-wrapper .page-wrapper {
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: var(--solox-gray, #f9f6f1);
+  background-color: var(--yellowlight, #f9f6f1);
   border-radius: 50%;
   color: var(--solox-black, #1c1a1d);
   font-size: 14px;
@@ -16557,7 +16561,7 @@ body.boxed-wrapper .page-wrapper {
   height: auto;
   border: none;
   outline: none;
-  color: var(--solox-white, #fff);
+  color: var(--light);
   font-size: 16px;
   position: absolute;
   top: 50%;
@@ -16569,3 +16573,76 @@ body.boxed-wrapper .page-wrapper {
   color: var(--solox-base, #c2a74e);
 }
 /*# sourceMappingURL=solox.css.map */
+.login-page__wrap input,
+.login-page__wrap .select2-container,
+.login-page__wrap textarea{
+  background-color: #fff;
+  border: .25px solid var(--grey);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--grey);
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1em;
+  margin: 0;
+  min-height: 0;
+  padding: 1em;
+  width: 100%!important;
+}
+.login-page__wrap label{
+  color: var(--grey);
+  font-size:.8rem;
+}
+.login-page__wrap input:focus {
+  box-shadow: 0 0 0 1px #cc1818;
+}
+.form-group{
+  margin-top:1rem
+}
+.kimoon-btn{
+	font-size:90%!important;
+	letter-spacing:.2em;
+	font-weight:400;
+	padding:1em 2em;
+  background:var(--gold);
+	margin:1rem 0 0 0;
+  border:none;
+  text-transform:uppercase;
+  color:white;
+  transition: .5s;
+}
+.kimoon-btn:hover{
+  background:var(--darkgold);
+
+}
+.kimoon-highlight{
+  color:var(--darkbrown);
+  background:var(--yellowlight);
+  padding: 1rem;
+  font-size: 0.8rem !important;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.kimoon-highlight p{
+  margin-bottom: 0;
+}
+h1,h2,h3,h4,h5,h6,.footer-widget__title{
+  text-transform:capitalize!important
+}
+.accordion-button{
+  padding-left:0;
+  padding-right:0
+}
+.accordion-body {
+  padding: 0;
+}
+.product__categories ul{
+  margin:0
+}
+.product__categories ul li a{
+  padding:.5rem 0;
+  color:var(--grey)
+}
+.product__item__ratings {
+  display:none
+}

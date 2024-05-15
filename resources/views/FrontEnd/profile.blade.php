@@ -35,8 +35,8 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="login-page__info">
-                                            <p>Anda terdaftar sebagai <b style="font-size: 18px">Distributor</b></p>
+                                        <div class="kimoon-highlight">
+                                            <p>Anda terdaftar sebagai <b style="font-size: 18px">{{ $member->type_user }}</b></p>
                                         </div>
 
                                         <div class="table-responsive">
