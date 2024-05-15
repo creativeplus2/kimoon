@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="product__categories">
-                            <h3 class="product__sidebar--title" style="font-family: Calibri, sans-serif;color:#838184">
+                            <h3 class="product__sidebar--title">
                                 Kategori produk
                             </h3>
                             <div class="accordion accordion-flush" id="categoryAccordion">
@@ -115,13 +115,14 @@
                                     @endphp
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading{{ $row->id }}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $row->id }}" aria-expanded="false" aria-controls="collapse{{ $row->id }}" style="font-size: 18px;font-family: Calibri, sans-serif;color:#838184">
-                                                <b>{{ $row->nama_kategori }}</b>
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $row->id }}" aria-expanded="false" aria-controls="collapse{{ $row->id }}">
+                                                {{ $row->nama_kategori }}
                                             </button>
+                                            
                                         </h2>
                                         <div id="collapse{{ $row->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $row->id }}" data-bs-parent="#categoryAccordion">
                                             <div class="accordion-body">
-                                                <ul class="list-unstyled" style="font-family: Calibri, sans-serif;color:#838184">
+                                                <ul class="list-unstyled">
                                                     @foreach ($subCategories as $data)
                                                         <li><a href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">{{ $data->nama_sub_kategori }}</a>
                                                         </li>
@@ -175,8 +176,8 @@
                                         <div class="product__item__ratings">
                                             <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
                                         </div>
-                                        <h4 class="product__item__title" style="font-size: 14px; height:60px">
-                                            <a href="{{ route('web.produk_detail', $row->id) }}" style="font-family: Calibri, sans-serif;color:#838184">{{ $row->nama_produk }}</a>
+                                        <h4 class="product__item__title">
+                                            <a href="{{ route('web.produk_detail', $row->id) }}">{{ $row->nama_produk }}</a>
                                         </h4>
                                         <div class="product__item__price">{{ format_rupiah($row->harga_umum) }}</div>
                                     </div>
