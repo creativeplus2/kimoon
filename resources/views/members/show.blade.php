@@ -144,9 +144,15 @@
 
                                     <!-- Tombol Submit -->
                                     <div class="col-md-12 mb-2">
-                                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                        <a href="{{ route('members.index') }}"
-                                            class="btn btn-secondary">{{ __('Back') }}</a>
+                                        @if ($member->status_member == 'Approved')
+                                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                            <a href="{{ route('members.index') }}"
+                                                class="btn btn-secondary">{{ __('Back') }}</a>
+                                        @else
+                                            <div class="alert alert-danger" role="alert">
+                                                Untuk menambahkan Kabupaten/Kota status member distributer harus approved
+                                            </div>
+                                        @endif
                                     </div>
                                 </form>
                                 <br>
@@ -198,63 +204,63 @@
             <br>
             <br>
             @if ($member->type_user == 'Distributor')
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive p-1">
-                                <table class="table table-striped" id="data-table">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>{{ __('Kode Member') }}</th>
-                                            <th>{{ __('Nama Member') }}</th>
-                                            <th>{{ __('Email') }}</th>
-                                            <th>{{ __('No Telpon') }}</th>
-                                            <th>{{ __('Kab/Kota') }}</th>
-                                            <th>{{ __('Type User') }}</th>
-                                            <th>{{ __('Status Member') }}</th>
-                                        </tr>
-                                    </thead>
-                                    @php
-                                        $datax = DB::table('members')
-                                            ->select(
-                                                'members.*',
-                                                'provinces.provinsi',
-                                                'kabkots.kabupaten_kota',
-                                                'kecamatans.kecamatan',
-                                                'kelurahans.kelurahan',
-                                            )
-                                            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
-                                            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
-                                            ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
-                                            ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
-                                            ->where('members.kabkot_id', $member->kabkot_id)
-                                            ->where('members.type_user', '!=', 'Distributor')
-                                            ->get();
-                                    @endphp
-                                    @foreach ($datax as $r)
-                                        <tr>
-                                            <td>{{ $r->kode_member }}</td>
-                                            <td>{{ $r->nama_member }}</td>
-                                            <td>{{ $r->email }}</td>
-                                            <td>{{ $r->no_telpon }}</td>
-                                            <td>{{ $r->kabupaten_kota }}</td>
-                                            <td>{{ $r->type_user }}</td>
-                                            @if ($r->status_member == 'Pending')
-                                                <td><span class="badge bg-secondary">Pending</span></td>
-                                            @elseif($r->status_member == 'Approved')
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            @elseif($r->status_member == 'Rejected')
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive p-1">
+                                    <table class="table table-striped" id="data-table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>{{ __('Kode Member') }}</th>
+                                                <th>{{ __('Nama Member') }}</th>
+                                                <th>{{ __('Email') }}</th>
+                                                <th>{{ __('No Telpon') }}</th>
+                                                <th>{{ __('Kab/Kota') }}</th>
+                                                <th>{{ __('Type User') }}</th>
+                                                <th>{{ __('Status Member') }}</th>
+                                            </tr>
+                                        </thead>
+                                        @php
+                                            $datax = DB::table('members')
+                                                ->select(
+                                                    'members.*',
+                                                    'provinces.provinsi',
+                                                    'kabkots.kabupaten_kota',
+                                                    'kecamatans.kecamatan',
+                                                    'kelurahans.kelurahan',
+                                                )
+                                                ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+                                                ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+                                                ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+                                                ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                                                ->where('members.kabkot_id', $member->kabkot_id)
+                                                ->where('members.type_user', '!=', 'Distributor')
+                                                ->get();
+                                        @endphp
+                                        @foreach ($datax as $r)
+                                            <tr>
+                                                <td>{{ $r->kode_member }}</td>
+                                                <td>{{ $r->nama_member }}</td>
+                                                <td>{{ $r->email }}</td>
+                                                <td>{{ $r->no_telpon }}</td>
+                                                <td>{{ $r->kabupaten_kota }}</td>
+                                                <td>{{ $r->type_user }}</td>
+                                                @if ($r->status_member == 'Pending')
+                                                    <td><span class="badge bg-secondary">Pending</span></td>
+                                                @elseif($r->status_member == 'Approved')
+                                                    <td><span class="badge bg-success">Approved</span></td>
+                                                @elseif($r->status_member == 'Rejected')
+                                                    <td><span class="badge bg-danger">Rejected</span></td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
 
 
