@@ -266,11 +266,10 @@
             const options_temp = '<option value="" selected disabled>-- Select --</option>';
 
             $('#provinsi-id').change(function() {
-                $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
+                $('#kabkot-id').html(options_temp);
                 if ($(this).val() != "") {
                     getKabupatenKota($(this).val());
                 }
-                // onValidation('provinsi')
             })
 
             function getKabupatenKota(provinsiId) {

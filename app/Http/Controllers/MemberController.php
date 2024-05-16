@@ -251,14 +251,12 @@ class MemberController extends Controller
         ]);
 
         // cek kab kot hanya satu
-        $cekMemberDistributor = DB::table('members')
-            ->where('type_user', 'Distributor')
-            ->where('status_member', 'Approved')
+        $cekMemberDistributor = DB::table('distributor_cover_area')
             ->where('kabkot_id', $request->kabkot_id)
             ->first();
         if ($cekMemberDistributor) {
             Alert::toast('Sudah ada distributor untuk wilayah tersebut', 'error');
-            return redirect()->route('members.index');
+            return back();
         } else {
             DB::table('distributor_cover_area')->insert([
                 'member_id' => $request->member_id,
