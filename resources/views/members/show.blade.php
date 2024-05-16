@@ -3,6 +3,102 @@
 @section('title', __('Detail of Members'))
 
 @section('content')
+
+    <!-- Modal Area cover-->
+    <div class="modal fade" id="modalCover" aria-labelledby="modalCoverLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCoverLabel">Tambah area cover</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('coverDistributor') }}" method="POST">
+                        @csrf
+                        <input type="hidden" readonly name="member_id" value="{{ $member->id }}">
+                        <div class="col-md-12 mb-2">
+                            <label for="provinsi-id">{{ __('Province') }}</label>
+                            <select class="form-control " name="provinsi_id" id="provinsi-id" required>
+                                <option value="" selected disabled>-- {{ __('Select province') }} --
+                                </option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}">
+                                        {{ $province->provinsi }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+                            <label for="kabkot-id">{{ __('Kabkot') }}</label>
+                            <select class="form-control select2-option" name="kabkot_id" id="kabkot-id" required>
+                                <option value="" selected disabled>-- {{ __('Select kabkot') }} --
+                                </option>
+                            </select>
+                            @error('kabkot_id')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            @if ($member->status_member == 'Approved')
+                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            @else
+                                <div class="alert alert-danger" role="alert">
+                                    Untuk menambahkan Kabupaten/Kota status member distributer harus approved
+                                </div>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Member-->
+    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah member Reseller / Subdis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('memberParent') }}" method="POST">
+                        @csrf
+                        <input type="hidden" readonly name="parent_id" value="{{ $member->id }}">
+                        <div class="col-md-12 mb-2">
+                            <label for="member-id">{{ __('Member') }}</label>
+                            <select class="form-control " name="member_id" id="member-id" required>
+                                <option value="" selected disabled>-- {{ __('Select member') }} --
+                                </option>
+                                @foreach ($memberTakBertuan as $data)
+                                    <option value="{{ $data->id }}">
+                                        {{ $data->nama_member }} || {{ $data->kabupaten_kota }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            @if ($member->status_member == 'Approved')
+                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            @else
+                                <div class="alert alert-danger" role="alert">
+                                    Untuk menambahkan member Reseller / Subdis status member distributer harus approved
+                                </div>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-header" style="margin-top: 5px">
@@ -28,7 +124,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
@@ -82,6 +178,10 @@
                                         <td>{{ $member->no_ktp }}</td>
                                     </tr>
                                     <tr>
+                                        <td class="fw-bold">{{ __('Status Member') }}</td>
+                                        <td>{{ $member->status_member }}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="fw-bold">{{ __('Photo Ktp') }}</td>
                                         <td>
                                             @if ($member->photo_ktp == null)
@@ -90,74 +190,26 @@
                                                     style="object-fit: cover">
                                             @else
                                                 <img src="{{ asset('storage/uploads/photo_ktps/' . $member->photo_ktp) }}"
-                                                    alt="Photo Ktp" style="width: 450px" class="img-thumbnail">
+                                                    alt="Photo Ktp" style="width: 200px" class="img-thumbnail">
                                             @endif
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="fw-bold">{{ __('Status Member') }}</td>
-                                        <td>{{ $member->status_member }}</td>
-                                    </tr>
+
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 @if ($member->type_user == 'Distributor')
-                    <div class="col-md-5">
+                    <div class="col-md-7">
                         <div class="card">
+                            <div class="card-header">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalCover">
+                                    Tambah area cover
+                                </button>
+                            </div>
                             <div class="card-body">
-                                <div class="alert alert-primary" role="alert">
-                                    Silahkan tambahakan Kabupaten/Kota yang tercover oleh distributor terkait
-                                </div>
-                                <form action="{{ route('coverDistributor') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" readonly name="member_id" value="{{ $member->id }}">
-                                    <div class="col-md-12 mb-2">
-                                        <label for="provinsi-id">{{ __('Province') }}</label>
-                                        <select class="form-control js-example-basic-multiple" name="provinsi_id"
-                                            id="provinsi-id" required>
-                                            <option value="" selected disabled>-- {{ __('Select province') }} --
-                                            </option>
-                                            @foreach ($provinces as $province)
-                                                <option value="{{ $province->id }}">
-                                                    {{ $province->provinsi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12 mb-2">
-                                        <label for="kabkot-id">{{ __('Kabkot') }}</label>
-                                        <select class="form-control js-example-basic-multiple" name="kabkot_id"
-                                            id="kabkot-id" required>
-                                            <option value="" selected disabled>-- {{ __('Select kabkot') }} --
-                                            </option>
-                                        </select>
-                                        @error('kabkot_id')
-                                            <span class="text-danger">
-                                                {{ $message }}
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Tombol Submit -->
-                                    <div class="col-md-12 mb-2">
-                                        @if ($member->status_member == 'Approved')
-                                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                            <a href="{{ route('members.index') }}"
-                                                class="btn btn-secondary">{{ __('Back') }}</a>
-                                        @else
-                                            <div class="alert alert-danger" role="alert">
-                                                Untuk menambahkan Kabupaten/Kota status member distributer harus approved
-                                            </div>
-                                        @endif
-                                    </div>
-                                </form>
-                                <br>
-                                <hr>
-
                                 <div class="alert alert-primary" role="alert">
                                     Daftar kabupaten/kota yang sudah tercover distributor terkait
                                 </div>
@@ -180,7 +232,8 @@
                                             <tr>
                                                 <td>{{ $row->kabupaten_kota }}</td>
                                                 <td>
-                                                    <form action="{{ route('deleteCoverArea', $row->id) }}" method="POST"
+                                                    <form action="{{ route('deleteCoverArea', $row->id) }}"
+                                                        method="POST"
                                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                         @csrf
                                                         @method('DELETE')
@@ -195,18 +248,14 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
 
-                @endif
-
-
-            </div>
-            <br>
-            <br>
-            @if ($member->type_user == 'Distributor')
-                <div class="row">
-                    <div class="col-md-12">
                         <div class="card">
+                            <div class="card-header">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Tambah member
+                                </button>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive p-1">
                                     <table class="table table-striped" id="data-table">
@@ -218,7 +267,8 @@
                                                 <th>{{ __('No Telpon') }}</th>
                                                 <th>{{ __('Kab/Kota') }}</th>
                                                 <th>{{ __('Type User') }}</th>
-                                                <th>{{ __('Status Member') }}</th>
+                                                <th>{{ __('Status') }}</th>
+                                                <th>{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         @php
@@ -226,8 +276,16 @@
                                                 ->join('members', 'members.id', '=', 'parent_member.member_id')
                                                 ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
                                                 ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
-                                                ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
-                                                ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                                                ->select(
+                                                    'parent_member.id as parent_member_id',
+                                                    'members.kode_member',
+                                                    'members.nama_member',
+                                                    'members.email',
+                                                    'members.no_telpon',
+                                                    'members.status_member',
+                                                    'members.type_user',
+                                                    'kabkots.kabupaten_kota',
+                                                )
                                                 ->where('parent_member.parent_id', $member->id)
                                                 ->where('members.type_user', '!=', 'Distributor')
                                                 ->get();
@@ -247,6 +305,17 @@
                                                 @elseif($r->status_member == 'Rejected')
                                                     <td><span class="badge bg-danger">Rejected</span></td>
                                                 @endif
+
+                                                <td>
+                                                    <form action="{{ route('delete.member', $r->parent_member_id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus member distributor?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="mdi mdi-trash-can-outline"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </table>
@@ -254,10 +323,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
-
-
+                @endif
+            </div>
         </div>
     @endsection
 
@@ -295,5 +362,18 @@
 
                 })
             }
+        </script>
+        <script>
+            $(document).ready(function() {
+                $("#provinsi-id").select2({
+                    dropdownParent: $("#modalCover")
+                });
+                $("#kabkot-id").select2({
+                    dropdownParent: $("#modalCover")
+                });
+                $("#member-id").select2({
+                    dropdownParent: $("#exampleModal")
+                });
+            });
         </script>
     @endpush

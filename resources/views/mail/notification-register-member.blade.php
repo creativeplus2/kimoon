@@ -2,7 +2,7 @@
     <br><br>
     Terima kasih sudah memilih Kimoon sebagai mitra {{ $member->type_user }} Anda!
 
-    <p>Untuk aktivasi akun member {{ $member->type_user }}, silahkan lakukan pembayaran untuk mengisi deposit saldo <b>Reseller</b> : </p>
+    <p>Untuk aktivasi akun member {{ $member->type_user }}, silahkan lakukan pembayaran untuk mengisi deposit saldo : </p>
     <h1>Rp {{ number_format($priceRegistration, 0, '.', '.') }}</h1>
     <p>ke nomor rekening di Bawah ini</p>
 

@@ -29,11 +29,12 @@ class MemberController extends Controller
     {
         if (request()->ajax()) {
             $members = DB::table('members')
-                ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota', 'kecamatans.kecamatan', 'kelurahans.kelurahan')
+                ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota', 'kecamatans.kecamatan', 'kelurahans.kelurahan', 'parent_member.parent_id')
                 ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
                 ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
                 ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
                 ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                ->leftJoin('parent_member', 'members.id', '=', 'parent_member.member_id')
                 ->orderBy('members.id', 'desc')
                 ->get();
             return Datatables::of($members)
@@ -57,6 +58,9 @@ class MemberController extends Controller
                     } else if ($row->status_member == 'Rejected') {
                         return '<span class="badge bg-danger">Rejected</span>';
                     }
+                })
+                ->addColumn('nama_parent', function ($row) {
+                    return getParent($row->parent_id);
                 })
                 ->addColumn('photo_ktp', function ($row) {
                     if ($row->photo_ktp == null) {
@@ -186,8 +190,16 @@ class MemberController extends Controller
             ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
             ->where('members.id', $id)
             ->first();
-        $kabkots = DB::table('kabkots')->where('provinsi_id', $member->provinsi_id)->get();
-        return view('members.show', compact('member'));
+        $memberTakBertuan =  DB::table('members')
+            ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota')
+            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+            ->leftJoin('parent_member', 'members.id', '=', 'parent_member.member_id')
+            ->orderBy('members.id', 'desc')
+            ->where('parent_member.id', NULL)
+            ->where('members.type_user','!=','Distributor')
+            ->get();
+        return view('members.show', compact('member', 'memberTakBertuan'));
     }
 
     /**
@@ -277,13 +289,16 @@ class MemberController extends Controller
         }
     }
 
+
+    public function destroyParentMember($id)
+    {
+        DB::table('parent_member')->where('id', $id)->delete();
+        Alert::toast('Member berhasil dihapus.', 'success');
+        return back();
+    }
+
     public function coverDistributor(Request $request)
     {
-        $request->validate([
-            'member_id' => 'required|exists:members,id',
-            'kabkot_id' => 'required|exists:kabkots,id'
-        ]);
-
         // cek kab kot hanya satu
         $cekMemberDistributor = DB::table('distributor_cover_area')
             ->where('kabkot_id', $request->kabkot_id)
@@ -302,6 +317,28 @@ class MemberController extends Controller
             return back();
         }
     }
+
+    public function memberParent(Request $request)
+    {
+        // cek kab kot hanya satu
+        $cekMember = DB::table('parent_member')
+            ->where('member_id', $request->member_id)
+            ->first();
+        if ($cekMember) {
+            Alert::toast('Data member Reseller/Subdis sudah terdaftar', 'error');
+            return back();
+        } else {
+            DB::table('parent_member')->insert([
+                'parent_id' => $request->parent_id,
+                'member_id' => $request->member_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            Alert::toast('Data distributor cover area berhasil disimpan.', 'success');
+            return back();
+        }
+    }
+
 
     public function deleteCoverArea($id)
     {

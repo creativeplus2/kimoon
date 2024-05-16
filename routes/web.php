@@ -38,6 +38,8 @@ Route::prefix('panel')->group(function () {
     Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
     Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
     Route::resource('members', App\Http\Controllers\MemberController::class)->middleware('auth');
+    Route::delete('/member/{id}', [App\Http\Controllers\MemberController::class, 'destroyParentMember'])->name('delete.member');
+    Route::post('/memberParent', [App\Http\Controllers\MemberController::class, 'memberParent'])->name('memberParent');
     Route::post('/coverDistributor', [App\Http\Controllers\MemberController::class, 'coverDistributor'])->name('coverDistributor');
     Route::delete('/deleteCoverArea/{id}', [App\Http\Controllers\MemberController::class, 'deleteCoverArea'])->name('deleteCoverArea');
     Route::get('/GetGambarProduk/{id}', [App\Http\Controllers\ProductController::class, 'GetGambarProduk']);

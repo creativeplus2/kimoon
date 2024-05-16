@@ -25,3 +25,15 @@ function totalMemberByStatus($status)
         ->get();
     return  $data->count();
 }
+
+function getParent($id)
+{
+    if ($id != null || $id != '') {
+        $data = DB::table('members')
+            ->where('id', $id)
+            ->first();
+        return $data->nama_member;
+    } else {
+        return "-";
+    }
+}

@@ -41,6 +41,7 @@
                                             <th>{{ __('No Telpon') }}</th>
                                             <th>{{ __('Type User') }}</th>
                                             <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Parent') }}</th>
                                             <th>{{ __('Kabkot') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
@@ -91,6 +92,10 @@
                 {
                     data: 'status_member',
                     name: 'status_member',
+                },
+                {
+                    data: 'nama_parent',
+                    name: 'nama_parent',
                 },
                 {
                     data: 'kabupaten_kota',
