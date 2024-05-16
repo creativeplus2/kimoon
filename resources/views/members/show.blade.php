@@ -222,19 +222,13 @@
                                             </tr>
                                         </thead>
                                         @php
-                                            $datax = DB::table('members')
-                                                ->select(
-                                                    'members.*',
-                                                    'provinces.provinsi',
-                                                    'kabkots.kabupaten_kota',
-                                                    'kecamatans.kecamatan',
-                                                    'kelurahans.kelurahan',
-                                                )
+                                            $datax = DB::table('parent_member')
+                                                ->join('members', 'members.id', '=', 'parent_member.member_id')
                                                 ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
                                                 ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
                                                 ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
                                                 ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
-                                                ->where('members.kabkot_id', $member->kabkot_id)
+                                                ->where('parent_member.parent_id', $member->id)
                                                 ->where('members.type_user', '!=', 'Distributor')
                                                 ->get();
                                         @endphp

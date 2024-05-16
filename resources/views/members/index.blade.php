@@ -36,11 +36,12 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{ __('Kode Member') }}</th>
-                                            <th>{{ __('Nama Member') }}</th>
+                                            <th>{{ __('Nama') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('No Telpon') }}</th>
                                             <th>{{ __('Type User') }}</th>
-                                            <th>{{ __('Status Member') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Kabkot') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -90,6 +91,10 @@
                 {
                     data: 'status_member',
                     name: 'status_member',
+                },
+                {
+                    data: 'kabupaten_kota',
+                    name: 'kabupaten_kota',
                 },
                 {
                     data: 'action',

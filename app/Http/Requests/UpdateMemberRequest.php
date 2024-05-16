@@ -27,7 +27,7 @@ class UpdateMemberRequest extends FormRequest
 			'nama_member' => 'required|string|max:255',
 			'email' => 'required|email|unique:members,email,' . $this->member->id,
 			'no_telpon' => 'required|string|max:15',
-			'type_user' => 'required|in:Seller,Subdis,Distributor',
+			'type_user' => 'required|in:Reseller,Subdis,Distributor',
 			'provinsi_id' => 'required|exists:App\Models\Province,id',
 			'kabkot_id' => 'required|exists:App\Models\Kabkot,id',
 			'kecamatan_id' => 'required|exists:App\Models\Kecamatan,id',

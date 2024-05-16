@@ -34,6 +34,7 @@ class MemberController extends Controller
                 ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
                 ->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
                 ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
+                ->orderBy('members.id', 'desc')
                 ->get();
             return Datatables::of($members)
                 ->addIndexColumn()
@@ -90,37 +91,33 @@ class MemberController extends Controller
     public function store(StoreMemberRequest $request)
     {
         $attr = $request->validated();
-        // cek sudah ada daftar distributor di kab/kot itu belum
-        $cekMemberDistributor = DB::table('members')
-            ->where('type_user', 'Distributor')
-            ->where('status_member', 'Approved')
-            ->where('kabkot_id', $request->kabkot_id)
-            ->first();
-        if ($cekMemberDistributor) {
-            Alert::toast('Sudah ada distributor untuk wilayah tersebut', 'error');
-            return redirect()->route('members.index');
-        } else {
-            $attr['kode_member'] =  $this->generateKodeMember();
-            $attr['password'] = bcrypt($request->password);
-            if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
-
-                $path = storage_path('app/public/uploads/photo_ktps/');
-                $filename = $request->file('photo_ktp')->hashName();
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
+        if ($request->type_user == 'Distributor') {
+            $cekMemberDistributor = DB::table('members')
+                ->where('type_user', 'Distributor')
+                ->where('status_member', 'Approved')
+                ->where('kabkot_id', $request->kabkot_id)
+                ->first();
+            if ($cekMemberDistributor) {
+                Alert::toast('Sudah ada distributor untuk wilayah tersebut', 'error');
+                return redirect()->route('members.index');
+            } else {
+                $attr['kode_member'] =  $this->generateKodeMember();
+                $attr['password'] = bcrypt($request->password);
+                if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
+                    $path = storage_path('app/public/uploads/photo_ktps/');
+                    $filename = $request->file('photo_ktp')->hashName();
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
+                        $constraint->upsize();
+                        $constraint->aspectRatio();
+                    })->save($path . $filename);
+                    $attr['photo_ktp'] = $filename;
                 }
 
-                Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
-                    $constraint->upsize();
-                    $constraint->aspectRatio();
-                })->save($path . $filename);
-
-                $attr['photo_ktp'] = $filename;
-            }
-
-            $member = Member::create($attr);
-            if ($member) {
-                if ($attr['type_user'] == 'Distributor') {
+                $member = Member::create($attr);
+                if ($member) {
                     $newlyInsertedId = $member->id;
                     $dataCover = [
                         'member_id' => $newlyInsertedId,
@@ -129,6 +126,43 @@ class MemberController extends Controller
                         'updated_at' => date('Y-m-d H:i:s'),
                     ];
                     DB::table('distributor_cover_area')->insert($dataCover);
+                }
+                Alert::toast('The member was created successfully.', 'success');
+                return redirect()->route('members.index');
+            }
+        } else {
+            // insert member
+            $attr['kode_member'] =  $this->generateKodeMember();
+            $attr['password'] = bcrypt($request->password);
+            if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
+                $path = storage_path('app/public/uploads/photo_ktps/');
+                $filename = $request->file('photo_ktp')->hashName();
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
+                    $constraint->upsize();
+                    $constraint->aspectRatio();
+                })->save($path . $filename);
+                $attr['photo_ktp'] = $filename;
+            }
+
+            $member = Member::create($attr);
+            if ($member) {
+                $cekMemberDistributor = DB::table('members')
+                    ->where('type_user', 'Distributor')
+                    ->where('status_member', 'Approved')
+                    ->where('kabkot_id', $request->kabkot_id)
+                    ->first();
+                if ($cekMemberDistributor) {
+                    $newlyInsertedId = $member->id;
+                    $dataParent = [
+                        'parent_id' => $cekMemberDistributor->id,
+                        'member_id' => $newlyInsertedId,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    DB::table('parent_member')->insert($dataParent);
                 }
             }
             Alert::toast('The member was created successfully.', 'success');
