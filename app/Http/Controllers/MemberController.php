@@ -90,29 +90,50 @@ class MemberController extends Controller
     public function store(StoreMemberRequest $request)
     {
         $attr = $request->validated();
-        $attr['kode_member'] =  $this->generateKodeMember();
-        $attr['password'] = bcrypt($request->password);
+        // cek sudah ada daftar distributor di kab/kot itu belum
+        $cekMemberDistributor = DB::table('members')
+            ->where('type_user', 'Distributor')
+            ->where('status_member', 'Approved')
+            ->where('kabkot_id', $request->kabkot_id)
+            ->first();
+        if ($cekMemberDistributor) {
+            Alert::toast('Sudah ada distributor untuk wilayah tersebut', 'error');
+            return redirect()->route('members.index');
+        } else {
+            $attr['kode_member'] =  $this->generateKodeMember();
+            $attr['password'] = bcrypt($request->password);
+            if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
 
-        if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
+                $path = storage_path('app/public/uploads/photo_ktps/');
+                $filename = $request->file('photo_ktp')->hashName();
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
 
-            $path = storage_path('app/public/uploads/photo_ktps/');
-            $filename = $request->file('photo_ktp')->hashName();
+                Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
+                    $constraint->upsize();
+                    $constraint->aspectRatio();
+                })->save($path . $filename);
 
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+                $attr['photo_ktp'] = $filename;
             }
 
-            Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
-                $constraint->upsize();
-                $constraint->aspectRatio();
-            })->save($path . $filename);
-
-            $attr['photo_ktp'] = $filename;
+            $member = Member::create($attr);
+            if ($member) {
+                if ($attr['type_user'] == 'Distributor') {
+                    $newlyInsertedId = $member->id;
+                    $dataCover = [
+                        'member_id' => $newlyInsertedId,
+                        'kabkot_id' => $request->kabkot_id,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    DB::table('distributor_cover_area')->insert($dataCover);
+                }
+            }
+            Alert::toast('The member was created successfully.', 'success');
+            return redirect()->route('members.index');
         }
-
-        Member::create($attr);
-        Alert::toast('The member was created successfully.', 'success');
-        return redirect()->route('members.index');
     }
 
     /**

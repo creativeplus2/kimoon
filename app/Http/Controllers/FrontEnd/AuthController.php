@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Image;
 
 class AuthController extends Controller
 {
@@ -51,35 +52,68 @@ class AuthController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        // Handle photo_ktp upload
-        if ($request->hasFile('photo_ktp')) {
-            $photoKtpPath = $request->file('photo_ktp')->store('uploads/photo_ktps');
+        $cekMemberDistributor = DB::table('members')
+            ->where('type_user', 'Distributor')
+            ->where('status_member', 'Approved')
+            ->where('kabkot_id', $request->kabkot_id)
+            ->first();
+        if ($cekMemberDistributor) {
+            Alert::success('error', 'Sudah ada distributor untuk wilayah tersebut');
+            return redirect()->route('members.index');
         } else {
-            $photoKtpPath = null;
+            // Handle photo_ktp upload
+            if ($request->file('photo_ktp') && $request->file('photo_ktp')->isValid()) {
+
+                $path = storage_path('app/public/uploads/photo_ktps/');
+                $filename = $request->file('photo_ktp')->hashName();
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                Image::make($request->file('photo_ktp')->getRealPath())->resize(500, 500, function ($constraint) {
+                    $constraint->upsize();
+                    $constraint->aspectRatio();
+                })->save($path . $filename);
+
+                $attr['photo_ktp'] = $filename;
+            }
+            $member = new Member();
+            $member->kode_member = $this->generateKodeMember();
+            $member->nama_member = $request->input('nama_member');
+            $member->email = $request->input('email');
+            $member->no_telpon = $request->input('no_telpon');
+            $member->type_user = $request->input('type_user');
+            $member->provinsi_id = $request->input('provinsi_id');
+            $member->kabkot_id = $request->input('kabkot_id');
+            $member->kecamatan_id = $request->input('kecamatan_id');
+            $member->kelurahan_id = $request->input('kelurahan_id');
+            $member->zip_code = $request->input('zip_code');
+            $member->alamat_member = $request->input('alamat_member');
+            $member->no_ktp = $request->input('no_ktp');
+            $member->password = bcrypt($request->input('password'));
+            $member->photo_ktp = $filename;
+            $member->status_member = "Pending";
+            $member->save();
+
+            if ($member) {
+                if ($request->input('type_user') == 'Distributor') {
+                    $newlyInsertedId = $member->id;
+                    $dataCover = [
+                        'member_id' => $newlyInsertedId,
+                        'kabkot_id' => $request->input('kabkot_id'),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    DB::table('distributor_cover_area')->insert($dataCover);
+                }
+            }
+
+            // send Email
+            Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
+
+            Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
+            return redirect()->back();
         }
-        $member = new Member();
-        $member->kode_member = $this->generateKodeMember();
-        $member->nama_member = $request->input('nama_member');
-        $member->email = $request->input('email');
-        $member->no_telpon = $request->input('no_telpon');
-        $member->type_user = $request->input('type_user');
-        $member->provinsi_id = $request->input('provinsi_id');
-        $member->kabkot_id = $request->input('kabkot_id');
-        $member->kecamatan_id = $request->input('kecamatan_id');
-        $member->kelurahan_id = $request->input('kelurahan_id');
-        $member->zip_code = $request->input('zip_code');
-        $member->alamat_member = $request->input('alamat_member');
-        $member->no_ktp = $request->input('no_ktp');
-        $member->password = bcrypt($request->input('password'));
-        $member->photo_ktp = $photoKtpPath;
-        $member->status_member = "Pending";
-        $member->save();
-
-        // send Email
-        Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
-
-        Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
-        return redirect()->back();
     }
 
     public function login()

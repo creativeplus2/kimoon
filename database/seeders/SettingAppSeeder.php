@@ -25,6 +25,7 @@ class SettingAppSeeder extends Seeder
             'instagram' => '',
             'tiktok' => '',
             'x' => '',
+            'xendit_secret_key' =>'xnd_development_l5mmfkTgLJakXb0GXUWCNxd1MeVd9P7xH10IyetJmiiljOdUiXPJGAsFhnay',
         ]);
     }
 }

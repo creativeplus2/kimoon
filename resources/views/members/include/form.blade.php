@@ -37,9 +37,9 @@
         <label for="type-user">{{ __('Type User') }}</label>
         <select class="form-control js-example-basic-multiple @error('type_user') is-invalid @enderror" name="type_user" id="type-user" required>
             <option value="" selected disabled>-- {{ __('Select type user') }} --</option>
-            <option value="Seller"
-                {{ isset($member) && $member->type_user == 'Seller' ? 'selected' : (old('type_user') == 'Seller' ? 'selected' : '') }}>
-                Seller</option>
+            <option value="Reseller"
+                {{ isset($member) && $member->type_user == 'Reseller' ? 'selected' : (old('type_user') == 'Reseller' ? 'selected' : '') }}>
+                Reseller</option>
             <option value="Subdis"
                 {{ isset($member) && $member->type_user == 'Subdis' ? 'selected' : (old('type_user') == 'Subdis' ? 'selected' : '') }}>
                 Subdis</option>

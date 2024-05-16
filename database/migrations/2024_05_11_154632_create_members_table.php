@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('nama_member', 255);
 			$table->string('email')->unique();
 			$table->string('no_telpon', 15);
-			$table->enum('type_user', ['Seller', 'Subdis', 'Distributor']);
+			$table->enum('type_user', ['Reseller', 'Subdis', 'Distributor']);
 			$table->foreignId('provinsi_id')->nullable()->constrained('provinces')->restrictOnUpdate()->nullOnDelete();
 			$table->foreignId('kabkot_id')->nullable()->constrained('kabkots')->restrictOnUpdate()->nullOnDelete();
 			$table->foreignId('kecamatan_id')->nullable()->constrained('kecamatans')->restrictOnUpdate()->nullOnDelete();
