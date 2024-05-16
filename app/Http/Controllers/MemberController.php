@@ -250,15 +250,25 @@ class MemberController extends Controller
             'kabkot_id' => 'required|exists:kabkots,id'
         ]);
 
-        DB::table('distributor_cover_area')->insert([
-            'member_id' => $request->member_id,
-            'kabkot_id' => $request->kabkot_id,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        Alert::toast('Data distributor cover area berhasil disimpan.', 'success');
-        return back();
+        // cek kab kot hanya satu
+        $cekMemberDistributor = DB::table('members')
+            ->where('type_user', 'Distributor')
+            ->where('status_member', 'Approved')
+            ->where('kabkot_id', $request->kabkot_id)
+            ->first();
+        if ($cekMemberDistributor) {
+            Alert::toast('Sudah ada distributor untuk wilayah tersebut', 'error');
+            return redirect()->route('members.index');
+        } else {
+            DB::table('distributor_cover_area')->insert([
+                'member_id' => $request->member_id,
+                'kabkot_id' => $request->kabkot_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            Alert::toast('Data distributor cover area berhasil disimpan.', 'success');
+            return back();
+        }
     }
 
     public function deleteCoverArea($id)
