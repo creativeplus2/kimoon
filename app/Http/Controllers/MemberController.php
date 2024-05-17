@@ -153,15 +153,13 @@ class MemberController extends Controller
 
             $member = Member::create($attr);
             if ($member) {
-                $cekMemberDistributor = DB::table('members')
-                    ->where('type_user', 'Distributor')
-                    ->where('status_member', 'Approved')
+                $cekMemberDistributor = DB::table('distributor_cover_area')
                     ->where('kabkot_id', $request->kabkot_id)
                     ->first();
                 if ($cekMemberDistributor) {
                     $newlyInsertedId = $member->id;
                     $dataParent = [
-                        'parent_id' => $cekMemberDistributor->id,
+                        'parent_id' => $cekMemberDistributor->member_id,
                         'member_id' => $newlyInsertedId,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s'),
