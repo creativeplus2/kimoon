@@ -61,6 +61,24 @@
                                 <span class="sr-only">X-Twitter</span>
                             </a>
                         </div>
+                                              <div class="footer-widget__social">
+                            <a href="#">
+                                <i class="fab fa-facebook" aria-hidden="true"></i>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                <span class="sr-only">Tiktok</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                                <span class="sr-only">X-Twitter</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
