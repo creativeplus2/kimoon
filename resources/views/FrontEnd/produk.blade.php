@@ -72,20 +72,8 @@
         }
     </style>
 
-    </style>
-    <section class="page-header">
-        <div class="page-header__bg"></div>
-        <div class="container">
-            @if ($setting)
-                <img src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}" alt="products left sidebar" class="page-header__shape" style="width: 60px">
-            @endif
-            <ul class="solox-breadcrumb list-unstyled">
-                <li><a href="{{ route('web.home') }}">Home</a></li>
-                <li><span>produk</span></li>
-            </ul>
-            <h2 class="page-header__title">Daftar produk</h2>
-        </div>
-    </section>
+@include('FrontEnd.main.page-header',  ['setting' => $setting, 'slug' => 'Produk'] )
+
 
     <section class="product-one product-one--page">
         <div class="container">
@@ -163,12 +151,12 @@
                     </div>
                     <div class="row gutter-y-30">
                         {{-- looping --}}
-                        @foreach ($products as $row)
+                        @foreach ($products as $product)
                             <div class="col-md-6 col-lg-4">
                                 <div class="product__item wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                     <div class="product__item__img">
-                                        <a href="{{ route('web.produk_detail', $row->id) }}">
-                                            <img src="{{ count($row->images) >= 1 ? '/storage/produk/' . $row->images[0]->photo : '/images/no-photo.jpg' }}" alt="{{ $row->nama_produk }}">
+                                        <a href="{{ route('web.produk_detail', $product->id) }}">
+                                            <img src="{{ count($product->images) >= 1 ? '/storage/produk/' . $product->images[0]->photo : '/images/no-photo.jpg' }}" alt="{{ $product->nama_produk }}">
                                         </a>
 
                                     </div>
@@ -177,9 +165,28 @@
                                             <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
                                         </div>
                                         <h4 class="product__item__title">
-                                            <a href="{{ route('web.produk_detail', $row->id) }}">{{ $row->nama_produk }}</a>
+                                            <a href="{{ route('web.produk_detail', $product->id) }}">{{ $product->nama_produk }}</a>
                                         </h4>
-                                        <div class="product__item__price">{{ format_rupiah($row->harga_umum) }}</div>
+                                        <div class="product__item__price">
+                                         @if (Session::get('login-member'))
+                                            @switch(Session::get('type-user'))
+                                                @case('Distributor')
+                                                    {{ format_rupiah($product->harga_distributor) }}
+                                                    @break
+                                                @case('Subdis')
+                                                    {{ format_rupiah($product->harga_subdis) }}
+                                                    @break
+                                                @case('Reseller')
+                                                    {{ format_rupiah($product->harga_reseller) }}
+                                                    @break
+                                                @default
+                                                
+                                            @endswitch
+                                        @else
+                                            {{ format_rupiah($product->harga_umum) }}
+                                        @endif
+                                        / {{ $product->nama_unit }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

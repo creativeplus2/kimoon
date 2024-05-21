@@ -13,7 +13,15 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $setting = SettingApp::find(1);
-        return view('FrontEnd.index',[
+        return view('FrontEnd.index', [
+            'setting' => $setting
+        ]);
+    }
+    public function page(Request $request)
+    {
+        $setting = SettingApp::find(1);
+        $path = $request->path();
+        return view('FrontEnd.' . $path, [
             'setting' => $setting
         ]);
     }

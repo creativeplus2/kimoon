@@ -7,6 +7,7 @@ use App\Models\ProductPhoto;
 use App\Models\SettingApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class ProdukController extends Controller
@@ -15,7 +16,7 @@ class ProdukController extends Controller
     {
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
-        $productsQuery = DB::table('products');
+        $productsQuery = DB::table('products')->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id');
         $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
             return $query->where('sub_kategori_id', $request->input('sub_categori'));
         })->paginate(9);
@@ -28,14 +29,18 @@ class ProdukController extends Controller
             });
         });
 
+
         return view('FrontEnd.produk', [
             'setting' => $setting,
             'produkCategory' => $produkCategory,
             'products' => $products
         ]);
     }
+
     public function detail($id)
     {
+
+
         $setting = SettingApp::find(1);
         $product = DB::table('products')
             ->select('products.*', 'sub_categories.nama_sub_kategori', 'product_units.nama_unit', 'product_categories.nama_kategori')
@@ -46,10 +51,27 @@ class ProdukController extends Controller
             ->first();
 
         $product->images = ProductPhoto::where('produk_id', $product->id)->orderBy('id', 'ASC')->get();
-
+        // if (Session::get('login-member')) {
+        //     switch (Session::get('type-user')) {
+        //         case ('Distributor'):
+        //             $harga = $product->harga_distributor;
+        //             break;
+        //         case ('Subdis'):
+        //             $harga = $product->harga_subdis;
+        //             break;
+        //         case ('Reseller'):
+        //             $harga = $product->harga_reseller;
+        //             break;
+        //         default:
+        //             $harga = '';
+        //     }
+        // } else {
+        //     $harga = $product->harga_umum;
+        // }
         return view('FrontEnd.produk-detail', [
             'setting' => $setting,
-            'product' => $product
+            'product' => $product,
+            // 'harga' => $harga,
         ]);
     }
 }

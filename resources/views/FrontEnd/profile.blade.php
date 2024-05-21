@@ -157,39 +157,8 @@
                                                         <th>{{ __('Status Member') }}</th>
                                                     </tr>
                                                 </thead>
-                                                @php
-                                                    $datax = DB::table('members')
-                                                        ->select(
-                                                            'members.*',
-                                                            'provinces.provinsi',
-                                                            'kabkots.kabupaten_kota',
-                                                            'kecamatans.kecamatan',
-                                                            'kelurahans.kelurahan',
-                                                        )
-                                                        ->leftJoin(
-                                                            'provinces',
-                                                            'members.provinsi_id',
-                                                            '=',
-                                                            'provinces.id',
-                                                        )
-                                                        ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
-                                                        ->leftJoin(
-                                                            'kecamatans',
-                                                            'members.kecamatan_id',
-                                                            '=',
-                                                            'kecamatans.id',
-                                                        )
-                                                        ->leftJoin(
-                                                            'kelurahans',
-                                                            'members.kelurahan_id',
-                                                            '=',
-                                                            'kelurahans.id',
-                                                        )
-                                                        ->where('members.kabkot_id', Session::get('kabkot-member'))
-                                                        ->where('members.type_user', '!=', 'Distributor')
-                                                        ->get();
-                                                @endphp
-                                                @foreach ($datax as $r)
+                                                
+                                                @foreach ($memberchild as $r)
                                                     <tr>
                                                         <td>{{ $r->kode_member }}</td>
                                                         <td>{{ $r->nama_member }}</td>

@@ -40,8 +40,24 @@
                             <h3 class="product-details__title">{{ $product->nama_produk }}</h3>
                         </div>
                         <p style="font-size: 28px;color:#c2a74e;margin-top:-10px">
-                            <b>{{ format_rupiah($product->harga_umum) }} /
-                                {{ $product->nama_unit }}</b>
+                        @if (Session::get('login-member'))
+                            @switch(Session::get('type-user'))
+                                @case('Distributor')
+                                    {{ format_rupiah($product->harga_distributor) }}
+                                    @break
+                                @case('Subdis')
+                                    {{ format_rupiah($product->harga_subdis) }}
+                                    @break
+                                @case('Reseller')
+                                    {{ format_rupiah($product->harga_reseller) }}
+                                    @break
+                                @default
+                                
+                            @endswitch
+                        @else
+                            {{ format_rupiah($product->harga_umum) }}
+                        @endif
+                               / {{ $product->nama_unit }}
                         </p>
                         <div class="product-details__review" style="margin-top:-10px">
                             <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
@@ -56,15 +72,15 @@
                                 {!! $product->deksripsi_produk !!}
                             </p>
                             <p class="product-details__excerpt-text2">SKU. {{ $product->sku }} <br>
-                                <button class="btn btn-success" style="background-color: #c2a74e; border-color: #c2a74e; color: white;">
+                                {{-- <button class="btn btn-success" style="background-color: #c2a74e; border-color: #c2a74e; color: white;">
                                     <i class="fa fa-check" aria-hidden="true"></i> Produk tersedia
-                                </button>
+                                </button> --}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="product-details__description wow fadeInUp" data-wow-delay="300ms">
+            {{-- <div class="product-details__description wow fadeInUp" data-wow-delay="300ms">
                 <h3 class="product-details__description__title">Harga Spesial</h3>
 
                 <div class="alert alert-success" role="alert" style="background-color: #c2a74e; border-color: #c2a74e; color: white;text-align:justify">
@@ -87,7 +103,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

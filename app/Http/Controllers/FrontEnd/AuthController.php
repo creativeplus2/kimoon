@@ -187,6 +187,7 @@ class AuthController extends Controller
                     Session::put('name-member', $data->nama_member);
                     Session::put('email-member', $data->email);
                     Session::put('kabkot-member', $data->kabkot_id);
+                    Session::put('type-user', $data->type_user);
                     Session::put('login-member', TRUE);
                     Alert::success('Success', 'Login Berhasil');
                     return redirect()->route('web.home');
@@ -225,9 +226,18 @@ class AuthController extends Controller
             ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
             ->where('members.id', Session::get('id-member'))
             ->first();
+        $memberchild = DB::table('members')
+            ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota')
+            ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
+            ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
+            ->leftJoin('parent_member', 'members.id', '=', 'parent_member.member_id')
+            ->orderBy('members.id', 'desc')
+            ->where('parent_member.parent_id', '=', Session::get('id-member'))
+            ->get();
         return view('FrontEnd.profile', [
             'setting' => $setting,
-            'member' => $member
+            'member' => $member,
+            'memberchild' => $memberchild
         ]);
     }
 
@@ -252,7 +262,7 @@ class AuthController extends Controller
     {
         $lastMember = Member::latest()->first();
         if ($lastMember) {
-            $numericPart = (int)substr($lastMember->kode_member, strrpos($lastMember->kode_member, '-') + 1);
+            $numericPart = (int) substr($lastMember->kode_member, strrpos($lastMember->kode_member, '-') + 1);
             $newNumericPart = $numericPart + 1;
             $newKodeMember = sprintf("KIMOON-%05d", $newNumericPart);
         } else {

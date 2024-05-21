@@ -13,6 +13,7 @@ use App\Http\Controllers\FrontEnd\HomeController;
 use App\Http\Controllers\FrontEnd\ProdukController;
 use App\Http\Controllers\LocalizationController;
 
+
 //route switch bahasa
 Route::get('/localization/{language}', [LocalizationController::class, 'switch'])->name('localization.switch');
 Route::prefix('panel')->group(function () {
@@ -50,7 +51,6 @@ Route::prefix('panel')->group(function () {
 });
 
 // Route FrontEnd
-Route::get('/', [HomeController::class, 'index'])->name('web.home');
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
 Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');
 Route::get('/register-member', [AuthController::class, 'register'])->name('web.register');
@@ -61,3 +61,6 @@ Route::get('/submit-logout-member', [AuthController::class, 'submitLogout'])->na
 Route::get('/profile', [AuthController::class, 'profile'])->name('web.profile');
 Route::get('/list-member', [AuthController::class, 'listMember'])->name('web.list_member');
 Route::get('/pay', [XenditController::class, 'getPaymentLink']);
+Route::get('/', [HomeController::class, 'index'])->name('web.home');
+Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
+Route::get('/about', [HomeController::class, 'page'])->name('web.about');

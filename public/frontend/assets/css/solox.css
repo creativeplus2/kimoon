@@ -50,6 +50,8 @@
   --darkbrown: #a44f30
 }
 
+
+
 /*--------------------------------------------------------------
 # Utility
 --------------------------------------------------------------*/
@@ -16645,4 +16647,12 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
 }
 .product__item__ratings {
   display:none
+}
+.footer-widget__title {
+  margin-bottom: 10px;
+  margin-top: 20px
+}
+
+.main-header__btn.alt-btn::before {
+  background-color:var(--darkgold)!important
 }
