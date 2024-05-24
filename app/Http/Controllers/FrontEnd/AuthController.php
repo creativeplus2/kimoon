@@ -226,7 +226,7 @@ class AuthController extends Controller
             ->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')
             ->where('members.id', Session::get('id-member'))
             ->first();
-        $memberchild = DB::table('members')
+        $memberchilds = DB::table('members')
             ->select('members.*', 'provinces.provinsi', 'kabkots.kabupaten_kota')
             ->leftJoin('provinces', 'members.provinsi_id', '=', 'provinces.id')
             ->leftJoin('kabkots', 'members.kabkot_id', '=', 'kabkots.id')
@@ -234,10 +234,24 @@ class AuthController extends Controller
             ->orderBy('members.id', 'desc')
             ->where('parent_member.parent_id', '=', Session::get('id-member'))
             ->get();
+        $coverareas = DB::table('distributor_cover_area')
+            ->join(
+                'kabkots',
+                'distributor_cover_area.kabkot_id',
+                '=',
+                'kabkots.id',
+            )
+            ->select(
+                'distributor_cover_area.*',
+                'kabkots.kabupaten_kota',
+            )
+            ->where('distributor_cover_area.member_id', $member->id)
+            ->get();
         return view('FrontEnd.profile', [
             'setting' => $setting,
             'member' => $member,
-            'memberchild' => $memberchild
+            'memberchilds' => $memberchilds,
+            'coverareas' => $coverareas,
         ]);
     }
 

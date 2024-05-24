@@ -2,6 +2,7 @@
 <html lang="en">
 {{-- header --}}
 @include('FrontEnd.main.css')
+
 <body class="custom-cursor">
     <div class="custom-cursor__cursor"></div>
     <div class="custom-cursor__cursor-two"></div>
@@ -49,38 +50,46 @@
         @yield('content')
         {{-- footer --}}
         @include('FrontEnd.main.footer')
+
+
+
+        <div class="mobile-nav__wrapper">
+            <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+            <div class="mobile-nav__content">
+                <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+                <div class="logo-box">
+                    <a href="{{route('web.home')}}" aria-label="logo image">
+                        @if ($setting)
+                        <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt=""
+                            style="width: 180px">
+                        @endif
+                    </a>
+                </div>
+                <div class="mobile-nav__container"></div>
+            </div>
+        </div>
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" placeholder="Search Here..." />
+                    <button type="submit" aria-label="search submit" class="solox-btn solox-btn--base">
+                        <span><i class="icon-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        {{-- script --}}
+        @include('FrontEnd.main.script')
     </div>
 
-    <div class="mobile-nav__wrapper">
-        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-        <div class="mobile-nav__content">
-            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
-            <div class="logo-box">
-                <a href="{{route('web.home')}}" aria-label="logo image">
-                    @if ($setting)
-                        <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" alt="" style="width: 180px">
-                    @endif
-            </div>
-            <div class="mobile-nav__container"></div>
-            </div>
-        </div>
-    </div>
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <div class="search-popup__content">
-            <form role="search" method="get" class="search-popup__form" action="#">
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="solox-btn solox-btn--base">
-                    <span><i class="icon-magnifying-glass"></i></span>
-                </button>
-            </form>
-        </div>
-    </div>
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+
+    <!-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
         <span class="scroll-to-top__text">back top</span>
         <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
-    </a>
-{{-- script --}}
-@include('FrontEnd.main.script')
+    </a> -->
+
 </body>
+
+
 </html>

@@ -1,7 +1,7 @@
 <footer class="main-footer background-black">
     @if ($setting)
-        <div class="main-footer__bg background-black"
-            style="background-image: url({{ Storage::url('public/img/setting_app/') . $setting->logo }});"></div>
+    <div class="main-footer__bg background-black"
+        style="background-image: url({{ Storage::url('public/img/setting_app/') . $setting->logo }});"></div>
     @endif
     <div class="main-footer__top">
         <div class="container">
@@ -11,11 +11,11 @@
                         <a href="/" class="footer-widget__logo">
                             <footer class="main-footer background-black">
                                 @if ($setting)
-                                    <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}"
-                                        width="180" alt="">
+                                <img src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}" width="180"
+                                    alt="">
                                 @endif
                         </a>
-                                       <ul class="list-unstyled footer-widget__info">
+                        <ul class="list-unstyled footer-widget__info">
                             <li> <a href="#">{{ $setting->no_telpon }}</a></li>
                             <li> <a href="#">{{ $setting->email }}</a></li>
                             <li> <a href="#">{{ $setting->alamat }}</a>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-6 col-xl-2">
                     <div class="footer-widget footer-widget--contact">
-                 <h2 class="footer-widget__title">Sosial media</h2>
+                        <h2 class="footer-widget__title">Sosial media</h2>
                         <div class="footer-widget__social">
                             <a href="#">
                                 <i class="fab fa-facebook" aria-hidden="true"></i>
@@ -55,32 +55,26 @@
                                 <span class="sr-only">X-Twitter</span>
                             </a>
                         </div>
-         
+
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-2">
                     <div class="footer-widget footer-widget--time">
-                       
+
                         <h2 class="footer-widget__title">Store</h2>
 
-                                              <div class="footer-widget__social">
-                            <a href="#">
-                                <i class="fab fa-facebook" aria-hidden="true"></i>
-                                <span class="sr-only">Facebook</span>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                                <span class="sr-only">Instagram</span>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-tiktok" aria-hidden="true"></i>
-                                <span class="sr-only">Tiktok</span>
-                            </a>
-                            <a href="#">
-                                <i class="fab fa-twitter" aria-hidden="true"></i>
-                                <span class="sr-only">X-Twitter</span>
-                            </a>
-                        </div>
+                        <ul class="list-unstyled footer-widget__links">
+                            <li> <a href="#">
+                                    <span>Shopee</span>
+                                </a></li>
+
+                            <li> <a href="#">
+                                    <span>Lazada</span>
+                                </a></li>
+                            <li> <a href="#">
+                                    <span>Tokopedia</span>
+                                </a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\XenditController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     DashboardController,
     UserController,
     ProfileController,
     RoleAndPermissionController,
 };
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\XenditController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\FrontEnd\AuthController;
+
 use App\Http\Controllers\FrontEnd\HomeController;
 use App\Http\Controllers\FrontEnd\ProdukController;
-use App\Http\Controllers\LocalizationController;
 
 
 //route switch bahasa
@@ -64,3 +66,5 @@ Route::get('/pay', [XenditController::class, 'getPaymentLink']);
 Route::get('/', [HomeController::class, 'index'])->name('web.home');
 Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
 Route::get('/about', [HomeController::class, 'page'])->name('web.about');
+Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
+Route::post('/submit-partnership', [HomeController::class, 'submitpartnership'])->name('web.submit_partnership');

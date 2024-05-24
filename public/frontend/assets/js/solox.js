@@ -260,8 +260,9 @@
 
   if ($(".main-menu").length && $(".mobile-nav__container").length) {
     let navContent = document.querySelector(".main-menu").innerHTML;
+    let navContentright = document.querySelector(".main-menu-right").innerHTML;
     let mobileNavContainer = document.querySelector(".mobile-nav__container");
-    mobileNavContainer.innerHTML = navContent;
+    mobileNavContainer.innerHTML = navContent + navContentright;
   }
 
   if ($(".sticky-header").length) {

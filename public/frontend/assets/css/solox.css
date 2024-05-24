@@ -43,6 +43,7 @@
   --solox-letter-space: 0.1em;
   --solox-letter-space-xl: 0.2em;
   --grey: #838383;
+  --lightgrey: rgb(156 163 175);
   --dark: #2F1F0F;
 	--gold: #E0B15E;
 	--darkgold: #996A2E;
@@ -264,6 +265,7 @@ body {
   font-size: 1rem;
   line-height: 1.6rem;
   font-weight: 400;
+  height:100%
 }
 
 body.locked {
@@ -3350,7 +3352,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 
 .why-choose-two {
-  padding-top: 100px;
+  padding:100px 0;
   background-color: var(--solox-white, #fff);
 }
 .why-choose-two__image {
@@ -16582,7 +16584,7 @@ body.boxed-wrapper .page-wrapper {
   border: .25px solid var(--grey);
   border-radius: 4px;
   box-sizing: border-box;
-  color: var(--grey);
+  color: var(--dark);
   font-family: inherit;
   font-size: 1em;
   line-height: 1em;
@@ -16591,12 +16593,26 @@ body.boxed-wrapper .page-wrapper {
   padding: 1em;
   width: 100%!important;
 }
+.login-page__wrap input::placeholder,
+.login-page__wrap textarea::placeholder
+{
+  color: var(--lightgrey)
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: var(--lightgrey)!important;
+  /* line-height: 28px; */
+}
+.login-page__wrap input:invalid {
+  color:var(--lightgrey);
+}
+
 .login-page__wrap label{
   color: var(--grey);
   font-size:.8rem;
 }
 .login-page__wrap input:focus {
-  box-shadow: 0 0 0 1px #cc1818;
+  box-shadow: 0 0 0 1px var(--gold);
+  border:solid 1px var(--gold)
 }
 .form-group{
   margin-top:1rem
@@ -16655,4 +16671,31 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
 
 .main-header__btn.alt-btn::before {
   background-color:var(--darkgold)!important
+}
+.solox-btn.form-register::after {
+  background-color:var(--dark)!important;
+}
+.solox-btn.form-register span{
+  color:white!important;
+}
+.solox-btn.form-register::before {
+  background-color:var(--darkgold)!important;
+}
+.mobile-nav__container .solox-btn{
+  display:block;
+  margin-left:0;
+  margin-top:1.5rem
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 40px!important;
+}
+.membership-one{
+  padding-bottom:0
+}
+.membership-one__card.active{
+  border: solid 1px var(--gold);
+  background: var(--yellowlight)
+}
+.italic{
+  font-style:italic
 }

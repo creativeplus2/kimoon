@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
+use App\Mail\Partnership;
 use App\Models\SettingApp;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -24,5 +28,26 @@ class HomeController extends Controller
         return view('FrontEnd.' . $path, [
             'setting' => $setting
         ]);
+    }
+    public function submitpartnership(Request $request)
+    {
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
+        ];
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|min:3|max:255',
+        //     'email' => 'required|email',
+        //     'phone' => 'required|string|max:15',
+        //     'message' => 'required|min:10',
+        // ]);
+        // if ($validator->fails()) {
+        //     return back()->withErrors($validator)->withInput();
+        // }
+        Mail::to("hello@kimoon.id")->send(new Partnership($details));
+        Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
+        return redirect()->back();
     }
 }

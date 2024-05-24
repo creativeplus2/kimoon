@@ -3,109 +3,154 @@
 @section('title', __('Home'))
 
 @section('content')
-@include('FrontEnd.main.page-header',  ['setting' => $setting, 'slug' => 'About'] )
+@include('FrontEnd.main.page-header', ['setting' => $setting, 'slug' => 'About'] )
 
 
-   <section class="contact-one pt-100">
-            <div class="container">
-                <div class="contact-one__inner">
-                    <div class="row">
-                        <div class="col-xl-7">
-                            <div class="contact-one__content">
-                                <img src="assets/images/shapes/contact-1-s-1.png" alt="" class="contact-one__content__shape-1">
-                                <img src="assets/images/shapes/contact-1-s-2.png" alt="" class="contact-one__content__shape-2">
-                                <div class="sec-title">
-
-                                    <img src="assets/images/shapes/sec-title-s-1.png" alt="Contact with us" class="sec-title__img">
-
-
-                                    <h6 class="sec-title__tagline">Contact with us</h6><!-- /.sec-title__tagline -->
-
-                                    <h3 class="sec-title__title">get in touch</h3><!-- /.sec-title__title -->
-                                </div><!-- /.sec-title -->
-                                <p class="contact-one__text">There are many variations of passages of Lorem Ipsum available, but
-                                    the majority have suffered simply free text available.</p><!-- /.contact-one__text -->
-                                <ul class="list-unstyled contact-one__info">
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__icon">
-                                            <i class="fas fa-phone-alt"></i>
-                                        </div><!-- /.contact-one__info__icon -->
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">Have any Question?</p>
-                                            <!-- /.contact-one__info__text -->
-                                            <h4 class="contact-one__info__title"><a href="tel:+92(8800)-8960">Free +92 (8800) -
-                                                    8960</a></h4><!-- /.contact-one__info__title -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div><!-- /.contact-one__info__icon -->
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">Write Email </p>
-                                            <!-- /.contact-one__info__text -->
-                                            <h4 class="contact-one__info__title"><a href="mailto:needhelp@company.com">needhelp@company.com</a></h4>
-                                            <!-- /.contact-one__info__title -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__icon">
-                                            <i class="fas fa-map-marker"></i>
-                                        </div><!-- /.contact-one__info__icon -->
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">Visit Now </p> <!-- /.contact-one__info__text -->
-                                            <h4 class="contact-one__info__title"><a href="#">80 broklyn golden street, New
-                                                    York</a></h4><!-- /.contact-one__info__title -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                </ul><!-- /.list-unstyled -->
-                            </div><!-- /.contact-one__content -->
-                        </div><!-- /.col-xl-7 -->
-                        <div class="col-xl-5">
-                            <form class="contact-one__form contact-form-validated form-one background-base wow fadeInUp animated" data-wow-duration="1500ms" action="inc/sendemail.php" novalidate="novalidate" style="visibility: visible; animation-duration: 1500ms; animation-name: fadeInUp;">
-                                <div class="contact-one__form__top">
-                                    <div class="sec-title">
+<section class="why-choose-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="why-choose-two__image">
+                    <img src="assets/images/resources/why-choose-2-1.jpg" alt="">
+                    <img src="assets/images/resources/why-choose-2-2.jpg" class="why-choose-two__image__two" alt="">
+                    <img src="assets/images/shapes/why-choose-2-s-1.png" class="why-choose-two__image__shape" alt="">
+                    <div class="why-choose-two__image__icon wow fadeInUp animated" data-wow-duration="1500ms"
+                        style="visibility: visible; animation-duration: 1500ms; animation-name: fadeInUp;">
+                        <img src="assets/images/shapes/why-choose-2-s-2.png" alt="">
+                    </div><!-- /.why-choose-two__icon -->
+                </div><!-- /.why-choose-two__image -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="why-choose-two__content">
+                    <div class="sec-title">
+                        <h3 class="sec-title__title">Join Us in Celebrating Local Beauty</h3><!-- /.sec-title__title -->
+                    </div>
+                    <p class="why-choose-two__highlight">At Kimoon we are proud to feature a range of locally-sourced
+                        beauty products. By incorporating these into your daily routine, you not only elevate your
+                        beauty regimen but also become a part of a larger movement towards sustainability and community
+                        support.</p>
+                    <p class="why-choose-two__highlight italic">Temukan perbedaan keindahan lokal dengan koleksi kami
+                        yang
+                        dikuratori dengan cermat. Setiap produk di lini lokal kami dipilih karena kualitasnya yang luar
+                        biasa, keberlanjutan, dan semangat para penciptanya. Rangkul keindahan yang berasal dari
+                        mendukung komunitas lokal Anda</p>
 
 
-                                        <h6 class="sec-title__tagline">Appointment</h6><!-- /.sec-title__tagline -->
+                </div><!-- /.why-choose-two__content -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<section class="funfact-one">
+    <div class="container">
+        <ul class="list-unstyled funfact-one__list">
+            <li class="funfact-one__item count-box counted">
+                <i class="funfact-one__icon icon-massage"></i><!-- /.funfact-one__icon -->
+                <div class="funfact-one__content">
+                    <h3 class="funfact-one__count count-text" data-stop="23" data-speed="1500">23</h3>
+                    <!-- /.funfact-one__count -->
+                    <p class="funfact-one__text">Years of Experience</p><!-- /.funfact-one__text -->
+                </div><!-- /.funfact-one__content -->
+            </li><!-- /.funfact-one__item -->
+            <li class="funfact-one__item count-box counted">
+                <i class="funfact-one__icon icon-lotus"></i><!-- /.funfact-one__icon -->
+                <div class="funfact-one__content">
+                    <h3 class="funfact-one__count count-text" data-stop="870" data-speed="1500">870</h3>
+                    <!-- /.funfact-one__count -->
+                    <p class="funfact-one__text">Wellness &amp; Spa</p><!-- /.funfact-one__text -->
+                </div><!-- /.funfact-one__content -->
+            </li><!-- /.funfact-one__item -->
+            <li class="funfact-one__item count-box counted">
+                <i class="funfact-one__icon icon-herbal"></i><!-- /.funfact-one__icon -->
+                <div class="funfact-one__content">
+                    <h3 class="funfact-one__count count-text" data-stop="30" data-speed="1500">30</h3>
+                    <!-- /.funfact-one__count -->
+                    <p class="funfact-one__text">Herbal Treatment</p><!-- /.funfact-one__text -->
+                </div><!-- /.funfact-one__content -->
+            </li><!-- /.funfact-one__item -->
+            <li class="funfact-one__item count-box counted">
+                <i class="funfact-one__icon icon-customer-service"></i><!-- /.funfact-one__icon -->
+                <div class="funfact-one__content">
+                    <h3 class="funfact-one__count count-text" data-stop="980" data-speed="1500">980</h3>
+                    <!-- /.funfact-one__count -->
+                    <p class="funfact-one__text">Happy Clients</p><!-- /.funfact-one__text -->
+                </div><!-- /.funfact-one__content -->
+            </li><!-- /.funfact-one__item -->
+        </ul><!-- /.list-unstyled funfact-one__list -->
+    </div><!-- /.container -->
+</section>
+<section class="why-choose-one">
+    <img src="assets/images/shapes/why-choose-1-bg-s1.png" class="why-choose-one__shape-1" alt="">
+    <div class="container">
+        <div class="why-choose-one__inner">
+            <div class="row">
+                <div class="col-xl-5">
+                    <div class="why-choose-one__content">
+                        <div class="sec-title">
 
-                                        <h3 class="sec-title__title">book Now</h3><!-- /.sec-title__title -->
-                                    </div><!-- /.sec-title -->
-                                </div><!-- /.contact-one__form__top -->
-                                <div class="form-one__group">
-                                    <div class="form-one__control form-one__control--full">
-                                        <input type="text" name="name" placeholder="Your name">
-                                    </div><!-- /.form-one__control form-one__control--full -->
-                                    <div class="form-one__control form-one__control--full">
-                                        <input type="email" name="email" placeholder="Email address">
-                                    </div><!-- /.form-one__control form-one__control--full -->
-                                    <div class="form-one__control form-one__control--full">
-                                        <div class="form-one__control__select">
-                                            <label class="sr-only" for="language-select">Select service</label>
-                                            <!-- /#language-select.sr-only -->
-                                            <div class="dropdown bootstrap-select"><select class="selectpicker" id="language-select">
-                                                <option value="Select service">Select service</option>
-                                                <option value="Select service 01">Select service 01</option>
-                                                <option value="Select service 02">Select service 02</option>
-                                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="Select service" data-id="language-select"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Select service</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                                        </div><!-- /.main-menu__language -->
+                            <h3 class="sec-title__title">R&D Kimoon</h3><!-- /.sec-title__title -->
+                        </div><!-- /.sec-title -->
+                        <p class="why-choose-one__highlighted">Spesialisasi di Bidang Microbiome Skin Research dan
+                            Enhanced Natural Substances untuk Regenerasi Kulit</p>
+                        <!-- /.why-choose-one__highlighted -->
 
-                                    </div><!-- /.form-one__control form-one__control--full -->
-                                    <div class="form-one__control form-one__control--full">
-                                        <input class="solox-datepicker hasDatepicker" type="text" name="date" placeholder="Select date" id="dp1716187905626">
-                                        <i class="fa fa-calendar-alt form-one__control__icon"></i>
-                                    </div><!-- /.form-one__control form-one__control--full -->
-                                    <div class="form-one__control form-one__control--full">
-                                        <textarea name="message" placeholder="Write  a message"></textarea><!-- /# -->
-                                    </div><!-- /.form-one__control -->
-                                    <div class="form-one__control form-one__control--full">
-                                        <button type="submit" class="solox-btn"><span>Book now</span></button>
-                                    </div><!-- /.form-one__control -->
-                                </div><!-- /.form-one__group -->
-                            </form>
-                        </div><!-- /.col-xl-5 -->
-                    </div><!-- /.row -->
-                </div><!-- /.contact-one__inner -->
-            </div><!-- /.container -->
-        </section>
+                        <p class="why-choose-one__text">
+
+                            Di Kimoon, tim R&D kami selalu berada di garis depan inovasi, khususnya dalam bidang
+                            microbiome skin research dan penggunaan bahan alami yang ditingkatkan untuk regenerasi
+                            kulit. Kami memahami bahwa kesehatan kulit tidak hanya bergantung pada perawatan eksternal,
+                            tetapi juga pada keseimbangan mikrobioma kulit – komunitas mikroorganisme yang hidup di
+                            permukaan kulit kita.
+                        </p>
+                        <p>
+
+                            Tim peneliti kami secara intensif mempelajari bagaimana mikrobioma kulit berinteraksi dengan
+                            produk perawatan kulit. Dengan penelitian mendalam, kami mengembangkan formulasi yang
+                            mendukung keseimbangan mikrobioma, membantu menjaga kulit tetap sehat, terhidrasi, dan tahan
+                            terhadap berbagai masalah kulit.</p>
+                        <p>
+                            Selain itu, kami juga fokus pada penggunaan bahan-bahan alami yang ditingkatkan, seperti
+                            ekstrak tumbuhan dan enzim alami, yang terbukti memiliki khasiat untuk mempercepat
+                            regenerasi kulit. Bahan-bahan ini tidak hanya aman dan lembut untuk kulit, tetapi juga
+                            memberikan hasil yang nyata dalam memperbaiki tekstur kulit, mengurangi tanda penuaan, dan
+                            meningkatkan elastisitas kulit.</p>
+                        <p>
+                            Melalui kombinasi penelitian microbiome dan bahan alami yang ditingkatkan, Kimoon
+                            berkomitmen untuk terus menghadirkan produk perawatan kulit yang inovatif dan efektif,
+                            membantu Anda mendapatkan kulit yang sehat dan bercahaya secara alami.</p>
+                        <!-- /.why-choose-one__text -->
+                        <ul class="list-unstyled why-choose-one__list">
+                            <li class="why-choose-one__list__item">
+                                <div class="why-choose-one__list__icon">
+                                    <i class="icon-tick"></i>
+                                </div><!-- /.why-choose-one__list__icon -->
+                                <h4 class="why-choose-one__list__title"><a href="team.html">Expert <br>
+                                        staff</a></h4><!-- /.why-choose-one__list__title -->
+                                <p class="why-choose-one__list__text">There are many variations of the passages of
+                                    available.</p><!-- /.why-choose-one__list__text -->
+                            </li><!-- /.why-choose-one__list__item -->
+                            <li class="why-choose-one__list__item">
+                                <div class="why-choose-one__list__icon">
+                                    <i class="icon-tick"></i>
+                                </div><!-- /.why-choose-one__list__icon -->
+                                <h4 class="why-choose-one__list__title"><a href="services.html">Brilliant
+                                        <br>Services</a></h4><!-- /.why-choose-one__list__title -->
+                                <p class="why-choose-one__list__text">There are many variations of the passages of
+                                    available.</p><!-- /.why-choose-one__list__text -->
+                            </li><!-- /.why-choose-one__list__item -->
+                        </ul><!-- /.list-unstyled why-choose-one__list -->
+                    </div><!-- /.why-choose-one__content -->
+                </div><!-- /.col-xl-5 -->
+                <div class="col-xl-7">
+                    <div class="solox-stretch-element-inside-column" style="margin-left: 0px; margin-right: -102px;">
+                        <div class="why-choose-one__image wow fadeInUp animated"
+                            style="visibility: visible; animation-name: fadeInUp;">
+                            <img src="assets/images/resources/why-choose-1-1.jpg" alt="">
+                        </div><!-- /.why-choose-one__image -->
+                    </div><!-- /.ogency-stretch-element-inside-column -->
+                </div><!-- /.col-xl-7 -->
+            </div><!-- /.row -->
+        </div><!-- /.why-choose-one__inner -->
+    </div><!-- /.container -->
+</section>
 @endsection
