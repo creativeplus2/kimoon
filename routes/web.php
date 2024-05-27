@@ -8,13 +8,14 @@ use App\Http\Controllers\{
 };
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\XenditController;
 use App\Http\Controllers\LocalizationController;
+
 use App\Http\Controllers\FrontEnd\AuthController;
-
 use App\Http\Controllers\FrontEnd\HomeController;
-use App\Http\Controllers\FrontEnd\ProdukController;
 
+use App\Http\Controllers\FrontEnd\ProdukController;
 
 //route switch bahasa
 Route::get('/localization/{language}', [LocalizationController::class, 'switch'])->name('localization.switch');
@@ -29,6 +30,8 @@ Route::prefix('panel')->group(function () {
     Route::get('/dashboard', function () {
         return redirect()->route('dashboard');
     });
+    Route::resource('news', App\Http\Controllers\NewsController::class)->middleware('auth');
+
     Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
     Route::resource('account-banks', App\Http\Controllers\AccountBankController::class)->middleware('auth');
     Route::resource('product-categories', App\Http\Controllers\ProductCategoryController::class)->middleware('auth');

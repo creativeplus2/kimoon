@@ -142,6 +142,23 @@ return [
             ]
         ],
         [
+            'header' => 'News',
+            'permissions' => [
+                'news view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'News',
+                    'icon' => '<i data-feather="file-text"></i>',
+                    'route' => '/news',
+                    'permission' => 'news view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ],
+
+        [
             'header' => 'Master',
             'permissions' => [
                 'setting view',

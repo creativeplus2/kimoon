@@ -10,10 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('distributor_cover_area', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained('members')->restrictOnUpdate()->cascadeOnDelete();
-            $table->foreignId('kabkot_id')->constrained('kabkots')->restrictOnUpdate()->cascadeOnDelete();
+            $table->string('title', 100);
+            $table->string('slug', 100);
+            $table->string('image', 100);
+            $table->longText('description');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('distributor_cover_area');
+        Schema::dropIfExists('news');
     }
 };
