@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SettingApp;
-use App\Http\Requests\{StoreSettingAppRequest, UpdateSettingAppRequest};
 use App\Models\User;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\SettingApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\{StoreSettingAppRequest, UpdateSettingAppRequest};
 
 
 class SettingAppController extends Controller
@@ -40,7 +40,7 @@ class SettingAppController extends Controller
             $logo = $request->file('logo');
             $logo->storeAs('public/img/setting_app', $logo->hashName());
             $setting_app->update([
-                'logo'     => $logo->hashName(),
+                'logo' => $logo->hashName(),
             ]);
         }
 
@@ -49,7 +49,7 @@ class SettingAppController extends Controller
             $favicon = $request->file('favicon');
             $favicon->storeAs('public/img/setting_app', $favicon->hashName());
             $setting_app->update([
-                'favicon'     => $favicon->hashName(),
+                'favicon' => $favicon->hashName(),
             ]);
         }
 
@@ -65,6 +65,8 @@ class SettingAppController extends Controller
             'tiktok' => $request->tiktok,
             'x' => $request->x,
             'xendit_secret_key' => $request->xendit_secret_key,
+            'membertable' => json_decode($request->membertable),
+
         ]);
 
         Alert::toast('The settingApp was updated successfully.', 'success');

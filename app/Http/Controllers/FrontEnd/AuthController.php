@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
-use App\Mail\NotifyRegisterMemberMail;
+use Image;
 use App\Models\Member;
 use App\Models\Province;
 use App\Models\SettingApp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Image;
+use App\Mail\NotifyRegisterMemberMail;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -22,9 +22,12 @@ class AuthController extends Controller
     {
         $setting = SettingApp::find(1);
         $provinces = Province::get();
+        $members = $setting->membertable['members'];
+
         return view('FrontEnd.register', [
             'setting' => $setting,
-            'provinces' => $provinces
+            'provinces' => $provinces,
+            'members' => $members,
         ]);
     }
 

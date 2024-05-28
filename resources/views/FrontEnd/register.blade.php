@@ -19,111 +19,35 @@
             <div class="tabs-content">
                 <div class="tab active-tab fadeInUp animated" id="yearly">
                     <div class="row gutter-y-30">
+                        @foreach ($members as $user)
+
                         <div class="col-md-12 col-lg-4">
-                            <div class="membership-one__card text-center distributor"
-                                style="background-image: url(assets/images/shapes/membership-s-1.png);">
-                                <h3 class="membership-one__card__price">Distributor</h3>
-                                <h4 class="membership-one__card__tagline">Rp 60.000.000</h4>
-                                <p class="membership-one__card__text">All Services Include:</p>
+                            <div class="membership-one__card text-center ">
+
+                                <h5 class="membership-one__card__price" style="text-decoration:line-through">
+                                    {{format_rupiah($user["price"])}}</h5>
+                                <h4 class="membership-one__card__price">{{format_rupiah($user["pricediscount"])}}</h4>
+
+                                <h4 class="membership-one__card__tagline">{{$user["type"]}}</h4>
+
                                 <ul class="list-unstyled membership-one__card__list">
+                                    @foreach ($user['list'] as $l)
                                     <li>
                                         <i class="fa fa-check-circle"></i>
-                                        Wellness Massage
+                                        {{$l}}
                                     </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Aromatherapy Foot Ritual
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        True Transformation
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Coppertino Bath
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Organic Facial
-                                    </li>
+                                    @endforeach
+
                                 </ul>
-                                <button
-                                    class="solox-btn solox-btn--black membership-one__card__link member-type-distributor">
+                                <button class="{{" solox-btn solox-btn--black membership-one__card__link member-type-".
+                                    $user["slug"] }}">
                                     <span>Select
                                     </span>
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-4">
-                            <div class="membership-one__card text-center"
-                                style="background-image: url(assets/images/shapes/membership-s-1.png);">
-                                <h3 class="membership-one__card__price">Sub Dis</h3>
-                                <h4 class="membership-one__card__tagline">Rp 20.000.000</h4>
-                                <p class="membership-one__card__text">All Services Include:</p>
-                                <ul class="list-unstyled membership-one__card__list">
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Wellness Massage
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Aromatherapy Foot Ritual
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        True Transformation
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Coppertino Bath
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Organic Facial
-                                    </li>
-                                </ul>
-                                <button
-                                    class="solox-btn solox-btn--black membership-one__card__link member-type-subdis">
-                                    <span>Select</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-4">
-                            <div class="membership-one__card text-center"
-                                style="background-image: url(assets/images/shapes/membership-s-1.png);">
-                                <h3 class="membership-one__card__price">Reseller</h3>
-                                <h4 class="membership-one__card__tagline">Rp 5.000.000</h4>
-                                <img src="assets/images/resources/member-1-3.png" alt="Basic Membership"
-                                    class="membership-one__card__image">
-                                <p class="membership-one__card__text">All Services Include:</p>
-                                <ul class="list-unstyled membership-one__card__list">
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Wellness Massage
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Aromatherapy Foot Ritual
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        True Transformation
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Coppertino Bath
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check-circle"></i>
-                                        Organic Facial
-                                    </li>
-                                </ul>
-                                <button
-                                    class="solox-btn solox-btn--black membership-one__card__link member-type-reseller">
-                                    <span>Select</span>
-                                </button>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div><!-- /.tabs-content -->

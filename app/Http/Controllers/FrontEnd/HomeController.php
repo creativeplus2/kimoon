@@ -37,15 +37,6 @@ class HomeController extends Controller
             'phone' => $request->phone,
             'message' => $request->message,
         ];
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|min:3|max:255',
-        //     'email' => 'required|email',
-        //     'phone' => 'required|string|max:15',
-        //     'message' => 'required|min:10',
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()->withErrors($validator)->withInput();
-        // }
         Mail::to("hello@kimoon.id")->send(new Partnership($details));
         Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
         return redirect()->back();

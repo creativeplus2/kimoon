@@ -14,6 +14,7 @@ use App\Http\Controllers\LocalizationController;
 
 use App\Http\Controllers\FrontEnd\AuthController;
 use App\Http\Controllers\FrontEnd\HomeController;
+use App\Http\Controllers\FrontEnd\News2Controller;
 
 use App\Http\Controllers\FrontEnd\ProdukController;
 
@@ -71,3 +72,6 @@ Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnersh
 Route::get('/about', [HomeController::class, 'page'])->name('web.about');
 Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
 Route::post('/submit-partnership', [HomeController::class, 'submitpartnership'])->name('web.submit_partnership');
+Route::get('/news', [News2Controller::class, 'index'])->name('web.news');
+Route::get('/news/{slug}', [News2Controller::class, 'detail']);
+

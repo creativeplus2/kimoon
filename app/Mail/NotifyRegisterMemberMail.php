@@ -2,15 +2,17 @@
 
 namespace App\Mail;
 
+use App\Models\SettingApp;
 use App\Models\AccountBank;
-use App\Services\TypeUserService;
-use App\Services\XenditService;
+
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+// use App\Services\XenditService;
 use Illuminate\Mail\Mailable;
+// use App\Services\TypeUserService;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifyRegisterMemberMail extends Mailable
 {
@@ -41,16 +43,24 @@ class NotifyRegisterMemberMail extends Mailable
      */
     public function content(): Content
     {
-        $xenditService = new XenditService();
-        $typeUserService = new TypeUserService();
-
+        // $xenditService = new XenditService();
+        // $typeUserService = new TypeUserService();
+        $settingApp = SettingApp::findOrFail(1)->first();
+        $members = $settingApp->membertable['members'];
+        foreach ($members as $key => $value) {
+            if ($value['slug'] == strtolower($this->member->type_user)) {
+                $found = $value['pricediscount'];
+                break;
+            }
+        }
         return new Content(
             view: 'mail.notification-register-member',
             with: [
                 'member' => $this->member,
                 'bankAccounts' => AccountBank::get(),
-                'xenditVirtualAccounts' => $xenditService->getAllPaymentMethods(),
-                'priceRegistration' => $typeUserService->getRegistrationPriceByUserType($this->member->type_user)
+                'priceRegistration' => $found
+                // 'xenditVirtualAccounts' => $xenditService->getAllPaymentMethods(),
+                // 'priceRegistration' => $typeUserService->getRegistrationPriceByUserType($this->member->type_user)
             ]
         );
     }

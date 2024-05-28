@@ -20,6 +20,10 @@
                     <li>
                         <a href="{{ route('web.partnership') }}">Partnership</a>
                     </li>
+                    <li>
+                        <a href="{{ route('web.news') }}">News
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <div class="main-header__right">

@@ -8140,7 +8140,7 @@ body.megamenu-popup-active .mobile-nav__content {
   background-repeat: no-repeat;
   background-position: top right;
   border: 1px solid var(--solox-border-color, #e8e3da);
-  padding: 50px;
+  padding: 2em;
   background-color: var(--solox-white, #fff);
   transition: all 500ms ease;
 }
@@ -8152,16 +8152,15 @@ body.megamenu-popup-active .mobile-nav__content {
   font-family: var(--solox-font, "Montserrat", sans-serif);
   color: var(--solox-black, #1c1a1d);
   line-height: 1;
-  font-size: 40px;
   line-height: 1em;
   font-weight: 500;
 }
 .membership-one__card__tagline {
   margin: 0;
-  font-size: 16px;
+  font-size: 2em;
   font-family: var(--solox-font, "Montserrat", sans-serif);
   line-height: 2.5em;
-  color: var(--solox-text, #838184);
+  color: var(--gold);
   border-bottom: 1px solid var(--solox-border-color, #e8e3da);
   padding-bottom: 16px;
   margin-bottom: 33px;
@@ -8180,18 +8179,20 @@ body.megamenu-popup-active .mobile-nav__content {
 .membership-one__card__list li {
   position: relative;
   font-size: 16px;
-  line-height: 2.5em;
+  line-height: 1.35em;
+  margin-bottom:1em;
   color: var(--solox-text, #838184);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: top;
+  text-align: left;
 }
 .membership-one__card__list li > i {
   font-size: 14px;
   color: var(--solox-base, #c2a74e);
   margin-right: 10px;
   position: relative;
-  top: 1px;
+  top: .2em;
 }
 
 .membership-two {
