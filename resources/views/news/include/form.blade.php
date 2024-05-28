@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label for="featured_image">{{ __('Logo news') }}</label>
                 <input type="file" name="featured_image"
-                    class="form-control @error('featured_image') is-invalid @enderror" id="featured_image" required>
+                    class="form-control @error('featured_image') is-invalid @enderror" id="featured_image">
 
                 @error('featured_image')
                 <span class="text-danger">
