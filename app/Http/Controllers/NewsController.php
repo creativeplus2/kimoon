@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Image;
-use App\Models\news;
+use App\Models\News;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
