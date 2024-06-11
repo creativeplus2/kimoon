@@ -11,19 +11,14 @@
             </div>
             <nav class="main-header__nav main-menu">
                 <ul class="main-menu__list">
-                    <li>
-                        <a href="{{ route('web.about') }}">About</a>
+                    @foreach ($setting->membertable["menus"] as $menu)
+                    @php
+                    $param = explode("/",Request::getPathInfo());
+                    @endphp
+                    <li class={{ $param[1]===$menu["link"] ? "active" :"" }}>
+                        <a href={{ route('web.'.$menu["link"])}}>{{$menu["name"]}}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('web.produk') }}">Produk</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('web.partnership') }}">Partnership</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('web.news') }}">News
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
             </nav>
             <div class="main-header__right">

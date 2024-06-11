@@ -16714,3 +16714,6 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
   background-position:center center!important;
   opacity:.7
 }
+.main-menu .main-menu__list .active a{
+  color:var(--darkgold)
+}

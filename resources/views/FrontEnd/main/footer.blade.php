@@ -25,18 +25,18 @@
                 </div>
                 <div class="col-md-6 col-xl-2">
                     <div class="footer-widget footer-widget--links">
-                        <h2 class="footer-widget__title">Link terkait</h2>
+                        <h2 class="footer-widget__title">{{$setting->membertable["footermenutitle"]}}</h2>
                         <ul class="list-unstyled footer-widget__links">
-                            <li><a href="">Home</a></li>
-                            <li><a href="">Produk</a></li>
-                            <li><a href="">Register member</a></li>
-                            <li><a href="">Login</a></li>
+                            @foreach ($setting->membertable["footermenus"] as $menu)
+                            <li><a href={{$menu["link"]}}>{{$menu["name"]}}</a></li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-2">
                     <div class="footer-widget footer-widget--contact">
-                        <h2 class="footer-widget__title">Sosial media</h2>
+                        <h2 class="footer-widget__title">{{$setting->membertable["footermenutitle"]}}</h2>
                         <div class="footer-widget__social">
                             <a href="#">
                                 <i class="fab fa-facebook" aria-hidden="true"></i>
@@ -61,19 +61,12 @@
                 <div class="col-md-6 col-xl-2">
                     <div class="footer-widget footer-widget--time">
 
-                        <h2 class="footer-widget__title">Store</h2>
+                        <h2 class="footer-widget__title">{{$setting->membertable["storemenutitle"]}}</h2>
 
                         <ul class="list-unstyled footer-widget__links">
-                            <li> <a href="#">
-                                    <span>Shopee</span>
-                                </a></li>
-
-                            <li> <a href="#">
-                                    <span>Lazada</span>
-                                </a></li>
-                            <li> <a href="#">
-                                    <span>Tokopedia</span>
-                                </a></li>
+                            @foreach ($setting->membertable["storemenus"] as $menu)
+                            <li><a href={{$menu["link"]}}>{{$menu["name"]}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
