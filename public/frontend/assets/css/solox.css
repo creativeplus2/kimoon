@@ -19,8 +19,8 @@
 :root {
   --solox-font: "Montserrat", sans-serif;
   --solox-heading-font: "Fahkwang", serif;
-  --solox-special-font: "Alex Brush", cursive;
-  --solox-text: #838184;
+  --solox-special-font: "Montserrat", sans-serif;
+  --solox-text: #838383;
   --solox-text-rgb: 131, 129, 132;
   --solox-text-dark: #6e6b70;
   --solox-text-dark-rgb: 110, 107, 112;
@@ -9266,8 +9266,9 @@ body.megamenu-popup-active .mobile-nav__content {
   background-color: var(--yellowlight, #f9f6f1);
   position: relative;
   z-index: 3;
-  padding-top: 223px;
-  padding-bottom: 201px;
+  display:flex;
+  align-items: center;
+
   height: 770px;
 }
 @media (max-width: 767px) {
@@ -9329,7 +9330,6 @@ body.megamenu-popup-active .mobile-nav__content {
   font-weight: 400;
   line-height: 1;
   font-family: var(--solox-special-font, "Alex Brush", cursive);
-  margin: 0 0 -7px;
   transition: transform 1000ms ease, opacity 1000ms ease;
   transform: translateY(-200px);
 }
@@ -9388,7 +9388,7 @@ body.megamenu-popup-active .mobile-nav__content {
     font-size: 50px;
   }
 }
-.main-slider-one__title::after {
+/* .main-slider-one__title::after {
   content: "";
   width: 101%;
   height: 70%;
@@ -9400,7 +9400,7 @@ body.megamenu-popup-active .mobile-nav__content {
   z-index: 3;
   transform: translateX(-100%);
   transition-delay: 1s;
-}
+} */
 @media (max-width: 1199px) {
   .main-slider-one__title::after {
     top: 19px;
@@ -16699,4 +16699,18 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
 }
 .italic{
   font-style:italic
+}
+.main-slider-one__title {
+  font-size: 5rem
+
+}
+
+.main-slider-one__sub-title  {
+  font-size: 2rem
+
+}
+
+.page-header__bg{
+  background-position:center center!important;
+  opacity:.7
 }

@@ -3,7 +3,6 @@
 @section('title', __('News'))
 
 @section('content')
-@include('FrontEnd.main.page-header', ['setting' => $setting, 'slug' => 'News'] )
 <section class="blog-one blog-one--page">
     <div class="container">
         <div class="row justify-content-center">

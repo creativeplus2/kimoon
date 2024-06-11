@@ -3,7 +3,7 @@
 @section('title', __('News'))
 
 @section('content')
-@include('FrontEnd.main.page-header', ['setting' => $setting, 'slug' => 'News'] )
+@include('FrontEnd.main.page-header', ['header'=> $text] )
 
 <section class="blog-one blog-one--page">
     <div class="container">

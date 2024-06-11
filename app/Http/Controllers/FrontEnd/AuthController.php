@@ -6,6 +6,7 @@ use Image;
 use App\Models\Member;
 use App\Models\Province;
 use App\Models\SettingApp;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -22,12 +23,12 @@ class AuthController extends Controller
     {
         $setting = SettingApp::find(1);
         $provinces = Province::get();
-        $members = $setting->membertable['members'];
+        $page = Page::where('title', '=', 'register')->firstOrFail();
 
         return view('FrontEnd.register', [
             'setting' => $setting,
             'provinces' => $provinces,
-            'members' => $members,
+            'text' => $page->content,
         ]);
     }
 
@@ -162,8 +163,11 @@ class AuthController extends Controller
     public function login()
     {
         $setting = SettingApp::find(1);
+        $page = Page::where('title', '=', 'login')->firstOrFail();
+
         return view('FrontEnd.login', [
-            'setting' => $setting
+            'setting' => $setting,
+            'text' => $page->content
         ]);
     }
 

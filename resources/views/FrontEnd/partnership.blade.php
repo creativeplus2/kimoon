@@ -3,7 +3,7 @@
 @section('title', __('Home'))
 
 @section('content')
-@include('FrontEnd.main.page-header', ['setting' => $setting, 'slug' => 'Partnership'] )
+@include('FrontEnd.main.page-header', ['header'=> $text] )
 
 <section class="contact-one pt-100">
     <div class="container">
@@ -11,21 +11,19 @@
             <div class="row">
                 <div class="col-xl-7">
                     <div class="contact-one__content">
-                        <img src="assets/images/shapes/contact-1-s-1.png" alt="" class="contact-one__content__shape-1">
-                        <img src="assets/images/shapes/contact-1-s-2.png" alt="" class="contact-one__content__shape-2">
+
                         <div class="sec-title">
-                            <h6 class="sec-title__tagline">Contact with us</h6><!-- /.sec-title__tagline -->
-                            <h3 class="sec-title__title">get in touch</h3><!-- /.sec-title__title -->
+                            <h3 class="sec-title__title">{{$text["title"]}}</h3><!-- /.sec-title__title -->
                         </div><!-- /.sec-title -->
-                        <p class="contact-one__text">There are many variations of passages of Lorem Ipsum available, but
-                            the majority have suffered simply free text available.</p><!-- /.contact-one__text -->
+                        <p class="contact-one__text">{{$text["subtitle"]}}</p>
+                        <!-- /.contact-one__text -->
                         <ul class="list-unstyled contact-one__info">
                             <li class="contact-one__info__item">
                                 <div class="contact-one__info__icon">
                                     <i class="fas fa-phone-alt"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">Have any Question?</p>
+                                    <p class="contact-one__info__text">{{$text["phonetext"]}}</p>
                                     <!-- /.contact-one__info__text -->
                                     <h4 class="contact-one__info__title"><a href="#">{{ $setting->no_telpon }}</a></h4>
                                     <!-- /.contact-one__info__title -->
@@ -36,7 +34,7 @@
                                     <i class="fas fa-envelope"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">Write Email </p>
+                                    <p class="contact-one__info__text">{{$text["emailtext"]}}</p>
                                     <!-- /.contact-one__info__text -->
                                     <h4 class="contact-one__info__title"><a href="mailto:{{ $setting->email }}">{{
                                             $setting->email }}</a></h4>
@@ -48,7 +46,8 @@
                                     <i class="fas fa-map-marker"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">Visit Now </p> <!-- /.contact-one__info__text -->
+                                    <p class="contact-one__info__text">{{$text["addresstext"]}}</p>
+                                    <!-- /.contact-one__info__text -->
                                     <h4 class="contact-one__info__title"><a href="#">{{ $setting->alamat }}</a></h4>
                                     <!-- /.contact-one__info__title -->
                                 </div><!-- /.contact-one__info__content -->
@@ -65,7 +64,6 @@
 
                         <div class="contact-one__form__top">
                             <div class="sec-title">
-                                <h6 class="sec-title__tagline">Partnership</h6><!-- /.sec-title__tagline -->
                                 <h3 class="sec-title__title">Inquiry</h3><!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
                         </div><!-- /.contact-one__form__top -->

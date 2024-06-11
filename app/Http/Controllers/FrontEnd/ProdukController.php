@@ -8,12 +8,15 @@ use App\Models\SettingApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\Page;
 
 
 class ProdukController extends Controller
 {
     public function index(Request $request)
     {
+        $page = Page::where('title', '=', 'product')->firstOrFail();
+
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
         $productsQuery = DB::table('products')->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id');
@@ -33,7 +36,8 @@ class ProdukController extends Controller
         return view('FrontEnd.produk', [
             'setting' => $setting,
             'produkCategory' => $produkCategory,
-            'products' => $products
+            'products' => $products,
+            'text' => $page->content
         ]);
     }
 

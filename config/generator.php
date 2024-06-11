@@ -157,7 +157,22 @@ return [
                 ]
             ]
         ],
-
+        [
+            'header' => 'Pages',
+            'permissions' => [
+                'news view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Pages',
+                    'icon' => '<i data-feather="file-text"></i>',
+                    'route' => '/page',
+                    'permission' => 'news view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ],
         [
             'header' => 'Master',
             'permissions' => [

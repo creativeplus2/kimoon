@@ -32,6 +32,7 @@ Route::prefix('panel')->group(function () {
         return redirect()->route('dashboard');
     });
     Route::resource('news', App\Http\Controllers\NewsController::class)->middleware('auth');
+    Route::resource('page', App\Http\Controllers\PageController::class)->middleware('auth');
 
     Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
     Route::resource('account-banks', App\Http\Controllers\AccountBankController::class)->middleware('auth');

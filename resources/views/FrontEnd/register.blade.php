@@ -12,14 +12,13 @@
     <div class="container">
         <div class="sec-title">
 
-            <h3 class="sec-title__title">Select your plan</h3><!-- /.sec-title__title -->
+            <h3 class="sec-title__title">{{$text['title']}}</h3><!-- /.sec-title__title -->
         </div><!-- /.sec-title -->
-
         <div class="tabs-box">
             <div class="tabs-content">
                 <div class="tab active-tab fadeInUp animated" id="yearly">
                     <div class="row gutter-y-30">
-                        @foreach ($members as $user)
+                        @foreach ($text['members'] as $user)
 
                         <div class="col-md-12 col-lg-4">
                             <div class="membership-one__card text-center ">
@@ -51,7 +50,9 @@
                     </div>
                 </div>
             </div><!-- /.tabs-content -->
-        </div><!-- /.tabs-box -->
+        </div>
+
+
     </div><!-- /.container -->
 </section>
 

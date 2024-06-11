@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Page;
 
 
 
@@ -17,16 +18,22 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $setting = SettingApp::find(1);
+        $page = Page::where('title', '=', 'home')->firstOrFail();
+
         return view('FrontEnd.index', [
-            'setting' => $setting
+            'setting' => $setting,
+            'text' => $page->content
         ]);
     }
     public function page(Request $request)
     {
         $setting = SettingApp::find(1);
         $path = $request->path();
+        $page = Page::where('title', '=', $request->path())->firstOrFail();
+
         return view('FrontEnd.' . $path, [
-            'setting' => $setting
+            'setting' => $setting,
+            'text' => $page->content
         ]);
     }
     public function submitpartnership(Request $request)
