@@ -104,12 +104,12 @@
                             <div>
                                 @foreach ($subCategories as $data)
 
-                                <h4 class="mb-3">
+                                <h5 class="mb-3">
                                     <a href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">
 
                                         {{ $data->nama_sub_kategori }}
                                     </a>
-                                </h4>
+                                </h5>
                                 @endforeach
 
 
