@@ -93,7 +93,29 @@
                         <h3 class="product__sidebar--title">
                             Kategori produk
                         </h3>
+                        <hr>
                         <div class="accordion accordion-flush" id="categoryAccordion">
+
+                            @php
+                            $subCategories = DB::table('sub_categories')
+                            ->where('categori_id', 1)
+                            ->get();
+                            @endphp
+                            <div>
+                                @foreach ($subCategories as $data)
+
+                                <h4 class="mb-3">
+                                    <a href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">
+
+                                        {{ $data->nama_sub_kategori }}
+                                    </a>
+                                </h4>
+                                @endforeach
+
+
+                            </div>
+                        </div>
+                        <!-- <div class="accordion accordion-flush" id="categoryAccordion">
 
                             @foreach ($produkCategory as $row)
                             @php
@@ -102,16 +124,16 @@
                             ->get();
                             @endphp
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="heading{{ $row->id }}">
+                                <h2 class="accordion-header" id="heading">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $row->id }}" aria-expanded="false"
-                                        aria-controls="collapse{{ $row->id }}">
+                                        data-bs-target="#collapse" aria-expanded="false"
+                                        aria-controls="collapse">
                                         {{ $row->nama_kategori }}
                                     </button>
 
                                 </h2>
-                                <div id="collapse{{ $row->id }}" class="accordion-collapse collapse"
-                                    aria-labelledby="heading{{ $row->id }}" data-bs-parent="#categoryAccordion">
+                                <div id="collapse" class="accordion-collapse collapse"
+                                    aria-labelledby="heading" data-bs-parent="#categoryAccordion">
                                     <div class="accordion-body">
                                         <ul class="list-unstyled">
                                             @foreach ($subCategories as $data)
@@ -124,7 +146,7 @@
                                 </div>
                             </div>
                             @endforeach
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
