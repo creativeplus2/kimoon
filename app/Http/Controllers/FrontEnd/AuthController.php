@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         $setting = SettingApp::find(1);
         $provinces = Province::get();
-        $page = Page::where('title', '=', 'register')->firstOrFail();
+        $page = Page::where('title', '=', 'register-member')->firstOrFail();
 
         return view('FrontEnd.register', [
             'setting' => $setting,
