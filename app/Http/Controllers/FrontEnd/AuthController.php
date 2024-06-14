@@ -160,17 +160,6 @@ class AuthController extends Controller
         }
     }
 
-    public function login()
-    {
-        $setting = SettingApp::find(1);
-        $page = Page::where('title', '=', 'login')->firstOrFail();
-
-        return view('FrontEnd.login', [
-            'setting' => $setting,
-            'text' => $page->content
-        ]);
-    }
-
     public function submitLogin(Request $request)
     {
         $validator = Validator::make($request->all(), [

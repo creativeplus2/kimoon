@@ -1,10 +1,4 @@
-@extends('FrontEnd.main.master-front-end')
-
-@section('title', __('Login'))
-
-@section('content')
-
-<section class="membership-one">
+<section class="block-login membership-one">
     <div class="container">
         @if (request()->va_payment == 'approved')
         <div class="sec-title">
@@ -50,4 +44,3 @@
         </div>
     </div>
 </section>
-@endsection

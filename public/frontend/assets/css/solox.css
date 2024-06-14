@@ -26,7 +26,7 @@
   --solox-text-dark-rgb: 110, 107, 112;
   --solox-text-gray: #89868d;
   --solox-text-gray-rgb: 137, 134, 141;
-  --solox-base: #c2a74e;
+  --solox-base: #D4B035;
   --solox-base-rgb: 194, 167, 78;
   --yellowlight: #f9f6f1;
   --yellowlight-rgb: 249, 246, 241;
@@ -45,7 +45,7 @@
   --grey: #838383;
   --lightgrey: rgb(156 163 175);
   --dark: #2F1F0F;
-	--gold: #E0B15E;
+	--gold: #D4B035;
 	--darkgold: #996A2E;
 	--yellowlight: #FFFAEB;
   --darkbrown: #a44f30
@@ -261,7 +261,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: var(--solox-font, "Montserrat", sans-serif);
-  color: var(--solox-text, #838184);
+  color: var(--darkgold);
   font-size: 1rem;
   line-height: 1.6rem;
   font-weight: 400;
@@ -2831,7 +2831,7 @@ h6 {
 }
 .main-menu .main-menu__list > li.current > a,
 .main-menu .main-menu__list > li:hover > a {
-  color: var(--solox-black, #1c1a1d);
+  color: var(--darkgold);
   text-shadow: 0 0 0.5px currentColor;
 }
 .main-menu .main-menu__list li ul {
@@ -16714,6 +16714,53 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
   background-position:center center!important;
   opacity:.7
 }
-.main-menu .main-menu__list .active a{
+
+
+.text-white{
+  color:var(--solox-white)!important;
+}
+.text-gold{
+  color:var(--gold)!important;
+}
+.text-darkgold{
+  color:var(--darkgold)!important;
+}
+.text-yellowlight{
+  color:var(--yellowlight)!important
+}
+.bg-darkgold{
+  background:var(--darkgold)!important;
+}
+.bg-gold{
+  background:var(--gold)!important;
+}
+.bg-yellowlight{
+  background:var(--yellowlight)!important
+}
+
+.sec-title__title{
+  color:var(--gold)
+}
+
+
+.-ml-2{
+  margin-left:-2rem;
+
+}
+
+.main-menu .main-menu__list > li > a{
   color:var(--darkgold)
+}
+.main-menu .main-menu__list .active a{
+  color:var(--gold)
+}
+
+@media only screen and (min-width: 576px) {
+  .-ml-sm-6{
+    margin-left:-6rem;
+  }
+  .py-sm-6{
+    padding-top:6rem!important;
+    padding-bottom:6rem!important
+  }
 }

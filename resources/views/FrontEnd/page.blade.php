@@ -8,5 +8,4 @@
 @include('FrontEnd.main.'.$block['block'], ['text'=> $block['content']] )
 @endforeach
 
-
 @endsection

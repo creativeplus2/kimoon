@@ -72,8 +72,9 @@
     }
 </style>
 
-@include('FrontEnd.main.page-header', ['header'=> $text] )
-
+@foreach ($text as $block)
+@include('FrontEnd.main.'.$block['block'], ['text'=> $block['content']] )
+@endforeach
 
 <section class="product-one product-one--page">
     <div class="container">

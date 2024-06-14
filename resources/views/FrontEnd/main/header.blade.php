@@ -16,7 +16,7 @@
                     $param = explode("/",Request::getPathInfo());
                     @endphp
                     <li class={{ $param[1]===$menu["link"] ? "active" :"" }}>
-                        <a href={{ route('web.'.$menu["link"])}}>{{$menu["name"]}}</a>
+                        <a href={{"/".$menu["link"]}}>{{$menu["name"]}}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -40,7 +40,7 @@
                     <a href="{{ route('web.register') }}" class="solox-btn main-header__btn alt-btn">
                         <span>Register</span>
                     </a>
-                    <a href="{{ route('web.login') }}" class="solox-btn main-header__btn">
+                    <a href="./login-member" class="solox-btn main-header__btn">
                         <span>Login</span>
                     </a>
                     @endif

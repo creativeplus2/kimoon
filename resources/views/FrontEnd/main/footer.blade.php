@@ -1,8 +1,31 @@
+<section class="bg-darkgold">
+    <div class="container">
+        <div class="row py-4 py-sm-6">
+
+            <div class="col-12 text-gold">
+                <div class="sec-title">
+                    <h3 class="sec-title__title text-gold">{{$setting->membertable["contactus"]["title"]}}</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 text-gold">
+
+                        <p class="text-white">{{$setting->membertable["contactus"]["p_en"]}}</p>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-gold">
+
+                        <p class="text-white opacity-75"><i>{{$setting->membertable["contactus"]["p_id"]}}</i>
+                        </p>
+                    </div>
+                </div>
+
+                Kimoon Consumer Goods – Empower Lives.---
+            </div>
+        </div>
+    </div>
+</section>
 <footer class="main-footer background-black">
-    @if ($setting)
-    <div class="main-footer__bg background-black"
-        style="background-image: url({{ Storage::url('public/img/setting_app/') . $setting->logo }});"></div>
-    @endif
+
     <div class="main-footer__top">
         <div class="container">
             <div class="row">
@@ -16,7 +39,7 @@
                                 @endif
                         </a>
                         <ul class="list-unstyled footer-widget__info">
-                            <li> <a href="#">{{ $setting->no_telpon }}</a></li>
+                            <li>{{ $setting->no_telpon }}</li>
                             <li> <a href="#">{{ $setting->email }}</a></li>
                             <li> <a href="#">{{ $setting->alamat }}</a>
                             </li>

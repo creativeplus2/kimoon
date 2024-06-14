@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\SettingApp;
+
 use App\Models\AccountBank;
 
 use Illuminate\Bus\Queueable;

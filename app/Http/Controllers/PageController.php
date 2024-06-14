@@ -81,7 +81,7 @@ class PageController extends Controller
         $page->content = json_decode($request->content);
         $page->save();
 
-        return redirect()->route('page.index');
+        return redirect()->route('page.edit', compact('page'));
     }
 
     /**

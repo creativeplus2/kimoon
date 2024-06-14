@@ -25,13 +25,12 @@ class HomeController extends Controller
             'text' => $page->content
         ]);
     }
-    public function page(Request $request)
+    public function page($slug)
     {
         $setting = SettingApp::find(1);
-        $path = $request->path();
-        $page = Page::where('title', '=', $request->path())->firstOrFail();
+        $page = Page::where('title', '=', $slug)->firstOrFail();
 
-        return view('FrontEnd.' . $path, [
+        return view('FrontEnd.page', [
             'setting' => $setting,
             'text' => $page->content
         ]);

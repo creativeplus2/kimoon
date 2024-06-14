@@ -8,7 +8,6 @@ use App\Http\Controllers\{
 };
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\XenditController;
 use App\Http\Controllers\LocalizationController;
 
@@ -62,17 +61,15 @@ Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
 Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');
 Route::get('/register-member', [AuthController::class, 'register'])->name('web.register');
 Route::post('/submit-register-member', [AuthController::class, 'submitRegister'])->name('web.submit_register');
-Route::get('/login-member', [AuthController::class, 'login'])->name('web.login');
 Route::post('/submit-login-member', [AuthController::class, 'submitLogin'])->name('web.submit_login');
 Route::get('/submit-logout-member', [AuthController::class, 'submitLogout'])->name('web.submit_logout');
 Route::get('/profile', [AuthController::class, 'profile'])->name('web.profile');
 Route::get('/list-member', [AuthController::class, 'listMember'])->name('web.list_member');
 Route::get('/pay', [XenditController::class, 'getPaymentLink']);
 Route::get('/', [HomeController::class, 'index'])->name('web.home');
-Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
-Route::get('/about', [HomeController::class, 'page'])->name('web.about');
-Route::get('/partnership', [HomeController::class, 'page'])->name('web.partnership');
+
 Route::post('/submit-partnership', [HomeController::class, 'submitpartnership'])->name('web.submit_partnership');
 Route::get('/news', [News2Controller::class, 'index'])->name('web.news');
 Route::get('/news/{slug}', [News2Controller::class, 'detail']);
 
+Route::get('/{slug}', [HomeController::class, 'page']);

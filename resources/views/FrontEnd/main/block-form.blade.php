@@ -1,11 +1,4 @@
-@extends('FrontEnd.main.master-front-end')
-
-@section('title', __('Home'))
-
-@section('content')
-@include('FrontEnd.main.page-header', ['header'=> $text] )
-
-<section class="contact-one pt-100">
+<section class="block-form contact-one pt-100">
     <div class="container">
         <div class="contact-one__inner">
             <div class="row">
@@ -23,10 +16,10 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">{{$text["phonetext"]}}</p>
+                                    <p class="mb-0">{{$text["phonetext"]}}</p>
                                     <!-- /.contact-one__info__text -->
-                                    <h4 class="contact-one__info__title"><a href="#">{{ $setting->no_telpon }}</a></h4>
-                                    <!-- /.contact-one__info__title -->
+                                    <p><a href="#">{{ $setting->no_telpon }}</a></h4>
+                                        <!-- /.contact-one__info__title -->
                                 </div><!-- /.contact-one__info__content -->
                             </li>
                             <li class="contact-one__info__item">
@@ -34,11 +27,11 @@
                                     <i class="fas fa-envelope"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">{{$text["emailtext"]}}</p>
+                                    <p class="mb-0">{{$text["emailtext"]}}</p>
                                     <!-- /.contact-one__info__text -->
-                                    <h4 class="contact-one__info__title"><a href="mailto:{{ $setting->email }}">{{
+                                    <p><a href="mailto:{{ $setting->email }}">{{
                                             $setting->email }}</a></h4>
-                                    <!-- /.contact-one__info__title -->
+                                        <!-- /.contact-one__info__title -->
                                 </div><!-- /.contact-one__info__content -->
                             </li>
                             <li class="contact-one__info__item">
@@ -46,9 +39,9 @@
                                     <i class="fas fa-map-marker"></i>
                                 </div><!-- /.contact-one__info__icon -->
                                 <div class="contact-one__info__content">
-                                    <p class="contact-one__info__text">{{$text["addresstext"]}}</p>
+                                    <p class="mb-0">{{$text["addresstext"]}}</p>
                                     <!-- /.contact-one__info__text -->
-                                    <h4 class="contact-one__info__title"><a href="#">{{ $setting->alamat }}</a></h4>
+                                    <p><a href="#">{{ $setting->alamat }}</a></p>
                                     <!-- /.contact-one__info__title -->
                                 </div><!-- /.contact-one__info__content -->
                             </li>
@@ -90,4 +83,3 @@
         </div><!-- /.contact-one__inner -->
     </div><!-- /.container -->
 </section>
-@endsection
