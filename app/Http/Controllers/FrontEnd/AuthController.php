@@ -156,7 +156,6 @@ class AuthController extends Controller
                     DB::table('parent_member')->insert($dataParent);
                     $distributor = DB::table('members')->where('id', '=', $cekMemberDistributor->member_id)->first();
                     Mail::to($distributor->email)->send(new NotifyDistributorMail($distributor));
-
                 }
             }
             Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
