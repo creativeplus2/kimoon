@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyRegisterMemberMail;
+use App\Mail\NotifyDistributorMail;
+
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -152,10 +154,13 @@ class AuthController extends Controller
                         'updated_at' => date('Y-m-d H:i:s'),
                     ];
                     DB::table('parent_member')->insert($dataParent);
+                    $distributor = DB::table('members')->where('id', '=', $cekMemberDistributor->member_id)->first();
+                    Mail::to($distributor->email)->send(new NotifyDistributorMail($distributor));
+
                 }
             }
             Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
-            Alert::success('success', 'Register member berhasil, Silahkan cek email untuk detail informasi / hubungi admin Kimoon.id');
+            Alert::success('success', 'Register member berhasil, Silahkan cek email inbox atau spam untuk detail informasi / hubungi admin Kimoon.id');
             return redirect()->back();
         }
     }

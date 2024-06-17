@@ -46,11 +46,13 @@ class NotifyRegisterMemberMail extends Mailable
     {
         // $xenditService = new XenditService();
         // $typeUserService = new TypeUserService();
+        $imagePath = public_path('images/qrkimoonn.jpg');
         $settingApp = SettingApp::findOrFail(1)->first();
         $members = $settingApp->membertable['members'];
         foreach ($members as $key => $value) {
             if ($value['slug'] == strtolower($this->member->type_user)) {
-                $found = $value['pricediscount'];
+                $price = $value['price'];
+                $pricemonthly = $value['pricemonthly'];
                 break;
             }
         }
@@ -59,7 +61,9 @@ class NotifyRegisterMemberMail extends Mailable
             with: [
                 'member' => $this->member,
                 'bankAccounts' => AccountBank::get(),
-                'priceRegistration' => $found
+                'price' => $price,
+                'pricemonthly' => $pricemonthly,
+                'imagePath' => $imagePath
                 // 'xenditVirtualAccounts' => $xenditService->getAllPaymentMethods(),
                 // 'priceRegistration' => $typeUserService->getRegistrationPriceByUserType($this->member->type_user)
             ]
