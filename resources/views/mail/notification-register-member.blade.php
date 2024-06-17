@@ -68,7 +68,7 @@
     <br /><br /><br />
     Manajemen<br />
     Kimoon.id<br />
-    Empower Lives
+    Empower Lives<br /><br />
 
     phone / whatsapp : +62 811 9151575<br />
     email: hello@kimoon.id<br />
