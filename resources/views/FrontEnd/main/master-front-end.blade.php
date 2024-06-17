@@ -65,7 +65,33 @@
                         @endif
                     </a>
                 </div>
-                <div class="mobile-nav__container"></div>
+                <div class="mobile-nav__container">
+                    <ul class="main-menu__list">
+                        @foreach ($setting->membertable["menus"] as $menu)
+                        @php
+                        $param = explode("/",Request::getPathInfo());
+                        @endphp
+                        <li class={{ $param[1]===$menu["link"] ? "active" :"" }}>
+                            <a href={{"/".$menu["link"]}}>{{$menu["name"]}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    @if (Session::get('login-member'))
+                    <a href="{{ route('web.profile') }}" class="solox-btn main-header__btn alt-btn">
+                        <span>{{ Session::get('name-member') }} / {{ Session::get('type-user') }}</span>
+                    </a>
+                    <a href="{{ route('web.submit_logout') }}" class="solox-btn main-header__btn">
+                        <span>Logout&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    </a>
+                    @else
+                    <a href="{{ route('web.register') }}" class="solox-btn main-header__btn alt-btn">
+                        <span>Register</span>
+                    </a>
+                    <a href="./login-member" class="solox-btn main-header__btn">
+                        <span>Login</span>
+                    </a>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="search-popup">
