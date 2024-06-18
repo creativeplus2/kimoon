@@ -154,8 +154,8 @@ class AuthController extends Controller
                         'updated_at' => date('Y-m-d H:i:s'),
                     ];
                     DB::table('parent_member')->insert($dataParent);
-                    // $distributor = DB::table('members')->where('id', '=', $cekMemberDistributor->member_id)->first();
-                    // Mail::to($distributor->email)->send(new NotifyDistributorMail($distributor));
+                    $distributor = DB::table('members')->where('id', '=', $cekMemberDistributor->member_id)->first();
+                    Mail::to($distributor->email)->send(new NotifyDistributorMail($distributor));
                 }
             }
             Mail::to($member->email)->send(new NotifyRegisterMemberMail($member));
