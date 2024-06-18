@@ -1,7 +1,7 @@
 <section class="block-three" style="background-color: var(--yellowlight);">
 
     <div class="container">
-        <div class="row text-darkgold py-4 py-sm-6 ">
+        <div class="row text-darkgold py-5 py-sm-6 px-5 px-md-0">
 
             <div class="sec-title">
                 <h3 class="sec-title__title text-gold">{{$text["title"]}}</h3>

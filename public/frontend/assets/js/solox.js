@@ -155,6 +155,21 @@
     });
   }
 
+  if ($(".register-form-validated").length) {
+    $(".register-form-validated").validate({
+      // initialize the plugin
+      rules: {
+
+        password_confirmation: {
+          equalTo: "#password"
+        }
+      },
+      submitHandler: function (form) {
+        form.submit();
+      }
+    });
+  }
+
   // mailchimp form
   if ($(".mc-form").length) {
     $(".mc-form").each(function () {

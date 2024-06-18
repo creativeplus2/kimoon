@@ -2,7 +2,7 @@
     <div class="container position-relative">
         <div class="position-absolute bg-yellowlight h-100 z-0 " style="width:10000px"></div>
 
-        <div class="row gx-5 py-4 py-sm-6 position-relative">
+        <div class="row py-5 py-sm-6 position-relative">
             <div class="col-md-6 position-relative inline-block">
                 <div class="wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                     <img src={{ $text["image1"] }} class="w-100 -ml-2 -ml-sm-6">

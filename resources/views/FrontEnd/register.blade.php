@@ -12,15 +12,13 @@
 @include('FrontEnd.main.'.$block['block'], ['text'=> $block['content']] )
 @endforeach
 
-
-
 <section class="login-page">
     <div class="container">
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="login-page__wrap">
-                    <form action="{{ route('web.submit_register') }}" method="POST" enctype="multipart/form-data">
+                    <form class="register-form-validated" action="{{ route('web.submit_register') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <div class="row mb-2">
@@ -29,27 +27,6 @@
 
                                 <div class="form-group">
                                     <label for="type-user">{{ __('Plan') }}</label>
-                                    <!-- <select
-                                        class="form-control js-example-basic-multiple @error('type_user') is-invalid @enderror"
-                                        name="type_user" id="type-user" required>
-                                        <option value="" selected disabled>-- {{ __('Select type user') }} --
-                                        </option>
-                                        <option value="Reseller" {{ isset($member) && $member->type_user == 'Reseller' ?
-                                            'selected' : (old('type_user') == 'Reseller' ? 'selected' : '') }}>
-                                            Reseller</option>
-                                        <option value="Subdis" {{ isset($member) && $member->type_user == 'Subdis' ?
-                                            'selected' : (old('type_user') == 'Subdis' ? 'selected' : '') }}>
-                                            Subdis</option>
-                                        <option value="Distributor" {{ isset($member) && $member->type_user ==
-                                            'Distributor' ? 'selected' : (old('type_user') == 'Distributor' ? 'selected'
-                                            : '') }}>
-                                            Distributor</option>
-                                    </select>
-                                    @error('type_user')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                    @enderror -->
                                     <input type="text" name="type_user" id="type-user"
                                         class="form-control @error('type_user') is-invalid @enderror"
                                         value="{{ isset($member) ? $member->type_user : old('type_user') }}"
@@ -57,15 +34,15 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="nama-member">{{ __('Nama Member') }}</label>
-                                    <input type="text" name="nama_member" id="nama-member"
+                                    <label for="nama-member">{{ __('Nama') }}</label>
+                                    <input minlength="3" type="text" name="nama_member" id="nama-member"
                                         class="form-control @error('nama_member') is-invalid @enderror"
                                         value="{{ isset($member) ? $member->nama_member : old('nama_member') }}"
                                         placeholder="{{ __('Nama Member') }}" required />
                                     @error('nama_member')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -77,34 +54,34 @@
                                         value="{{ isset($member) ? $member->email : old('email') }}"
                                         placeholder="{{ __('Email') }}" required />
                                     @error('email')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="no-telpon">{{ __('No Telpon') }}</label>
-                                    <input type="text" name="no_telpon" id="no-telpon"
+                                    <label for="no-telpon">{{ __('No. Handphone') }}</label>
+                                    <input maxlength="15" type="number" name="no_telpon" id="no-telpon"
                                         class="form-control @error('no_telpon') is-invalid @enderror"
                                         value="{{ isset($member) ? $member->no_telpon : old('no_telpon') }}"
-                                        placeholder="{{ __('No Telpon') }}" required />
+                                        placeholder="{{ __('No. Handphone contoh: 081189998334') }}" required />
                                     @error('no_telpon')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="no-ktp">{{ __('No Ktp') }}</label>
-                                    <input type="text" name="no_ktp" id="no-ktp"
+                                    <label for="no-ktp">{{ __('No. Ktp') }}</label>
+                                    <input minlength="16" type="number" name="no_ktp" id="no-ktp"
                                         class="form-control @error('no_ktp') is-invalid @enderror"
                                         value="{{ isset($member) ? $member->no_ktp : old('no_ktp') }}"
-                                        placeholder="{{ __('No Ktp') }}" required />
+                                        placeholder="{{ __('No. Ktp') }}" required />
                                     @error('no_ktp')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
 
@@ -132,9 +109,9 @@
                                                 id="photo_ktp">
 
                                             @error('photo_ktp')
-                                            <span class="text-danger">
+                                            <label class="error">
                                                 {{ $message }}
-                                            </span>
+                                            </label>
                                             @enderror
                                             <div id="photo_ktpHelpBlock" class="form-text">
                                                 {{ __('Leave the photo ktp blank if you don`t want to change it.') }}
@@ -150,22 +127,22 @@
                                         required>
 
                                     @error('photo_ktp')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
                                 @endisset
 
                                 <div class="form-group">
                                     <label for="password">{{ __('Password') }}</label>
-                                    <input type="password" name="password" id="password"
+                                    <input minlength="8" type="password" name="password" id="password"
                                         class="form-control @error('password') is-invalid @enderror"
                                         placeholder="{{ __('Password') }}" {{ empty($member) ? ' required' : '' }} />
                                     @error('password')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                     <!-- @isset($member)
                                     <div id="PasswordHelpBlock" class="form-text">
@@ -177,9 +154,10 @@
 
                                 <div class="form-group">
                                     <label for="password-confirmation">{{ __('Password Confirmation') }}</label>
-                                    <input type="password" name="password_confirmation" id="password-confirmation"
-                                        class="form-control" placeholder="{{ __('Password Confirmation') }}" {{
-                                        empty($member) ? ' required' : '' }} />
+                                    <input minlength="8" type="password" name="password_confirmation"
+                                        id="password-confirmation" class="form-control"
+                                        placeholder="{{ __('Password Confirmation') }}" {{ empty($member) ? ' required'
+                                        : '' }} />
                                 </div>
                             </div>
                             <div class="col-md-6 mb-2 alamat">
@@ -200,9 +178,9 @@
                                         @endforeach
                                     </select>
                                     @error('provinsi_id')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
 
@@ -215,9 +193,9 @@
                                         </option>
                                     </select>
                                     @error('kabkot_id')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -229,9 +207,9 @@
                                         </option>
                                     </select>
                                     @error('kecamatan_id')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
 
@@ -243,9 +221,9 @@
                                         </option>
                                     </select>
                                     @error('kelurahan_id')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
 
@@ -256,33 +234,26 @@
                                         value="{{ isset($member) ? $member->zip_code : old('zip_code') }}"
                                         placeholder="{{ __('Zip Code') }}" required readonly />
                                     @error('zip_code')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
                                 </div>
                                 <div class="form-group">
 
-                                    <label for="alamat-member">{{ __('Alamat Member') }}</label>
-                                    <textarea name="alamat_member" id="alamat-member"
+                                    <label for="alamat-member">{{ __('Alamat Lengkap') }}</label>
+                                    <textarea rows="5" name="alamat_member" id="alamat-member"
                                         class="form-control @error('alamat_member') is-invalid @enderror"
-                                        placeholder="{{ __('Alamat Member') }}"
+                                        placeholder="{{ __('Alamat Lengkap') }}"
                                         required>{{ isset($member) ? $member->alamat_member : old('alamat_member') }}</textarea>
                                     @error('alamat_member')
-                                    <span class="text-danger">
+                                    <label class="error">
                                         {{ $message }}
-                                    </span>
+                                    </label>
                                     @enderror
-
-
                                 </div>
-
-
                             </div>
-
                         </div>
-
-
                 </div>
                 <button type="submit" class="solox-btn form-register">
                     <span>
@@ -306,13 +277,19 @@
         $("#type-user").val('Distributor');
         $(".membership-one__card").removeClass('active');
         $(this.parentNode).addClass('active');
+        $("#type-user").focus()
+
     });
     $(".member-type-subdis").click(function () {
+        $("#type-user").focus()
+
         $("#type-user").val('Subdis');
         $(".membership-one__card").removeClass('active');
         $(this.parentNode).addClass('active');
     });
     $(".member-type-reseller").click(function () {
+        $("#type-user").focus()
+
         $("#type-user").val('Reseller');
         $(".membership-one__card").removeClass('active');
         $(this.parentNode).addClass('active');
@@ -322,12 +299,20 @@
 <script>
 
     const options_temp = '<option value="" selected disabled>-- Select --</option>';
+    $(function () {
+        $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
+        if ($('#provinsi-id').val() != "") {
+            getKabupatenKota($('#provinsi-id').val());
+        }
 
+    });
     $('#provinsi-id').change(function () {
         $('#kabkot-id, #kecamatan-id, #kelurahan-id').html(options_temp);
         if ($(this).val() != "") {
+
             getKabupatenKota($(this).val());
         }
+        $("#provinsi-id").focus()
         // onValidation('provinsi')
     })
 
@@ -336,6 +321,8 @@
         if ($(this).val() != "") {
             getKecamatan($(this).val());
         }
+        $("#kabkot-id").focus()
+
         // onValidation('kota')
     })
 
@@ -344,6 +331,8 @@
         if ($(this).val() != "") {
             getKelurahan($(this).val());
         }
+        $("#kecamatan-id").focus()
+
         //onValidation('kecamatan')
     })
 
@@ -351,6 +340,9 @@
         if ($(this).val() != "") {
             getZipCode($(this).val());
         }
+        $("#kelurahan-id").focus()
+        $("#zip-code").focus()
+
         //onValidation('kelurahan')
     });
 

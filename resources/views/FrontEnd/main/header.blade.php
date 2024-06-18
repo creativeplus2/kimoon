@@ -17,6 +17,15 @@
                     @endphp
                     <li class={{ $param[1]===$menu["link"] ? "active" :"" }}>
                         <a href={{"/".$menu["link"]}}>{{$menu["name"]}}</a>
+                        @if ($menu["children"])
+                        <ul>
+                            @foreach ($menu["children"] as $child)
+                            <li class={{ $param[1]===$child["link"] ? "active" :"" }}>
+                                <a href={{"/".$child["link"]}}>{{$child["name"]}}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </li>
                     @endforeach
                 </ul>

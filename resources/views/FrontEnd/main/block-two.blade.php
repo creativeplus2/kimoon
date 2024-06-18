@@ -1,6 +1,6 @@
 <section class="block-two">
     <div class="container">
-        <div class="row gx-5 py-4 py-sm-6 position-relative">
+        <div class="row py-5 py-sm-6 position-relative">
             <div class="col-lg-6">
                 <div class="wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
 
@@ -12,10 +12,8 @@
                 </div>
             </div>
             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                <div class="text-darkgold">
-                    <div class="sec-title">
-                        <h3 class="sec-title__title text-gold">{{$text["title"]}}</h3>
-                    </div>
+                <div class="text-darkgold px-5 px-md-0">
+                    <h3 class="sec-title__title text-gold my-5">{{$text["title"]}}</h3>
                     <p>{!! $text["p_en"] !!}</p>
                     <p class="opacity-75"><i>{!! $text["p_id"] !!}</i></p>
 

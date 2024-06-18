@@ -50,7 +50,7 @@
                 </div><!-- /.col-xl-7 -->
                 <div class="col-xl-5">
                     <form action="{{ route('web.submit_partnership') }}" method="POST" enctype="multipart/form-data"
-                        class="contact-one__form form-one background-base wow fadeInUp animated"
+                        class="contact-form-validated contact-one__form form-one background-base wow fadeInUp animated"
                         style="visibility: visible; animation-duration: 1500ms; animation-name: fadeInUp;">
                         @csrf
                         @method('POST')
