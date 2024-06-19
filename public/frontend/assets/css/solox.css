@@ -9326,7 +9326,6 @@ body.megamenu-popup-active .mobile-nav__content {
 .main-slider-one__sub-title {
   text-align: left;
   color: var(--solox-white, #fff);
-  font-size: 50px;
   font-weight: 400;
   line-height: 1;
   font-family: var(--solox-special-font, "Alex Brush", cursive);
@@ -16708,12 +16707,16 @@ h1,h2,h3,h4,h5,h6,.footer-widget__title{
   font-style:italic
 }
 .main-slider-one__title {
-  font-size: 5rem
+  font-size: 5rem;
+  transition: transform 1000ms ease, opacity 1000ms ease;
+  transform: translateY(-200px);
 
 }
 
 .main-slider-one__sub-title  {
-  font-size: 2rem
+  font-size: 2rem;
+  transition: transform 1000ms ease, opacity 1000ms ease;
+  transform: translateY(-200px);
 
 }
 
