@@ -98,8 +98,8 @@
     </div>
 </footer>
 <a href="https://api.whatsapp.com/send/?phone=628119151575&text&type=phone_number&app_absent=0" target="_blank">
-    <button role="button" tabindex="0" class="m-4 position-absolute right-0 bottom-0 flex rounded-circle" type="button"
-        style="width:60px; height: 60px; background-color: #4FCE5D; border:none; right:0">
+    <button role="button" tabindex="0" class="m-4 right-0 bottom-0 flex rounded-circle " type="button"
+        style="width:60px; height: 60px; background-color: #4FCE5D; border:none; right:0; position: fixed; z-index:1000">
         <div class="text-white p-2">
             <svg style="fill: white;" class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" fill="#4FCE5D"
                 viewBox="0 0 90 90" class="injected-svg"
