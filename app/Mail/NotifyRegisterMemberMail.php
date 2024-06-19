@@ -46,7 +46,7 @@ class NotifyRegisterMemberMail extends Mailable
     {
         // $xenditService = new XenditService();
         // $typeUserService = new TypeUserService();
-        $imagePath = public_path('images/qrkimoonn.jpg');
+        $imagePath = public_path('images/qrkimoon.jpg');
         $settingApp = SettingApp::findOrFail(1)->first();
         $members = $settingApp->membertable['members'];
         foreach ($members as $key => $value) {

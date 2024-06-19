@@ -11,7 +11,8 @@
     Nama rekening : PT Kimoon Niaga Lancar<br />
 </p>
 <p>
-    2.Scan QR code untuk pembayaran :<br />
+    2.Scan QR code untuk pembayaran (Apabila tidak muncul gunakan <a href="https://kimoon.id/images/qrkimoon.jpg">Link
+        QR</a> ini atau cek di attachment):<br />
     <img width="400px" src="{{ $message->embed($imagePath) }}" alt="image">
 </p>
 <p>
