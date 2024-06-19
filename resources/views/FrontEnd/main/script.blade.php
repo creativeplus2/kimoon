@@ -19,7 +19,7 @@
 <script src="{{ asset('frontend/assets/vendors/jquery-circleType/jquery.circleType.js') }}"></script>
 <script src="{{ asset('frontend/assets/vendors/jquery-lettering/jquery.lettering.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/solox.js') }}"></script>
-<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-<div class="elfsight-app-a93b743d-5a0c-4396-92cf-03868366b185" data-elfsight-app-lazy></div>
+<!-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-a93b743d-5a0c-4396-92cf-03868366b185" data-elfsight-app-lazy></div> -->
 @include('sweetalert::alert')
 @stack('js')
