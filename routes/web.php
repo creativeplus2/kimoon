@@ -54,8 +54,11 @@ Route::prefix('panel')->group(function () {
     Route::get('kecamatan/{kotaId}', [App\Http\Controllers\WilayahController::class, 'kecamatan'])->name('api.kecamatan');
     Route::get('kelurahan/{kecamatanId}', [App\Http\Controllers\WilayahController::class, 'kelurahan'])->name('api.kelurahan');
     Route::get('zipcode/{kelurahanId}', [App\Http\Controllers\WilayahController::class, 'zipcode'])->name('api.zipcode');
-});
 
+});
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 // Route FrontEnd
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
 Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');

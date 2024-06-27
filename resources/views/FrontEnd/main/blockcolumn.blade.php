@@ -1,13 +1,8 @@
 <section class="block-joinus">
     <div class="container">
-        <div class="row  justify-content-center mt-5 mb-5">
-            <div class="w-50">
-                <h2 class="text-gold text-center">{{ $text['title']}}</h2>
-                <p class="text-center text-darkgold">{{ $text['subtitle']}}</p>
-            </div>
-        </div>
+
         <div class="row">
-            @foreach ($text['plan'] as $plan)
+            @foreach ($text['columnshow'] as $plan)
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                 <div class="feature-one__item text-center">
                     <a href={{ route('web.register') }}>
@@ -19,9 +14,9 @@
                         </div>
                     </a>
                     <a href={{ route('web.register') }}>
-                        <h3 class="text-gold mb-3">{{ $plan['name']}}</h3>
+                        <h3 class="text-gold mb-3">{{ $plan['title']}}</h3>
                     </a>
-                    <p class="text-darkgold">{{ $plan['p']}}</p>
+                    <p class="text-darkgold">{{ $plan['subtitle']}}</p>
                 </div>
             </div>
             @endforeach

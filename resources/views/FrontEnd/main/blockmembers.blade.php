@@ -1,9 +1,6 @@
-<section class="block-plan membership-one">
+<section class="block-plan ">
     <div class="container">
-        <div class="sec-title mb-3">
 
-            <h3 class="sec-title__title">{{$text['title']}}</h3><!-- /.sec-title__title -->
-        </div><!-- /.sec-title -->
         <div class="tabs-box">
             <div class="tabs-content">
                 <div class="tab active-tab fadeInUp animated" id="yearly">
@@ -20,7 +17,10 @@
                                 <h4 class="membership-one__card__tagline">{{$user["type"]}}</h4>
 
                                 <ul class="list-unstyled membership-one__card__list">
-                                    @foreach ($user['list'] as $l)
+                                    @php
+                                    $arr = explode("\\n", $user['list']);
+                                    @endphp
+                                    @foreach ( $arr as $l)
                                     <li>
                                         <i class="fa fa-check-circle"></i>
                                         {{$l}}

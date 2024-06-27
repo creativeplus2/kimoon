@@ -1,20 +1,6 @@
-<section class="block-login membership-one">
+<section class="block-login">
     <div class="container">
-        @if (request()->va_payment == 'approved')
-        <div class="sec-title">
 
-            <h3 class="sec-title__title">{{$text['title']}}</h3><!-- /.sec-title__title -->
-        </div><!-- /.sec-title -->
-        <div class="kimoon-highlight">
-            <strong>Berhasil!</strong> Pembayaran Virtual Account telah dilakukan, harap konfirmasi ke Admin Kimoon
-            untuk aktivasi akun.
-        </div>
-        @else
-        <div class="sec-title">
-
-            <h3 class="sec-title__title">{{$text['title']}}</h3><!-- /.sec-title__title -->
-        </div><!-- /.sec-title -->
-        @endif
         <div class="row">
 
             <div class="col-lg-12 ">

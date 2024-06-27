@@ -7,14 +7,16 @@
                         <div class="sec-title">
                             <h3 class="sec-title__title">{{$text["title"]}}</h3>
                         </div>
-                        <p class="contact-one__text">{{$text["subtitle"]}}</p>
+                        <p class="contact-one__text">{{$text["p_id"]}}</p>
+                        <p class="contact-one__text">{{$text["p_en"]}}</p>
+
                         <ul class="list-unstyled contact-one__info">
                             <li class="contact-one__info__item">
                                 <div class="contact-one__info__icon">
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="contact-one__info__content">
-                                    <p class="mb-0">{{$text["phonetext"]}}</p>
+                                    <p class="mb-0">Phone</p>
                                     <p><a href="#">{{ $setting->no_telpon }}</a></h4>
                                 </div>
                             </li>
@@ -23,7 +25,7 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="contact-one__info__content">
-                                    <p class="mb-0">{{$text["emailtext"]}}</p>
+                                    <p class="mb-0">Email</p>
                                     <p><a href="mailto:{{ $setting->email }}">{{
                                             $setting->email }}</a></h4>
                                 </div>
@@ -33,7 +35,7 @@
                                     <i class="fas fa-map-marker"></i>
                                 </div>
                                 <div class="contact-one__info__content">
-                                    <p class="mb-0">{{$text["addresstext"]}}</p>
+                                    <p class="mb-0">Address</p>
                                     <p><a href="#">{{ $setting->alamat }}</a></p>
                                 </div>
                             </li>

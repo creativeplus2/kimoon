@@ -1,5 +1,5 @@
 <section class="block-title page-header">
-    <div class="page-header__bg" style="background: url({{ $text['image1'] }});background-size:cover;">
+    <div class="page-header__bg" style="background: url({{ $text['image2'] }});background-size:cover;">
     </div>
     <div class="container">
         @if ($setting)

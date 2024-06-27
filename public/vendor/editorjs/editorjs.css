@@ -1,0 +1,50 @@
+.block input,
+.block textarea,
+.block select,
+.wrapperimage{
+    display: block;
+    width: 75%;
+    padding: .5rem;
+    margin-bottom: .2rem;
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius:.3rem;
+    color: var(--vz-body-color);
+    background-color: var(--vz-input-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--vz-input-border);
+}
+.block input:focus,
+.block textarea:focus{
+    color: var(--vz-body-color);
+    background-color: var(--vz-input-bg);
+    border-color: var(--vz-input-focus-border);
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0 rgba(75, 56, 179, .25);
+    box-shadow: 0 0 0 0 rgba(75, 56, 179, .25);
+}
+.block{
+    width:100%;
+    background:#F2F2F7;
+    padding:.5rem;
+    margin:.5rem;
+    border-radius:.5rem
+}
+.block p{
+    margin-bottom:0.1rem;
+    font-size: .7rem;
+}
+.block img{
+    max-width:100px;
+}
+.block .wrapperinput label{
+    width:25%;
+    display:flex;
+    align-items: center;
+
+}
+.block .wrapperimage, .block .wrapperinput{
+    display:flex;
+    margin-bottom: .2rem;
+}

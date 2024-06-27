@@ -4,8 +4,8 @@
 
 @section('content')
 
-@foreach ($text as $block)
-@include('FrontEnd.main.'.$block['block'], ['text'=> $block['content']] )
+@foreach ($text['blocks'] as $block)
+@include('FrontEnd.main.'.$block['type'], ['text'=> $block['data']] )
 @endforeach
 
 @endsection

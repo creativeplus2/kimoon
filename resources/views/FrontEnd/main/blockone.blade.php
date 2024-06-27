@@ -1,0 +1,1 @@
+@include('FrontEnd.main.'.$text['blocktype'], ['text'=> $text] )
