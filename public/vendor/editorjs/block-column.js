@@ -82,7 +82,7 @@ class BlockColumn{
 
     _createImage(url, wrapperimage){
         const image = document.createElement('img');  
-        image.src = 'http://127.0.0.1:8000'+ url;
+        image.src = window.location.origin + url;
         wrapperimage.appendChild(image);
     }
   
