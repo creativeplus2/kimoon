@@ -56,7 +56,7 @@ Route::prefix('panel')->group(function () {
     Route::get('zipcode/{kelurahanId}', [App\Http\Controllers\WilayahController::class, 'zipcode'])->name('api.zipcode');
 
 });
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
     Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
     Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 });
