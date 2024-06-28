@@ -46,7 +46,29 @@
         @enderror
     </div>
 </div>
+<!-- @push('js')
+<script>
+    // create the editor
+    const options = {
+        modes: ['tree', 'form'],
+        mode: 'tree',
+        ace: ace
+    }
+    var container = document.getElementById("jsoneditor");
+    var jsoncontent = JSON.parse('{!! isset($page->content) ? json_encode($page->content) : "" !!}')
 
+    var editor = new JSONEditor(container, options);
+
+    // set json
+    editor.set(jsoncontent);
+    setInterval(getJSON, 1000);
+    // get json
+    function getJSON() {
+        var json = editor.get();
+        document.getElementById("content").innerHTML = JSON.stringify(json, null, '\t');
+    }
+</script>
+@endpush -->
 @push('js')
 <script>
     const ImageTool = window.ImageTool;
