@@ -56,9 +56,8 @@ Route::prefix('panel')->group(function () {
     Route::get('zipcode/{kelurahanId}', [App\Http\Controllers\WilayahController::class, 'zipcode'])->name('api.zipcode');
 
 });
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
-    Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
-    Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 // Route FrontEnd
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
