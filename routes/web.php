@@ -57,8 +57,8 @@ Route::prefix('panel')->group(function () {
 
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+    Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload'); });
 // Route FrontEnd
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
 Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');
