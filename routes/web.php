@@ -57,7 +57,7 @@ Route::prefix('panel')->group(function () {
 
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \Unisharp\Laravelfilemanager\Lfm::routes();
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 // Route FrontEnd
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
