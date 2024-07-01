@@ -6,9 +6,12 @@
 </p>
 <p>
     1.Transfer bank ke :<br />
-    Nomor rekening : 8832076014<br />
-    Nama Bank : Bank BCA cabang gading serpong<br />
-    Nama rekening : PT Kimoon Niaga Lancar<br />
+    @foreach ($bankAccounts as $bankAccount)
+    Nama Bank : {{ $bankAccount->bank->nama_bank }}</br>
+    Nomor rekening : {{ $bankAccount->account_number }}</br>
+    Nama rekening : {{ $bankAccount->account_name }}</br></br></br>
+    @endforeach
+
 </p>
 <p>
     2.Scan QR code untuk pembayaran (Apabila tidak muncul gunakan <a href="https://kimoon.id/images/qrkimoon.jpg">Link

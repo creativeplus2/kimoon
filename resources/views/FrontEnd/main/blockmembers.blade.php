@@ -9,9 +9,11 @@
 
                         <div class="col-md-12 col-lg-4">
                             <div class="membership-one__card text-center ">
-
+                                @unless ($user["pricediscount"] == $user["price"])
                                 <h5 class="membership-one__card__price" style="text-decoration:line-through">
                                     {{format_rupiah($user["price"])}}</h5>
+                                @endunless
+
                                 <h4 class="membership-one__card__price">{{format_rupiah($user["pricediscount"])}}</h4>
 
                                 <h4 class="membership-one__card__tagline">{{$user["type"]}}</h4>
