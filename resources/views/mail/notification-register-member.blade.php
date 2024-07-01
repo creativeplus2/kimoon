@@ -7,9 +7,9 @@
 <p>
     1.Transfer bank ke :<br />
     @foreach ($bankAccounts as $bankAccount)
-    Nama Bank : {{ $bankAccount->bank->nama_bank }}</br>
-    Nomor rekening : {{ $bankAccount->account_number }}</br>
-    Nama rekening : {{ $bankAccount->account_name }}</br></br></br>
+    Nama Bank : {{ $bankAccount->bank->nama_bank }}<br />
+    Nomor rekening : {{ $bankAccount->account_number }}<br />
+    Nama rekening : {{ $bankAccount->account_name }}<br /><br />
     @endforeach
 
 </p>
