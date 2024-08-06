@@ -218,7 +218,6 @@
                                     @else
                                     {{ format_rupiah($product->harga_umum) }}
                                     @endif
-                                    / {{ $product->nama_unit }}
                                 </div>
                             </div>
                         </div>

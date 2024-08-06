@@ -1,6 +1,7 @@
-@push('css')
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+@push('js')
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 @endpush
+
 <div class="row mb-2">
     <div class="col-md-6 mb-2">
         <label for="kode-produk">{{ __('Kode Produk') }}</label>
@@ -9,9 +10,9 @@
             value="{{ isset($product) ? $product->kode_produk : old('kode_produk') }}"
             placeholder="{{ __('Kode Produk') }}" required />
         @error('kode_produk')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -21,9 +22,9 @@
             value="{{ isset($product) ? $product->nama_produk : old('nama_produk') }}"
             placeholder="{{ __('Nama Produk') }}" required />
         @error('nama_produk')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -31,9 +32,9 @@
         <input type="text" name="sku" id="sku" class="form-control @error('sku') is-invalid @enderror"
             value="{{ isset($product) ? $product->sku : old('sku') }}" placeholder="{{ __('Sku') }}" required />
         @error('sku')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -42,16 +43,16 @@
             name="sub_kategori_id" id="sub-kategori-id" required>
             <option value="" selected disabled>-- {{ __('Select sub category') }} --</option>
             @foreach ($subCategories as $subCategory)
-                <option value="{{ $subCategory->id }}"
-                    {{ isset($product) && $product->sub_kategori_id == $subCategory->id ? 'selected' : (old('sub_kategori_id') == $subCategory->id ? 'selected' : '') }}>
-                    {{ $subCategory->nama_sub_kategori }}
-                </option>
+            <option value="{{ $subCategory->id }}" {{ isset($product) && $product->sub_kategori_id == $subCategory->id ?
+                'selected' : (old('sub_kategori_id') == $subCategory->id ? 'selected' : '') }}>
+                {{ $subCategory->nama_sub_kategori }}
+            </option>
             @endforeach
         </select>
         @error('sub_kategori_id')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -61,16 +62,16 @@
             <option value="" selected disabled>-- {{ __('Select product unit') }} --</option>
 
             @foreach ($productUnits as $productUnit)
-                <option value="{{ $productUnit->id }}"
-                    {{ isset($product) && $product->produk_unit_id == $productUnit->id ? 'selected' : (old('produk_unit_id') == $productUnit->id ? 'selected' : '') }}>
-                    {{ $productUnit->nama_unit }}
-                </option>
+            <option value="{{ $productUnit->id }}" {{ isset($product) && $product->produk_unit_id == $productUnit->id ?
+                'selected' : (old('produk_unit_id') == $productUnit->id ? 'selected' : '') }}>
+                {{ $productUnit->nama_unit }}
+            </option>
             @endforeach
         </select>
         @error('produk_unit_id')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -80,9 +81,9 @@
             value="{{ isset($product) ? $product->harga_umum : old('harga_umum') }}"
             placeholder="{{ __('Harga Umum') }}" required />
         @error('harga_umum')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -92,9 +93,9 @@
             value="{{ isset($product) ? $product->harga_reseller : old('harga_reseller') }}"
             placeholder="{{ __('Harga Reseller') }}" required />
         @error('harga_reseller')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -104,9 +105,9 @@
             value="{{ isset($product) ? $product->harga_subdis : old('harga_subdis') }}"
             placeholder="{{ __('Harga Subdis') }}" required />
         @error('harga_subdis')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6 mb-2">
@@ -116,21 +117,21 @@
             value="{{ isset($product) ? $product->harga_distributor : old('harga_distributor') }}"
             placeholder="{{ __('Harga Distributor') }}" required />
         @error('harga_distributor')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
+        <span class="text-danger">
+            {{ $message }}
+        </span>
         @enderror
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="deksripsi-produk">{{ __('Deksripsi Produk') }}</label>
             <textarea name="deksripsi_produk" id="deksripsi-produk"
-                class="form-control @error('deksripsi_produk') is-invalid @enderror" placeholder="{{ __('Deksripsi Produk') }}"
-                required>{{ isset($product) ? $product->deksripsi_produk : old('deksripsi_produk') }}</textarea>
+                class="form-control @error('deksripsi_produk') is-invalid @enderror"
+                placeholder="{{ __('Deksripsi Produk') }}">{{ isset($product) ? $product->deksripsi_produk : old('deksripsi_produk') }}</textarea>
             @error('deksripsi_produk')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
+            <span class="text-danger">
+                {{ $message }}
+            </span>
             @enderror
         </div>
     </div>
@@ -152,38 +153,38 @@
                 <td><input type="file" required name="photo[]"
                         class="form-control  @error('photo') is-invalid @enderror" />
                 </td>
-                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i
-                            class="fa fa-plus" aria-hidden="true"></i></button></td>
+                <td><button type="button" name="add_photo" id="add_photo" class="btn btn-success"><i class="fa fa-plus"
+                            aria-hidden="true"></i></button></td>
             </tr>
         </table>
         @error('photo')
-            <p style="color: red;">{{ $message }}</p>
+        <p style="color: red;">{{ $message }}</p>
         @enderror
     </div>
 </div>
 @push('js')
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#deksripsi-produk'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-    <script>
-        $(document).ready(function() {
-            var i = 1;
-            $('#add_photo').click(function() {
-                i++;
-                $('#dynamic_field').append('<tr id="row' + i +
-                    '"><td><input type="file" name="photo[]" class="form-control" required="" /></td><td><button type="button" name="remove" id="' +
-                    i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-            });
-
-            $(document).on('click', '.btn_remove', function() {
-                var button_id = $(this).attr("id");
-                $('#row' + button_id + '').remove();
-            });
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deksripsi-produk'))
+        .catch(error => {
+            console.error(error);
         });
-    </script>
+</script>
+<script>
+    $(document).ready(function () {
+        var i = 1;
+        $('#add_photo').click(function () {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i +
+                '"><td><input type="file" name="photo[]" class="form-control" required="" /></td><td><button type="button" name="remove" id="' +
+                i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+
+    });
+</script>
 @endpush

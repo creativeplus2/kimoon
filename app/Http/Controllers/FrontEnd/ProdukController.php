@@ -19,7 +19,7 @@ class ProdukController extends Controller
 
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
-        $productsQuery = DB::table('products')->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id');
+        $productsQuery = DB::table('products');
         $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
             return $query->where('sub_kategori_id', $request->input('sub_categori'));
         })->paginate(9);
@@ -31,7 +31,7 @@ class ProdukController extends Controller
                 return $product;
             });
         });
-
+        // dd($products);
 
         return view('FrontEnd.produk', [
             'setting' => $setting,
