@@ -104,25 +104,10 @@
 
 
 <script>
-    // $('#imagepop1').filemanager('image', { prefix: route_prefix });
-
-    // var lfm = function (id, type, options) {
-
-    document.addEventListener("DOMNodeInserted", function (evt) {
-        let button = document.querySelectorAll('.imagepop');
-        button.forEach((button, i) => {
-            button.addEventListener('click', () => {
-                clickHandler(event);
-            })
-        })
-    }, false);
-
-
 
     function clickHandler(event) {
         var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
         var target_input = event.target.nextElementSibling;
-        // var target_preview = document.getElementById(button.getAttribute('data-preview'));
 
         window.open(route_prefix + '?type=' + options.type || 'image', 'FileManager', 'width=900,height=600');
         window.SetUrl = function (items) {
@@ -134,25 +119,37 @@
             target_input.value = file_path;
             target_input.dispatchEvent(new Event('change'));
 
-            // clear previous preview
-            // target_preview.innerHtml = '';
-
-            // // set or change the preview image src
-            // items.forEach(function (item) {
-            //     let img = document.createElement('img')
-            //     img.setAttribute('style', 'height: 5rem')
-            //     img.setAttribute('src', item.thumb_url)
-            //     target_preview.appendChild(img);
-            // });
-
-            // // trigger change event
-            // target_preview.dispatchEvent(new Event('change'));
         };
     };
-    // };
 
-    // lfm('image1pop', 'image', { prefix: route_prefix });
-    // lfm('image2pop', 'image', { prefix: route_prefix });
+
+    // Function to add click listeners to all .imagepop buttons
+    function addClickListeners() {
+        let buttons = document.querySelectorAll('.imagepop');
+        buttons.forEach((button) => {
+            if (!button.dataset.listenerAdded) {
+                button.addEventListener('click', clickHandler);
+                button.dataset.listenerAdded = 'true'; // Mark button as having a listener
+            }
+        });
+    }
+
+    // Create a MutationObserver to watch for added nodes
+    const observer = new MutationObserver((mutationsList) => {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                // Add click listeners to new .imagepop buttons
+                addClickListeners();
+            }
+        }
+    });
+
+    // Start observing the document for added nodes
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Initial call to add listeners to already existing .imagepop buttons
+    addClickListeners();
+
 
 </script>
 @endpush
