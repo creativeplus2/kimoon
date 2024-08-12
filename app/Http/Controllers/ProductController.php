@@ -8,6 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -67,7 +68,9 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            $produk = Product::create($request->validated());
+            $attr = $request->validated();
+            $attr['slug_produk'] = Str::slug($request->nama_produk);
+            $produk = Product::create($attr);
             if ($produk) {
                 $insertedId = $produk->id;
                 $files = $request->file('photo');
@@ -99,7 +102,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product  = DB::table('products')
+        $product = DB::table('products')
             ->select('products.*', 'sub_categories.nama_sub_kategori', 'product_units.nama_unit')
             ->leftJoin('sub_categories', 'products.sub_kategori_id', '=', 'sub_categories.id')
             ->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id')
@@ -150,7 +153,10 @@ class ProductController extends Controller
             }
             $produk = Product::findOrFail($product->id);
             if ($produk) {
-                $product->update($request->validated());
+                $attr = $request->validated();
+                $attr['slug_produk'] = Str::slug($request->nama_produk);
+
+                $product->update($attr);
                 $insertedId = $produk->id;
                 $files = $request->file('photo');
                 if ($request->hasFile('photo')) {

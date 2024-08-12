@@ -61,7 +61,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 // Route FrontEnd
 Route::get('/produk', [ProdukController::class, 'index'])->name('web.produk');
-Route::get('/produk/{id}', [ProdukController::class, 'detail'])->name('web.produk_detail');
+Route::get('/produk/{slug_produk}', [ProdukController::class, 'detail'])->name('web.produk_detail');
 Route::get('/register-member', [AuthController::class, 'register'])->name('web.register');
 Route::post('/submit-register-member', [AuthController::class, 'submitRegister'])->name('web.submit_register');
 Route::post('/submit-login-member', [AuthController::class, 'submitLogin'])->name('web.submit_login');

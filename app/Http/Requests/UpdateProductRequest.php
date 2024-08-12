@@ -25,15 +25,15 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'kode_produk' => 'required|string|max:50',
-			'nama_produk' => 'required|string|max:150',
-			'sku' => 'required|string|max:150',
-			'sub_kategori_id' => 'required|exists:App\Models\SubCategory,id',
-			'produk_unit_id' => 'required|exists:App\Models\ProductUnit,id',
-			'harga_umum' => 'required|numeric',
-			'harga_reseller' => 'required|numeric',
-			'harga_subdis' => 'required|numeric',
-			'harga_distributor' => 'required|numeric',
-			'deksripsi_produk' => 'required|string',
+            'nama_produk' => 'required|string|max:150',
+            'sku' => 'required|string|max:150',
+            'sub_kategori_id' => 'required|exists:App\Models\SubCategory,id',
+            'produk_unit_id' => 'required|exists:App\Models\ProductUnit,id',
+            'harga_umum' => 'required|numeric',
+            'harga_reseller' => 'required|numeric',
+            'harga_subdis' => 'required|numeric',
+            'harga_distributor' => 'required|numeric',
+            'deksripsi_produk' => 'required|string',
         ];
     }
 }

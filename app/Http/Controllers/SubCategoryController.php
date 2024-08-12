@@ -7,6 +7,7 @@ use App\Http\Requests\{StoreSubCategoryRequest, UpdateSubCategoryRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class SubCategoryController extends Controller
 {
@@ -62,8 +63,9 @@ class SubCategoryController extends Controller
      */
     public function store(StoreSubCategoryRequest $request)
     {
-
-        SubCategory::create($request->validated());
+        $attr = $request->validated();
+        $attr['slug_sub_kategori'] = Str::slug($request->nama_sub_kategori);
+        SubCategory::create($attr);
         Alert::toast('The subCategory was created successfully.', 'success');
         return redirect()->route('sub-categories.index');
     }
@@ -103,8 +105,9 @@ class SubCategoryController extends Controller
      */
     public function update(UpdateSubCategoryRequest $request, SubCategory $subCategory)
     {
-
-        $subCategory->update($request->validated());
+        $attr = $request->validated();
+        $attr['slug_sub_kategori'] = Str::slug($request->nama_sub_kategori);
+        $subCategory->update($attr);
         Alert::toast('The subCategory was updated successfully.', 'success');
         return redirect()
             ->route('sub-categories.index');

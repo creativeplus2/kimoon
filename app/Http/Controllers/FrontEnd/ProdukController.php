@@ -19,9 +19,12 @@ class ProdukController extends Controller
 
         $setting = SettingApp::find(1);
         $produkCategory = DB::table('product_categories')->get();
+
         $productsQuery = DB::table('products')->select('product_units.*', 'products.*')->leftJoin('product_units', 'product_units.id', '=', 'products.produk_unit_id');
         $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
-            return $query->where('sub_kategori_id', $request->input('sub_categori'));
+            $produkSubCategory = DB::table('sub_categories')->where('slug_sub_kategori', $request->input('sub_kategori'))->first();
+
+            return $query->where('sub_kategori_id', $produkSubCategory->id);
         })->paginate(9);
 
         $products = tap($products, function ($paginatedInstance) {
@@ -41,7 +44,7 @@ class ProdukController extends Controller
         ]);
     }
 
-    public function detail($id)
+    public function detail($slug_produk)
     {
 
 
@@ -51,7 +54,7 @@ class ProdukController extends Controller
             ->leftJoin('sub_categories', 'products.sub_kategori_id', '=', 'sub_categories.id')
             ->leftJoin('product_units', 'products.produk_unit_id', '=', 'product_units.id')
             ->leftJoin('product_categories', 'sub_categories.categori_id', '=', 'product_categories.id')
-            ->where('products.id', $id)
+            ->where('products.slug_produk', $slug_produk)
             ->first();
 
         $product->images = ProductPhoto::where('produk_id', $product->id)->orderBy('id', 'ASC')->get();

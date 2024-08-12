@@ -107,7 +107,7 @@
                                 @foreach ($subCategories as $data)
 
                                 <h5 class="mb-3">
-                                    <a href="{{ route('web.produk') }}?sub_categori={{ $data->id }}">
+                                    <a href="{{ route('web.produk') }}?sub_kategori={{ $data->slug_sub_kategori }}">
 
                                         {{ $data->nama_sub_kategori }}
                                     </a>
@@ -184,7 +184,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="product__item wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                             <div class="product__item__img">
-                                <a href="{{ route('web.produk_detail', $product->id) }}">
+                                <a href="{{ route('web.produk_detail', $product->slug_produk) }}">
                                     <img src="{{ count($product->images) >= 1 ? '/storage/produk/' . $product->images[0]->photo : '/images/no-photo.jpg' }}"
                                         alt="{{ $product->nama_produk }}">
                                 </a>
@@ -197,7 +197,8 @@
                                         class="fa fa-star"></span>
                                 </div>
                                 <h4 class="product__item__title">
-                                    <a href="{{ route('web.produk_detail', $product->id) }}">{{ $product->nama_produk
+                                    <a href="{{ route('web.produk_detail', $product->slug_produk) }}">{{
+                                        $product->nama_produk
                                         }}</a>
                                 </h4>
                                 <div class="product__item__price">
