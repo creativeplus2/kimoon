@@ -21,9 +21,8 @@ class ProdukController extends Controller
         $produkCategory = DB::table('product_categories')->get();
 
         $productsQuery = DB::table('products')->select('product_units.*', 'products.*')->leftJoin('product_units', 'product_units.id', '=', 'products.produk_unit_id');
-        $products = $productsQuery->when($request->has('sub_categori'), function ($query) use ($request) {
+        $products = $productsQuery->when($request->has('sub_kategori'), function ($query) use ($request) {
             $produkSubCategory = DB::table('sub_categories')->where('slug_sub_kategori', $request->input('sub_kategori'))->first();
-
             return $query->where('sub_kategori_id', $produkSubCategory->id);
         })->paginate(9);
 
